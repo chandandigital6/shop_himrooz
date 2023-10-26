@@ -2,40 +2,44 @@
 
 @section('content')
 
-    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein  ">
+    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein">
         <ul class="slider-container">
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/11.png')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/22.png ')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/3.jpg.png')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/4.jpg.png')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/5.jpg.png')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/6.jpg.png')}}">
-            </li>
-            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/4383600.png')}}">
-            </li>
+            @foreach ($sliderImages as $image)
+                <li><img class="rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh]" src="{{ asset('storage/'.$image->image) }}"></li>
+            @endforeach
         </ul>
 
         <button type="button" class="slider-nav ml-4"></button>
         <button type="button" class="slider-nav slider-nav-next mr-4"></button>
 
         <div class="slider-indicators">
-            <button class="active"></button>
-            <button></button>
-            <button></button>
+            @foreach ($sliderImages as $key => $image)
+                <button class="{{ $key === 0 ? 'active' : '' }}"></button>
+            @endforeach
         </div>
     </div>
+
+    {{--    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein  ">--}}
+{{--        <ul class="slider-container">--}}
+
+{{--            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "--}}
+{{--                     src="{{asset('assets/images/homeSlider/11.png')}}">--}}
+{{--            </li>--}}
+{{--            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "--}}
+{{--                     src="{{asset('assets/images/homeSlider/22.png ')}}">--}}
+{{--            </li>--}}
+
+{{--        </ul>--}}
+
+{{--        <button type="button" class="slider-nav ml-4"></button>--}}
+{{--        <button type="button" class="slider-nav slider-nav-next mr-4"></button>--}}
+
+{{--        <div class="slider-indicators">--}}
+{{--            <button class="active"></button>--}}
+{{--            <button></button>--}}
+{{--            <button></button>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     @if($product->isNotEmpty())
     <div name="grid" class="flex flex-col mb-16 md:flex-row px-6 relative">
