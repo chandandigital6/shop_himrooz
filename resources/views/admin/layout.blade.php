@@ -71,7 +71,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
 
-        <strong>Copyright &copy; 2014-2023 chandan All rights reserved.
+        <strong>Copyright &copy; 2014-2023 himrooz All rights reserved.
     </footer>
 
 </div>

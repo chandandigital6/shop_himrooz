@@ -123,6 +123,13 @@ Route::group(['prefix' => 'admin'],function (){
 
 
         //slider
+        Route::get('slider/index',[HomeSliderController::class,'index'])->name('slider.index');
           Route::get('slider/create',[HomeSliderController::class,'create'])->name('slider.create');
+        Route::post('slider/store',[HomeSliderController::class,'store'])->name('slider.store');
+        Route::get('slider/edit/{slider}',[HomeSliderController::class,'edit'])->name('slider.edit');
+        Route::put('slider/update/{slider}',[HomeSliderController::class,'update'])->name('slider.update');
+        Route::get('slider/delete/{slider}',[HomeSliderController::class,'delete'])->name('slider.delete');
+        Route::get('slider/duplicate/{slider}',[HomeSliderController::class,'duplicate'])->name('slider.duplicate');
+
     });
 });

@@ -38,6 +38,7 @@
                                 </a>
                             </div>
                         </div>
+                        @include('admin.massage')
                         <form class="flex flex-col justify-center" action="{{route('admin.authenticate')}}" method="post">
                            @csrf
                             <div class="flex flex-col space-y-3.5">
@@ -50,6 +51,9 @@
                                            autocomplete="off" spellcheck="false"
                                            aria-invalid="false">
                                 </div>
+                                @error('email')
+                                <span>{{$message}}</span>
+                                @enderror
                                 <div class="block text-left">
                                     <label for="password" class="block mb-3 text-sm font-normal leading-none cursor-pointer text-gray-900 opacity-70">
                                         Password
@@ -69,6 +73,9 @@
                                             </svg>
                                         </label>
                                     </div>
+                                    @error('password')
+                                    <span>{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="flex items-center justify-end">
                                     <div class="flex ltr:ml-auto rtl:mr-auto mt-[3px]">
@@ -134,4 +141,5 @@
     </div>
 </div>
 {{--login modal ends here--}}
+
 @endsection

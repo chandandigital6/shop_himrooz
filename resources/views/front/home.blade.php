@@ -2,22 +2,28 @@
 
 @section('content')
 
-    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein slider-nav-autoplay ">
+    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein  ">
         <ul class="slider-container">
-            <li><img class=" rounded-md w-full lg:h-[80vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/1.jpg')}}">
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/11.png')}}">
             </li>
-            <li><img class=" rounded-md w-full lg:h-[80vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/2.jpg')}}">
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/22.png ')}}">
             </li>
-            <li><img class=" rounded-md w-full lg:h-[80vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/3.jpg')}}">
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/3.jpg.png')}}">
             </li>
-            <li><img class=" rounded-md w-full lg:h-[80vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/4.jpg')}}">
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/4.jpg.png')}}">
             </li>
-            <li><img class=" rounded-md w-full lg:h-[80vh] md:h-[50vh] h-[30vh] "
-                     src="{{asset('assets/images/homeSlider/5.jpg')}}">
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/5.jpg.png')}}">
+            </li>
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/6.jpg.png')}}">
+            </li>
+            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "
+                     src="{{asset('assets/images/homeSlider/4383600.png')}}">
             </li>
         </ul>
 
