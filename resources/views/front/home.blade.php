@@ -30,6 +30,8 @@
             <button></button>
         </div>
     </div>
+
+    @if($product->isNotEmpty())
     <div name="grid" class="flex flex-col mb-16 md:flex-row px-6 relative">
         {{--    left side--}}
         <aside id="categorySideBar"
@@ -351,5 +353,9 @@
             {{--            </a></div>--}}
         </div>
     </div>
-
+    @else
+        <div class="w-full h-96 flex justify-center text-center">
+            <img class="h-full w-full object-cover" src="https://img.freepik.com/free-vector/realistic-coming-soon-background_52683-59077.jpg?w=740&t=st=1698301669~exp=1698302269~hmac=8a9beae0620b0d573d806ac929f2204940ad549aee46c83c1e6c04f529d065e6" alt="">
+        </div>
+    @endif
 @endsection

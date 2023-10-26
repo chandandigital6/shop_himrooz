@@ -46,6 +46,8 @@ Route::get('/orderComplete', function () {
 Route::get('/logIn', function () {
     return view('front.logIn');
 })->name('logIn');
+
+
 Route::get('/signUp', function () {
     return view('front.signUp');
 })->name('signUp');
@@ -69,6 +71,7 @@ Route::get('admin/login',[AdminController::class,'index'])->name('admin.login');
 Route::group(['prefix' => 'admin'],function (){
     Route::group(['middleware' => 'admin.guest'],function (){
         Route::get('login',[AdminController::class,'index'])->name('admin.login');
+        Route::get('signup',[AdminController::class,'signup'])->name('admin.signup');
         Route::post('authenticate',[AdminController::class,'authenticate'])->name('admin.authenticate');
     });
     Route::group(['middleware' => 'admin.auth'],function (){
