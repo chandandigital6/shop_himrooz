@@ -11,8 +11,8 @@ class HomeSliderController extends Controller
     public function create(){
         return view('slider.create');
     }
-    public function store(HomeSliderRequest $request){
-           $homeSLider=HomeSlider::create($request->all());
-           $image
-    }
+//    public function store(HomeSliderRequest $request){
+//           $homeSLider=HomeSlider::create($request->all());
+//           $image
+//    }
 }

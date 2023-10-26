@@ -103,7 +103,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::post('brand/store',[BrandController::class,'store'])->name('brand.store');
         Route::get('brand/edit/{brandId}',[BrandController::class,'edit'])->name('brand.edit');
         Route::put('brand/update/{brandId}',[BrandController::class,'Brandupdate'])->name('brand.update');
-        Route::get('brand/delte/{brandId}',[BrandController::class,'delete'])->name('brand.delete');
+        Route::get('brand/delete/{brandId}',[BrandController::class,'delete'])->name('brand.delete');
 
 
         //product
@@ -114,6 +114,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::get('product/delete/{product}',[ProductController::class,'delete'])->name('product.delete');
         Route::get('product/edit/{product}',[ProductController::class,'edit'])->name('product.edit');
         Route::put('product/update/{product}',[ProductController::class,'update'])->name('product.update');
+        Route::get('product/duplicate/{product}',[ProductController::class,'duplicate'])->name('product.duplicate');
 
         Route::get('product/subcategories/{category}',[ProductSubcategoryController::class,'getProductSubcategories'])->name('product.subcategories');
 

@@ -56,7 +56,13 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success','product item successfully updated');
 
     }
+   public function duplicate(Product $product){
 
+          $duplicateProduct=$product->replicate();
+          $duplicateProduct->save();
+
+          return redirect()->back();
+   }
 
     public function delete(Product $product){
         $product->delete();
