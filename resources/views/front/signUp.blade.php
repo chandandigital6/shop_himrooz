@@ -40,13 +40,24 @@
                                 </a>
                             </div>
                         </div>
-                        <form class="flex flex-col justify-center" >
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form class="flex flex-col justify-center" action="{{route('register.store')}}" method="post">
+                            @csrf
                             <div class="flex flex-col space-y-3.5">
                                 <div class="block text-left">
-                                    <label for="email" class="block font-normal text-sm leading-none mb-3 cursor-pointer text-gray-900 text-opacity-70">
+                                    <label for="name" class="block font-normal text-sm leading-none mb-3 cursor-pointer text-gray-900 text-opacity-70">
                                         Name
                                     </label>
-                                    <input id="email" name="email" type="text" placeholder="Enter Your Name"
+                                    <input id="name" name="name" type="text" placeholder="Enter Your Name"
                                            class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12"
                                            autocomplete="off" spellcheck="false"
                                            aria-invalid="false">
@@ -83,17 +94,17 @@
                                 <div class="flex items-center justify-end">
                                     <div class="flex ltr:ml-auto rtl:mr-auto mt-[3px]">
                                         <a href="">
-                                            <button type="button"
-                                                    class="text-sm text-right text-heading ltr:pl-3 lg:rtl:pr-3 hover:no-underline hover:text-[#02b290] focus:outline-none focus:text-brand-dark">
-                                                Privacy Policy
-                                            </button>
+{{--                                            <button type="button"--}}
+{{--                                                    class="text-sm text-right text-heading ltr:pl-3 lg:rtl:pr-3 hover:no-underline hover:text-[#02b290] focus:outline-none focus:text-brand-dark">--}}
+{{--                                                Privacy Policy--}}
+{{--                                            </button>--}}
                                         </a>
                                     </div>
                                 </div>
                                 <div class="relative">
                                     <a href="">
                                         <button class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-11 md:h-[50px] bg-[#02b290] text-gray-50 font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70 w-full mt-2 tracking-normal h-11 md:h-12 font-15px md:font-15px"
-                                                type="button">Register</button>
+                                                type="submit">Register</button>
                                     </a>
                                 </div>
 

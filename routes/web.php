@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategorieController;
 use App\Http\Controllers\admin\FrontController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\admin\HomeSliderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\ProductSubcategoryController;
+use App\Http\Controllers\admin\StoreCOntroller;
 use App\Http\Controllers\admin\SubCategoryCOntroller;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +32,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/about', function () {
     return view('front.about');
 })->name('about');
-Route::get('/store', function () {
-    return view('front.store');
-})->name('store');
+//Route::get('/store', function () {
+//    return view('front.store');
+//})->name('store');
 Route::get('/productDetail', function () {
     return view('front.productDetail');
 })->name('productDetail');
@@ -65,9 +67,15 @@ Route::get('/termsConditions', function () {
 })->name('termsConditions');
 Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('product/show/{productId}',[FrontController::class,'productShow'])->name('product.show');
+Route::get('store',[StoreCOntroller::class,'GetProduct'])->name('store');
+//  register
+
+Route::get('register',[AuthController::class,'register'])->name('register');
+Route::post('register/store',[AuthController::class,'store'])->name('register.store');
 
 
 Route::get('admin/login',[AdminController::class,'index'])->name('admin.login');
+
 Route::group(['prefix' => 'admin'],function (){
     Route::group(['middleware' => 'admin.guest'],function (){
         Route::get('login',[AdminController::class,'index'])->name('admin.login');

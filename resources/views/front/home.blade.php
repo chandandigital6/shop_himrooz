@@ -19,27 +19,7 @@
         </div>
     </div>
 
-    {{--    <div class="swiffy-slider py-4 lg:px-6 md:px-6 sm:px-4 px-2 slider-nav-chevron slider-indicators-highlight slider-indicators-round slider-nav-animation-fadein  ">--}}
-{{--        <ul class="slider-container">--}}
 
-{{--            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "--}}
-{{--                     src="{{asset('assets/images/homeSlider/11.png')}}">--}}
-{{--            </li>--}}
-{{--            <li><img class=" rounded-md w-full lg:h-[50vh] md:h-[50vh] h-[30vh] "--}}
-{{--                     src="{{asset('assets/images/homeSlider/22.png ')}}">--}}
-{{--            </li>--}}
-
-{{--        </ul>--}}
-
-{{--        <button type="button" class="slider-nav ml-4"></button>--}}
-{{--        <button type="button" class="slider-nav slider-nav-next mr-4"></button>--}}
-
-{{--        <div class="slider-indicators">--}}
-{{--            <button class="active"></button>--}}
-{{--            <button></button>--}}
-{{--            <button></button>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 
     @if($product->isNotEmpty())
     <div name="grid" class="flex flex-col mb-16 md:flex-row px-6 relative">
@@ -170,129 +150,15 @@
 
 
                 @foreach($product as $products)
-                {{--            product card--}}
-                <a href="{{ route('product.show', ['productId' =>$products]) }}">
-
-                <article
-                        class="flex flex-col group overflow-hidden rounded-md cursor-pointer transition-all duration-300 shadow-lg shadow-gray-200 hover:shadow-gray-500 relative h-full"
-                        title="Organic Spring Mix">
-
-                        {{--                card top section--}}
-
-
-
-                        <div class="relative shrink-0">
-                            <div
-                                class="overflow-hidden mx-auto w-full sm:w-[180px] h-[180px] md:w-[200px] md:h-[200px] transition duration-200 ease-in-out transform group-hover:scale-105 relative">
-                                <img alt="Organic Spring Mix" fetchpriority="high" decoding="async" data-nimg="fill"
-                                     class="object-cover bg-fill-thumbnail"
-                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                     src="{{asset('storage/'.$products->image)}}"
-                                     style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                            </div>
-                            <div
-                                class="w-max h-max absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
-                        <span
-                            class="text-[11px] md:text-xs font-bold text-gray-50 uppercase inline-block bg-[#02b290] rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">on sale</span>
-                            </div>
-                            <div
-                                class="w-full h-full absolute top-0 flex flex-col right-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1"
-                                style="justify-content: end">
-                                <div class="relative w-full">
-                                    <div class="block product-count-button-position flex justify-end gap-3 ">
-                                        <button
-                                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                                            aria-label="Count Button">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 stroke="currentColor" width="19" height="19" opacity="1">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                            </svg>
-                                        </button>
-                                        <button
-                                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                                            onmouseover="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.remove('hidden');
-                                    " onmouseleave="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.add('hidden');
-                                    " aria-label="Count Button">
-                                            <svg width="19" height="19" viewBox="0 0 22 22" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <g opacity="1">
-                                                    <path
-                                                        d="M10.174 11.8439L3.15109 11.8438C2.69416 11.8439 2.32486 11.4746 2.32496 11.0177C2.32496 10.5608 2.69427 10.1915 3.15109 10.1915L10.1741 10.1915L10.174 3.16858C10.1741 2.71165 10.5433 2.34245 11.0002 2.34245C11.4571 2.34234 11.8264 2.71165 11.8263 3.16858L11.8264 10.1915L18.8493 10.1916C19.3062 10.1915 19.6755 10.5608 19.6754 11.0177C19.6755 11.2455 19.5831 11.4524 19.4335 11.602C19.284 11.7515 19.0772 11.8439 18.8493 11.8439L11.8264 11.8438L11.8264 18.8668C11.8264 19.0947 11.734 19.3015 11.5845 19.451C11.4349 19.6006 11.2281 19.6929 11.0002 19.6929C10.5433 19.693 10.174 19.3237 10.1741 18.8668L10.174 11.8439Z"
-                                                        fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div id="productId"
-                                         class="hidden product-count-button-position absolute -right-1 bottom-0 w-full"
-                                         onmouseover="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.remove('hidden');
-                                    " onmouseleave="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.add('hidden');
-                                    ">
-                                        <div
-                                            class="flex items-center justify-between rounded overflow-hidden shrink-0 p-1 h-9 md:h-10 bg-white shadow-lg shadow-gray-200 rounded-3xl w-full h-10">
-                                            <button
-                                                class="flex items-center justify-center shrink-0 h-full transition-all ease-in-out duration-300 focus:outline-none focus:ring-0 focus-visible:outline-none w-10 h-8 rounded-2xl text-heading hover:bg-gray-300">
-                                                <span class="sr-only">button-minus</span>
-                                                <svg class="transition-all" width="14" height="14" viewBox="0 0 22 22"
-                                                     fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <g opacity="1">
-                                                        <path
-                                                            d="M3.15109 11.8438L10.174 11.8439L11.8264 11.8438L18.8493 11.8439C19.0772 11.8439 19.284 11.7515 19.4335 11.602C19.5831 11.4524 19.6755 11.2455 19.6754 11.0177C19.6755 10.5608 19.3062 10.1915 18.8493 10.1916L11.8264 10.1915L10.1741 10.1915L3.15109 10.1915C2.69427 10.1915 2.32496 10.5608 2.32496 11.0177C2.32486 11.4746 2.69416 11.8439 3.15109 11.8438Z"
-                                                            fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            <span
-                                                class="font-semibold text-brand-dark flex items-center justify-center h-full transition-colors duration-250 ease-in-out cursor-default shrink-0 text-sm md:text-base w-6">1</span>
-                                            <button
-                                                class="group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus:ring-0 focus-visible:outline-none pr-2 w-10 h-8 rounded-2xl text-heading hover:bg-gray-300 !pr-0"
-                                                title=""><span class="sr-only">button-plus</span>
-                                                <svg width="14" height="14" viewBox="0 0 22 22" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <g opacity="1">
-                                                        <path
-                                                            d="M10.174 11.8439L3.15109 11.8438C2.69416 11.8439 2.32486 11.4746 2.32496 11.0177C2.32496 10.5608 2.69427 10.1915 3.15109 10.1915L10.1741 10.1915L10.174 3.16858C10.1741 2.71165 10.5433 2.34245 11.0002 2.34245C11.4571 2.34234 11.8264 2.71165 11.8263 3.16858L11.8264 10.1915L18.8493 10.1916C19.3062 10.1915 19.6755 10.5608 19.6754 11.0177C19.6755 11.2455 19.5831 11.4524 19.4335 11.602C19.284 11.7515 19.0772 11.8439 18.8493 11.8439L11.8264 11.8438L11.8264 18.8668C11.8264 19.0947 11.734 19.3015 11.5845 19.451C11.4349 19.6006 11.2281 19.6929 11.0002 19.6929C10.5433 19.693 10.174 19.3237 10.1741 18.8668L10.174 11.8439Z"
-                                                            fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{--                card bottom section--}}
-                        <div class="flex flex-col px-3 md:px-4 lg:px-[18px] pb-5 lg:pb-6 lg:pt-1.5 h-full">
-                            <div class="mb-1 lg:mb-1.5 -mx-1"><span
-                                    class="inline-block mx-1 text-lg font-semibold sm:text-15px lg:font-bold text-gray-900">₹ {{$products->price}}</span>
-                                <del class="mx-1 text-md text-gray-700 text-opacity-70">₹{{$products->discount_price}}</del>
-                            </div>
-                            <h2 class="text-gray-800 text-13px sm:text-sm lg:text-[17px]  leading-5 sm:leading-6 mb-1.5">
-                                {{$products->title}}</h2>
-                            <div class="mt-auto text-13px sm:text-sm text-gray-600">1 each</div>
-                        </div>
-
-                    </article>
-                </a>
+                     <x-product-card
+                         product-name="{{$products->title}}"
+                         product-price="{{$products->price}}"
+                         product-discount-price="{{$products->discount_price}}"
+                         product-quantity="{{$products->qty}}"
+                         product-image="{{$products->image}}"
+                         product-id="{{$products->id}}"
+                     ></x-product-card>
                 @endforeach
-                {{--            product card end--}}
 
 
             </div>
