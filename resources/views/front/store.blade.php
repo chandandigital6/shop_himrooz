@@ -76,21 +76,23 @@
 
                             @endphp
                             <ul class="list">
-                                <li class="flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70">
-                                    <button class="flex items-center w-full ltr:text-left:text-right outline-none focus:outline-none group focus:ring-0 focus:text-brand-dark" >
-                                        <div class="inline-flex shrink-0 2xl:w-12 2xl:h-12 3xl:w-auto 3xl:h-auto">
-                                            <img alt="" loading="lazy" width="40" height="40" decoding="async" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY048t_rCchDgPXwHaQ11x3YakucJ2yh0qZA&usqp=CAU" >
-                                        </div>
-                                        <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">All Products</span>
+                                <a href="{{route('store', ['id'=> 0])}}">
+                                    <li class="flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70">
+                                        <button class="flex items-center w-full ltr:text-left:text-right outline-none focus:outline-none group focus:ring-0 focus:text-brand-dark" >
+                                            <div class="inline-flex shrink-0 2xl:w-12 2xl:h-12 3xl:w-auto 3xl:h-auto">
+                                                <img alt="" loading="lazy" width="40" height="40" decoding="async" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY048t_rCchDgPXwHaQ11x3YakucJ2yh0qZA&usqp=CAU" >
+                                            </div>
+                                            <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">All Products</span>
 
 
-                                        <span class="ml-auto">
+                                            <span class="ml-auto">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-base text-brand-dark text-opacity-40" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M256 294.1L383 167c9.4-9.4 24.6-9.4 33.9 0s9.3 24.6 0 34L273 345c-9.1 9.1-23.7 9.3-33.1.7L95 201.1c-4.7-4.7-7-10.9-7-17s2.3-12.3 7-17c9.4-9.4 24.6-9.4 33.9 0l127.1 127z"></path>
                             </svg>
                         </span>
-                                    </button>
-                                </li>
+                                        </button>
+                                    </li>
+                                </a>
 
                             @foreach ($categories as $category)
                                     <li class="flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70">
@@ -110,10 +112,12 @@
                                         <ul id="{{ strtolower($category->name) }}List" class="h-0 overflow-hidden subcategory-list">
 
                                             @foreach ($category->subcategories as $subcategory)
-                                                <li class="subcategory-item flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70"
-                                                    data-subcategory-id="{{ $subcategory->id }}">
-                                                    <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">{{ $subcategory->name }}</span>
-                                                </li>
+                                                <a href="{{route('store', ['id' => $category->id])}}">
+                                                    <li class="subcategory-item flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70"
+                                                        data-subcategory-id="{{ $subcategory->id }}">
+                                                        <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">{{ $subcategory->name }}</span>
+                                                    </li>
+                                                </a>
                                             @endforeach
                                         </ul>
 
@@ -154,14 +158,14 @@
         {{--        product card--}}
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 md:gap-4 2xl:gap-5">
 
-            @foreach($product as $products)
+            @foreach($products as $product)
                 <x-product-card
-                    product-name="{{$products->title}}"
-                    product-price="{{$products->price}}"
-                    product-discount-price="{{$products->discount_price}}"
-                    product-quantity="{{$products->qty}}"
-                    product-image="{{$products->image}}"
-                    product-id="{{$products->id}}"
+                    product-name="{{$product->title}}"
+                    product-price="{{$product->price}}"
+                    product-discount-price="{{$product->discount_price}}"
+                    product-quantity="{{$product->qty}}"
+                    product-image="{{$product->image}}"
+                    product-id="{{$product->id}}"
 
                 ></x-product-card>
             @endforeach

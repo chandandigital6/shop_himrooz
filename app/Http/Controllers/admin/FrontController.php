@@ -11,8 +11,8 @@ class FrontController extends Controller
 {
      public function index(){
          $categories = Categorie::orderBy('name')->get();
-         $product=Product::all();
-         $sliderImages=HomeSlider::all();
+         $product=Product::where('is_featured',1)->get();
+         $sliderImages=HomeSlider::all()->sortByDesc('created_at');
 //         dd($categories);
          return view('front.home',compact('categories','product','sliderImages'));
 

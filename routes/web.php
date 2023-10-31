@@ -67,7 +67,7 @@ Route::get('/termsConditions', function () {
 })->name('termsConditions');
 Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('product/show/{productId}',[FrontController::class,'productShow'])->name('product.show');
-Route::get('store',[StoreCOntroller::class,'GetProduct'])->name('store');
+Route::get('store/{id}',[StoreController::class,'GetProduct'])->name('store');
 //  register
 
 Route::get('register',[AuthController::class,'register'])->name('register');

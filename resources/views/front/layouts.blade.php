@@ -232,12 +232,18 @@
 
                                 @endphp
                                 <ul id="category" class="overflow-hidden h-0 bg-gray-100">
-                                    @foreach($categories as $categories)
+                                    <li class="transition-colors duration-200 hover:bg-gray-200">
+                                        <div class="relative flex items-center justify-between"><a
+                                                class="relative w-full py-4 transition duration-300 ease-in-out menu-item pl-5 pr-5 md:pl-7 md:pr-7 pr-4 pl-4 text-brand-dark"
+                                                href="{{route('store', ['id' => 0])}}"><span class="block w-full">All Products</span></a>
+                                        </div>
+                                    </li>
+                                    @foreach($categories as $category)
 
                                     <li class="transition-colors duration-200 hover:bg-gray-200">
                                         <div class="relative flex items-center justify-between"><a
                                                 class="relative w-full py-4 transition duration-300 ease-in-out menu-item pl-5 pr-5 md:pl-7 md:pr-7 pr-4 pl-4 text-brand-dark"
-                                                href="{{route('store')}}"><span class="block w-full">{{$categories->name}}</span></a>
+                                                href="{{route('store', ['id' => $category->id])}}"><span class="block w-full">{{$category->name}}</span></a>
                                         </div>
                                     </li>
                                     @endforeach
@@ -413,7 +419,7 @@
                     <li class="flex items-baseline"><a class="transition-colors duration-200 hover:text-gray-300"
                                                        href="{{route('about')}}">About us</a></li>
                     <li class="flex items-baseline"><a class="transition-colors duration-200 hover:text-gray-300"
-                                                       href="{{route('store')}}">Store</a></li>
+                                                       href="{{route('store', ['id' => 0])}}">Store</a></li>
                     <li class="flex items-baseline"><a class="transition-colors duration-200 hover:text-gray-300"
                                                        href="{{route('contact')}}">Contact Us</a></li>
                 </ul>
@@ -568,7 +574,7 @@
             </g>
         </svg>
     </button>
-    <a href="{{route('store')}}">
+    <a href="{{route('store',['id' => 0])}}">
         <button class="relative flex items-center justify-center h-auto shrink-0 focus:outline-none"
                 aria-label="Search Button">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-gray-500">
