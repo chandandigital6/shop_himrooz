@@ -27,7 +27,7 @@ class HomeSliderController extends Controller
     }
     public function store(HomeSliderRequest $request){
         $homeSlider=HomeSlider::create($request->all());
-        $image = $request->file('image')->store('public/homeSlider');
+        $image = $request->file('image')->store('public');
 
         $homeSlider->image = str_replace('public/', '', $image);
         $homeSlider->save();
@@ -41,7 +41,7 @@ class HomeSliderController extends Controller
         $slider = HomeSlider::find($id);
 
         if ($request->hasFile('image')) {
-            $newImage = $request->file('image')->store('public/homeSlider');
+            $newImage = $request->file('image')->store('public');
             $slider->image = str_replace('public/', '', $newImage);
         }
         $slider->title = $request->input('title');
