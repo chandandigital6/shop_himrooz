@@ -158,17 +158,25 @@
         {{--        product card--}}
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 md:gap-4 2xl:gap-5">
 
-            @foreach($products as $product)
-                <x-product-card
-                    product-name="{{$product->title}}"
-                    product-price="{{$product->price}}"
-                    product-discount-price="{{$product->discount_price}}"
-                    product-quantity="{{$product->qty}}"
-                    product-image="{{$product->image}}"
-                    product-id="{{$product->id}}"
 
-                ></x-product-card>
-            @endforeach
+
+            @if($products->count() == 0)
+                <div class="flex justify-center items-center w-full">
+                    <img class="h-full w-full " src="{{asset('assets/images/commingSoon.jpeg')}}" alt="">
+                </div>
+                @else
+                @foreach($products as $product)
+                    <x-product-card
+                        product-name="{{$product->title}}"
+                        product-price="{{$product->price}}"
+                        product-discount-price="{{$product->discount_price}}"
+                        product-quantity="{{$product->qty}}"
+                        product-image="{{$product->image}}"
+                        product-id="{{$product->id}}"
+                    ></x-product-card>
+                @endforeach
+                @endif
+
 
 
         </div>

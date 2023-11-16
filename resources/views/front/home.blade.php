@@ -73,10 +73,14 @@
                                         </button>
                                         <ul id="{{ strtolower($category->name) }}List" class="h-0 overflow-hidden subcategory-list">
                                             @foreach ($category->subcategories as $subcategory)
-                                                <li class="subcategory-item flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70"
-                                                    data-subcategory-id="{{ $subcategory->id }}">
-                                                    <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">{{ $subcategory->name }}</span>
-                                                </li>
+                                                <a href="{{route('store', ['id' => $category->id])}}">
+                                                    <li class="subcategory-item flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70"
+                                                        data-subcategory-id="{{ $subcategory->id }}">
+                                                        <span class="text-brand-dark group-hover:text-opacity-80 capitalize pl-2.5 pr-2.5 md:pl-4 md:pr-4 2xl:pl-3 2xl:pr-3 3xl:pl-4 3xl:pr-4">{{ $subcategory->name }}</span>
+                                                    </li>
+                                                </a>
+
+
                                             @endforeach
                                         </ul>
 
