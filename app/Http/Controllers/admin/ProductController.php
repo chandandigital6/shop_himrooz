@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request){
              $product=Product::create($request->all());
-        $image = $request->file('image')->store('public/ProductImage');
+        $image = $request->file('image')->store('public');
 
         $product->image = str_replace('public/', '', $image);
         $product->save();
@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function update(Product $product ,ProductRequest $request){
         $product->update($request->all());
 
-        $request->hasFile('image') ? $product->update(['image' => str_replace('public/', '', $request->file('image')->store('public/ProductImage'))]) : '';
+        $request->hasFile('image') ? $product->update(['image' => str_replace('public/', '', $request->file('image')->store('public'))]) : '';
         return redirect()->route('product.index')->with('success','product item successfully updated');
 
     }
@@ -65,6 +65,9 @@ class ProductController extends Controller
    }
 
     public function delete(Product $product){
+        if($product->image){
+            unlink('storage/' .$product->image);
+        }
         $product->delete();
         return redirect()->route('product.index')->with('error','Successfully stored product items deleted');
 

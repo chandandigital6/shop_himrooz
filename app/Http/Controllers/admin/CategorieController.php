@@ -33,7 +33,7 @@ class CategorieController extends Controller
 //        dd($request);
           $category=Categorie::create($request->all());
 
-           $image = $request->file('image')->store('public/categoriesPhoto');
+           $image = $request->file('image')->store('public');
 
            $category->image = str_replace('public/', '', $image);
           $category->save();
@@ -48,11 +48,14 @@ class CategorieController extends Controller
     public function update(Categorie $categories ,CategorieRequest $request){
 //        dd($request->all());
             $categories->update($request->all());
-        $request->hasFile('image') ? $categories->update(['image' => str_replace('public/', '', $request->file('image')->store('public/categoriesPhoto'))]) : '';
+        $request->hasFile('image') ? $categories->update(['image' => str_replace('public/', '', $request->file('image')->store('public'))]) : '';
 //        $categories->save();
        return redirect()->route('categorie.index')->with('success', 'Successfully Updated');
     }
     public function delete(Categorie $categories){
+        if($categories->image){
+            unlink('storage/' .$categories->image);
+        }
         $categories->delete();
         return redirect()->route('categorie.index')->with('error', 'Successfully deleted');
 
