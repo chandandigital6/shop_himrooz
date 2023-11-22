@@ -176,8 +176,8 @@
                 @foreach($product as $products)
                      <x-product-card
                          product-name="{{$products->title}}"
-                         product-price="{{$products->price}}"
-                         product-discount-price="{{$products->discount_price}}"
+                         product-price="{{$products->variations->first()->price}}"
+                         product-discount-price="{{$products->variations->first()->price-(($products->variations->first()->price * $products->variations->first()->discountPercentage )/100) }}"
                          product-quantity="{{$products->qty}}"
                          product-image="{{$products->image}}"
                          product-id="{{$products->id}}"

@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->save();
 
         $variation_name = $request->variation_name;
-        $variation_price = $request->variation_price;
+        $variation_price = $request->variation_price ?? '';
         $variation_discount = $request->variation_discount;
         $variation_image = $request->variation_image;
 
@@ -50,7 +50,7 @@ class ProductController extends Controller
             $productVariation->name = $variation_name[$key];
             $productVariation->price = $variation_price[$key];
             $productVariation->discountPercentage = $variation_discount[$key];
-            $variation_image = $request->file('variation_image')[0]->store('public');
+            $variation_image = $request->file('variation_image')[$key]->store('public');
             $productVariation->image = str_replace('public/', '', $variation_image);
             $productVariation->product_id = $product->id;
             $productVariation->save();

@@ -55,35 +55,33 @@
         <div class="w-full grid lg:grid-cols-3  grid-cols-1 gap-2 ">
             <div class="w-full col-span-2 flex">
                 <div class="shrink-0 lg:w-[150px] xl:w-[150px] 2xl:w-[170px] lg:flex hidden ">
-                    <div class="flex flex-col gap-2">
-                        <div
-                            class=" swiper-slide flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75 swiper-slide-visible swiper-slide-active swiper-slide-thumb-active w-full">
-                            <img alt="Product thumb gallery 1" loading="lazy"
-                                 width="170" height="170" decoding="async"
-                                 data-nimg="1"
-                                 src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-3-1.png&w=256&q=75"
-                                 style="color: transparent; width: auto;"></div>
-                        <div
-                            class="swiper-slide flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75 swiper-slide-visible swiper-slide-next w-full">
-                            <img alt="Product thumb gallery 2" loading="lazy"
-                                 width="170" height="170" decoding="async"
-                                 data-nimg="1"
-                                 src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-3-2.png&w=256&q=75"
-                                 style="color: transparent; width: auto;"></div>
-                        <div
-                            class="swiper-slide flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75 swiper-slide-visible w-full">
-                            <img alt="Product thumb gallery 3" loading="lazy"
-                                 width="170" height="170" decoding="async"
-                                 data-nimg="1"
-                                 src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-3-3.png&w=256&q=75"
-                                 style="color: transparent; width: auto;"></div>
+                    <div class="flex flex-col gap-2 lg:h-[500px] overflow-auto">
+                          @foreach($showProduct->variations as $variation)
+                            <div
+                                class=" swiper-slide flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75 swiper-slide-visible swiper-slide-active swiper-slide-thumb-active w-full"
+                                onclick="
+                                        var productBigImage = document.getElementById('productBigImage');
+                                            productBigImage.src = '{{asset('storage/'.$variation->image)}}';
+
+
+                                "
+
+
+                            >
+                                <img alt="Product thumb gallery 1" loading="lazy"
+                                     width="170" height="170" decoding="async"
+                                     data-nimg="1"
+                                     src="{{asset('storage/'.$variation->image)}}"
+                                     style="color: transparent; width: auto;"></div>
+                          @endforeach
+
                     </div>
                 </div>
                 <div class="xl:ml-5 xl:mr-5 mb-2.5 md:mb-3 border border-border-base overflow-hidden rounded-md relative lg:h-[500px] md:h-[450px] sm:h-[400px] h-[300px] w-full">
                     <div class=" w-full h-full">
                         <img fetchpriority="high"
                              data-nimg="1" class="rounded-lg h-full w-full object-cover"
-                             src="{{asset('storage/'.$showProduct->image)}}">
+                             src="{{asset('storage/'.$showProduct->variations->first()->image)}}" id="productBigImage">
                     </div>
                 </div>
             </div>
@@ -94,8 +92,12 @@
                            {{$showProduct->title}}</h2></div>
                     <div class="flex items-center mt-5">
                         <div>
-                            <span class="text-brand-dark  font-bold text-base md:text-xl xl:text-[22px]">₹{{$showProduct->price}}</span>
-                            <span class="text-gray-500 line-through font-semibold xl:text-[18px] md:text-md">₹{{$showProduct->discount_price}}</span>
+                            @php
+                                $firstVariantPrice = $showProduct->variations->first()->price;
+                                $firstVariantDiscountPercentage = $showProduct->variations->first()->discountPercentage;
+                            @endphp
+                            <span class="text-brand-dark  font-bold text-base md:text-xl xl:text-[22px]" id="discountedPrice">₹{{  $firstVariantPrice- (($firstVariantPrice*$firstVariantDiscountPercentage)/100)}}</span>
+                            <span class="text-gray-500 line-through font-semibold xl:text-[18px] md:text-md" id="originalPrice">₹{{$firstVariantPrice}}</span>
                         </div>
                     </div>
                 </div>
@@ -103,23 +105,40 @@
                     <h4 class="mb-3 font-normal capitalize text-[15px] text-gray-900 text-opacity-70">Available
                         in:</h4>
                     <ul class="flex flex-wrap mr-2 ml-2">
-                        @foreach($showProduct->variants as $variant)
-                            @if($variant->color)
-                                <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
+                        @foreach($showProduct->variations as $variant)
+                            @if($variant)
+
+
+
+                                <li class="variantName cursor-pointer {{$loop->iteration==1? 'bg-[#8ddccd]': ""}} rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-black transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3"
+                                    onclick="
+                                            var discountedPrice = document.getElementById('discountedPrice');
+                                            var originalPrice = document.getElementById('originalPrice');
+                                            var productBigImage = document.getElementById('productBigImage');
+                                            var selectedVariant = this;
+
+
+                                            // Reset background color for all variants
+                                            var allVariants = document.querySelectorAll('.variantName');
+                                            allVariants.forEach(function(variant) {
+                                                variant.style.backgroundColor = 'transparent';
+
+                                            });
+
+                                            // Set background color for the selected variant
+                                            selectedVariant.style.backgroundColor = '#8ddccd';
+
+                                            discountedPrice.innerHTML = '₹{{$variant->price - (($variant->price * $variant->discountPercentage) / 100)}}';
+                                            originalPrice.innerHTML = '₹{{$variant->price}}';
+
+                                            productBigImage.src = '{{asset('storage/'.$variant->image)}}';
+                                          "
+                                >
                                     {{$variant->name}}
                                 </li>
-                            @endif
 
+                            @endif
                         @endforeach
-                        <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
-                            12oz
-                        </li>
-                        <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
-                            24oz
-                        </li>
-                        <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
-                            36oz
-                        </li>
                     </ul>
                 </div>
                 <div class="pb-2"></div>
@@ -758,19 +777,19 @@
 
 
             @php
-                $product=\App\Models\Product::all();
+                $category = $showProduct->categories_id;
+                 $products = \App\Models\Product::where('categories_id',$category)->get();
+
+
             @endphp
-            @foreach($product as $products)
+            @foreach($products as $product)
                 <x-product-card
-                    product-name="{{$products->title}}"
-                    product-price="{{$products->price}}"
-                    product-discount-price="{{$products->discount_price}}"
-                    product-quantity="{{$products->qty}}"
-                    product-image="{{$products->image}}"
-                    product-id="{{$products->id}}"
-
-
-
+                    product-name="{{$product->title}}"
+                    product-price="{{$product->variations->first()->price}}"
+                    product-discount-price="{{$product->variations->first()->price-(($product->variations->first()->price * $product->variations->first()->discountPercentage )/100) }}"
+                    product-quantity="{{$product->qty}}"
+                    product-image="{{$product->image}}"
+                    product-id="{{$product->id}}"
                 ></x-product-card>
             @endforeach
         </div>

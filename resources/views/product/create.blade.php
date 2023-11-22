@@ -112,28 +112,28 @@
                                         </div>
                                     </div>
             {{--                        product variation ends here--}}
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <h2 class="h4 mb-3">Pricing</h2>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label for="price">Price</label>
-                                                        <input type="text" name="price" id="price" class="form-control" placeholder="Price">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label for="compare_price">discount at Price</label>
-                                                        <input type="text" name="discount_price" id="compare_price" class="form-control" placeholder="Compare Price">
-                                                        <p class="text-muted mt-3">
-                                                            To show a reduced price, move the product’s original price into Compare at price. Enter a lower value into Price.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="card mb-3">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <h2 class="h4 mb-3">Pricing</h2>--}}
+{{--                                            <div class="row">--}}
+{{--                                                <div class="col-md-12">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <label for="price">Price</label>--}}
+{{--                                                        <input type="text" name="price" id="price" class="form-control" placeholder="Price">--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-12">--}}
+{{--                                                    <div class="mb-3">--}}
+{{--                                                        <label for="compare_price">discount at Price</label>--}}
+{{--                                                        <input type="text" name="discount_price" id="compare_price" class="form-control" placeholder="Compare Price">--}}
+{{--                                                        <p class="text-muted mt-3">--}}
+{{--                                                            To show a reduced price, move the product’s original price into Compare at price. Enter a lower value into Price.--}}
+{{--                                                        </p>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                     <div class="card mb-3">
                                         <div class="card-body">
                                             <h2 class="h4 mb-3">Inventory</h2>

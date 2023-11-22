@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
         return [
             'title'=>'required',
             'slug'=>'required',
-            'price'=>'required',
+            'price'=>'',
            'categories_id'=>'required',
            'is_featured'=>'required|in:yes,no',
             'sku_no'=>'required',
