@@ -14,7 +14,7 @@
                         <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
                               d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"></path>
                         <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-                              d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256m368-77V64h-48v69"></path>
+                              d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256m368-77V64h-48v69"></path>Review Rating
                     </svg>
                     <span class="ml-2">Home</span>
                 </a></li>
@@ -236,10 +236,10 @@
                     role="tab" type="button">
                     Product Details
                 </button>
-                <button
+                {{--<button
                     class="relative inline-block transition-all text-15px lg:text-17px leading-5 text-gray-500 focus:outline-none pb-3 lg:pb-5 hover:text-gray-800 mr-8 ml-8">
                     Review Rating
-                </button>
+                </button>--}}
             </div>
             <div class="mt-6 lg:mt-9">
                 {{--                first tab--}}
@@ -251,7 +251,7 @@
 
 
                     </div>
-                    <div
+                    {{--<div
                         class="shrink-0 lg:w-[400px] xl:w-[480px] 2xl:w-[550px] 3xl:w-[680px] lg:pl-10 lg:pr-10 xl:pl-14 xl:pr-14 2xl:pl-20 2xl:pr-20 pt-5 lg:pt-0">
                         <h3 class="text-brand-dark text-base lg:text-[17px] lg:leading-7 font-medium xl:text-lg mb-4 pt-0.5">
                             Nutrition Facts</h3>
@@ -302,7 +302,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
                 {{--second tab--}}
                 <div class="lg:flex hidden" id="tab2">
