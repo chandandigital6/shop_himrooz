@@ -22,8 +22,8 @@
             <!-- Default box -->
             <div class="container-fluid">
                 <div class="card">
-                    <form action="" method="get">
                     <div class="card-header">
+                    <form action="" method="get">
                         <div class="card-tools">
                             <div class="input-group input-group" style="width: 250px;">
                                 <input type="text" name="keyword" class="form-control float-right" placeholder="Search">
@@ -35,8 +35,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </form>
+                    </div>
                     <div class="card-body table-responsive p-0">
                         <table class="table table-hover text-nowrap">
                             <thead>
@@ -104,8 +104,7 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <ul class="pagination pagination m-0 float-right">
-
+                        <ul class="pagination pagination m-0">
                             {{ $product->links() }}
                         </ul>
                     </div>

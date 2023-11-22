@@ -103,6 +103,14 @@
                     <h4 class="mb-3 font-normal capitalize text-[15px] text-gray-900 text-opacity-70">Available
                         in:</h4>
                     <ul class="flex flex-wrap mr-2 ml-2">
+                        @foreach($showProduct->variants as $variant)
+                            @if($variant->color)
+                                <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
+                                    {{$variant->name}}
+                                </li>
+                            @endif
+
+                        @endforeach
                         <li class="cursor-pointer rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-gray-800 transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3">
                             12oz
                         </li>
