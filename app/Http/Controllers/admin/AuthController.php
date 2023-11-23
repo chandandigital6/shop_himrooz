@@ -27,4 +27,5 @@ class AuthController extends Controller
         return redirect()->route('admin.login')->with('success' ,'user successful created');
     }
 
+
 }

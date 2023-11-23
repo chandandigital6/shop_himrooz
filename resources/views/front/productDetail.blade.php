@@ -63,7 +63,6 @@
                                         var productBigImage = document.getElementById('productBigImage');
                                             productBigImage.src = '{{asset('storage/'.$variation->image)}}';
 
-
                                 "
 
 
@@ -132,20 +131,34 @@
                                             originalPrice.innerHTML = '₹{{$variant->price}}';
 
                                             productBigImage.src = '{{asset('storage/'.$variant->image)}}';
+                                            var variation_id = document.getElementById('variation_id');
+                                            variation_id.value = '{{$variant->id}}';
                                           "
                                 >
                                     {{$variant->name}}
                                 </li>
-
                             @endif
                         @endforeach
                     </ul>
                 </div>
                 <div class="pb-2"></div>
+
                 <div class="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5">
+                    <form action="{{route('cart.store')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="variation_id" value="{{$showProduct->variations->first()->id}}" id="variation_id">
+                        <input type="text" min="1" value="1" name="quantity" id="quantity">
                     <div
                         class="flex items-center lg:justify-center md:justify-center justify-between rounded overflow-hidden shrink-0 p-1 h-11 md:h-14 bg-[#f3f5f9]">
-                        <button
+                        <button type="button" onclick="
+                        let valueContainer = document.getElementById('quantityValue');
+                        let quantityValue = parseInt(valueContainer.innerText);
+                        if(quantityValue > 1){
+                        quantityValue = quantityValue - 1;
+                        }
+                        valueContainer.innerText = quantityValue;
+                        document.getElementById('quantity').value = quantityValue;
+                        "
                             class="flex items-center justify-center shrink-0 h-full transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none !w-10 !h-10 rounded-full transform scale-80 lg:scale-100 text-brand-dark hover:bg-fill-four ltr:ml-auto rtl:mr-auto">
                             <span class="sr-only">button-minus</span>
                             <svg class="transition-all" width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -157,9 +170,15 @@
                                 </g>
                             </svg>
                         </button>
-                        <span
+                        <span id="quantityValue"
                             class="font-semibold text-brand-dark flex items-center justify-center h-full transition-colors duration-250 ease-in-out cursor-default shrink-0 text-base md:text-[17px] w-12 md:w-20 xl:w-28 ">1</span>
-                        <button
+                        <button type="button" onclick="
+                        let valueContainer = document.getElementById('quantityValue');
+                        let quantityValue = parseInt(valueContainer.innerText);
+                        quantityValue = quantityValue + 1;
+                        valueContainer.innerText = quantityValue;
+                        document.getElementById('quantity').value = quantityValue;
+                        "
                             class="group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none pr-2 !w-10 !h-10 rounded-full scale-80 lg:scale-100 text-heading hover:bg-fill-four ltr:mr-auto rtl:ml-auto !pr-0 justify-center"
                             title=""><span class="sr-only">button-plus</span>
                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -172,9 +191,12 @@
                             </svg>
                         </button>
                     </div>
-                    <button data-variant="primary"
-                            class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-[#1bba9b] text-gray-50 tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 cursor-not-allowed hover:cursor-not-allowed bg-opacity-50 hover:bg-opacity-50 w-full px-1.5"
-                            disabled="">
+
+
+
+                    <button type="submit" data-variant="primary"
+                            class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center  transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-[#1bba9b] text-gray-50 tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 bg-opacity-50 hover:bg-opacity-50 w-full px-1.5"
+                            >
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
                              xmlns="http://www.w3.org/2000/svg" class="ltr:mr-3 rtl:ml-3">
                             <g clip-path="url(#clip0)">
@@ -190,6 +212,7 @@
                         </svg>
                         Add to Cart
                     </button>
+                    </form>
                     <div class="grid grid-cols-2 gap-2.5">
                         <button data-variant="border"
                                 class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-brand-light text-brand-dark border border-border-four tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 group hover:text-[#1bba9b] false">

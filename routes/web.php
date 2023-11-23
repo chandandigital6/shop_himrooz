@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\ProductSubcategoryController;
 use App\Http\Controllers\admin\StoreCOntroller;
 use App\Http\Controllers\admin\SubCategoryCOntroller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,17 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
 
 Route::get('admin/login',[AdminController::class,'index'])->name('admin.login');
 
+//Cart Routes
+
+Route::prefix('cart')->name('cart.')->group(function(){
+    Route::get('/', [CartController::class, 'index'])->name('index');
+    Route::post('store', [CartController::class, 'store'])->name('store');
+    Route::get('delete/{cart}', [CartController::class, 'delete'])->name('delete');
+    Route::get('increment/{cart}', [CartController::class, 'increment'])->name('increment');
+    Route::get('decrement/{cart}', [CartController::class, 'decrement'])->name('decrement');
+    Route::get('clear', [CartController::class, 'clear'])->name('clear');
+});
+
 Route::group(['prefix' => 'admin'],function (){
     Route::group(['middleware' => 'admin.guest'],function (){
         Route::get('login',[AdminController::class,'index'])->name('admin.login');
@@ -126,6 +138,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::get('product/edit/{product}',[ProductController::class,'edit'])->name('product.edit');
         Route::put('product/update/{product}',[ProductController::class,'update'])->name('product.update');
         Route::get('product/duplicate/{product}',[ProductController::class,'duplicate'])->name('product.duplicate');
+        Route::get('product/variationDelete/{variation}', [ProductController::class, 'variationDelete'])->name('product.variationDelete');
 
         Route::get('product/subcategories/{category}',[ProductSubcategoryController::class,'getProductSubcategories'])->name('product.subcategories');
 
