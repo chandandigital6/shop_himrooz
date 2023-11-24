@@ -32,7 +32,7 @@
                                         style="color: transparent;"></a></div>
                             <h4 class="text-xl font-semibold text-gray-900 sm:text-2xl sm:pt-3 ">Welcome Back!</h4>
                             <div class="mt-3 mb-1 text-sm text-center sm:text-15px text-body">Already Registered?
-                                <a href="{{route('admin.login')}}">
+                                <a href="{{route('login')}}">
                                     <button type="button"
                                             class="text-sm font-semibold text-[#02b290] sm:text-15px ltr:ml-1 rtl:mr-1 hover:no-underline focus:outline-none">
                                         Sign In Now

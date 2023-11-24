@@ -66,7 +66,7 @@
                                         d="M11.0001 3.95898C8.78969 3.95898 6.99146 5.75727 6.99146 7.96767C6.99146 10.1781 8.78974 11.9764 11.0001 11.9764C13.2104 11.9764 15.0087 10.1781 15.0087 7.96767C15.0087 5.75727 13.2104 3.95898 11.0001 3.95898ZM11.0001 10.5415C9.58083 10.5415 8.42627 9.38693 8.42627 7.96767C8.42627 6.54841 9.58088 5.3938 11.0001 5.3938C12.4193 5.3938 13.5739 6.54841 13.5739 7.96767C13.5739 9.38693 12.4193 10.5415 11.0001 10.5415Z"
                                         fill="#8C969F"></path></svg></span><span
                                 class="ltr:pl-1 lg:rtl:pr-1.5">Address</span></a>
-                        <a href="{{route('logIn')}}">
+                        <a href="{{route('logout')}}">
                             <button
                                 class="flex items-center text-sm lg:text-15px text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 cursor-pointer focus:outline-none">
                             <span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg width="22" height="22"

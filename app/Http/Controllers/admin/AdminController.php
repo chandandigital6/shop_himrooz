@@ -28,16 +28,14 @@ class AdminController extends Controller
                  if($admin->role == 2){
                      return redirect()->route('admin.dashboard');
                  }else{
-                   Auth::guard('admin')->logout();
-
+//                   Auth::guard('admin')->logout();
                      return redirect()->route('front.home');
 //                     return  redirect()->route('admin.login')->with('error','you are not authoriesd to acssess admin panel');
-
 //               return redirect()->back()->with('error','email or password incorrect');
                  }
 
               }else{
-                  return  redirect()->route('admin.login')->with('error','email or password incorrect');
+                  return  redirect()->route('login')->with('error','email or password incorrect');
 //                  return redirect()->back()->with('error','email or password incorrect');
               }
          }else{

@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CartRequest;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
 
     public function index(){
-        $cartItems =  Cart::all();
+        $cartItems =  Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
         return view('front.cart', compact('cartItems'));
     }
     public function store(CartRequest $request){
         $cart = new Cart();
-        $cart->user_id = 2;
+        $cart->user_id = Auth::guard('admin')->user()->id;
+        $cart->product_id = $request->product_id;
         $cart->product_variation_id = $request->variation_id;
         $cart->quantity = $request->quantity;
         $cart->save();
@@ -40,7 +43,22 @@ class CartController extends Controller
     }
 
     public function clear(){
-        Cart::where('user_id', 2)->delete();
+        Cart::where('user_id', Auth::guard('admin')->user()->id)->delete();
         return redirect()->back()->with('success', 'Cart clear successfully');
     }
+
+    public function checkout(){
+
+        $cartItems = Cart::where('user_id', Auth::guard('admin')->user()->id)->get();
+        $discountedPrice =0;
+        $totalCartAmount = 0;
+        foreach ($cartItems as $item) {
+            $discountedPrice =$item->variation->price - (($item->variation->price* $item->variation->discountPercentage)/100);
+            $totalCartAmount += $totalCartAmount + ($discountedPrice * $item->quantity);
+        }
+//        $totalCartAmount = $request->totalCartAmount;
+        return view('front.checkOut', compact('totalCartAmount', 'cartItems'));
+    }
+
+
 }

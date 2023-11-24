@@ -146,6 +146,7 @@
                 <div class="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5">
                     <form action="{{route('cart.store')}}" method="post">
                         @csrf
+                        <input type="hidden" name="product_id" value="{{$showProduct->id}}">
                         <input type="hidden" name="variation_id" value="{{$showProduct->variations->first()->id}}" id="variation_id">
                         <input type="text" min="1" value="1" name="quantity" id="quantity">
                     <div

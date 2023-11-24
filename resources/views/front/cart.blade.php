@@ -157,9 +157,12 @@
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <button type="submit"
+
+                        <a href="{{route('checkOut')}}"
                             class=" w-full px-5 py-3 md:py-4 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-[15px] text-gray-50 bg-[#02B288] focus:outline-none transition duration-300 hover:bg-opacity-90"
-                            href="{{route('checkOut')}}" ><span class="py-0.5">Proceed To Checkout</span></button>
+                            ><span class="py-0.5">Proceed To Checkout</span>
+                        </a>
+
                     </div>
                 </div>
                 {{--            cart footer ends here--}}

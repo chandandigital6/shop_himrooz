@@ -92,8 +92,14 @@
                                 </clipPath>
                             </defs>
                         </svg>
+                        @php
+                            if(Auth::guard('admin')->user()){
+
+                            $cart = App\Models\Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
+                            }
+                            @endphp
                         <span
-                            class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> 11 </span>
+                            class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $cart->count() : 0}} </span>
                     </div>
                     <span class="text-md font-normal lg:text-15px text-brand-dark ml-2 mr-2">Cart</span>
                 </a>
@@ -110,19 +116,31 @@
                             d="M11 11.5801C12.9191 11.5801 14.4805 10.0187 14.4805 8.09961V6.93945C14.4805 5.02036 12.9191 3.45898 11 3.45898C9.08091 3.45898 7.51953 5.02036 7.51953 6.93945V8.09961C7.51953 10.0187 9.08091 11.5801 11 11.5801ZM8.67969 6.93945C8.67969 5.65996 9.7205 4.61914 11 4.61914C12.2795 4.61914 13.3203 5.65996 13.3203 6.93945V8.09961C13.3203 9.3791 12.2795 10.4199 11 10.4199C9.7205 10.4199 8.67969 9.3791 8.67969 8.09961V6.93945Z"
                             fill="currentColor" stroke="currentColor" stroke-width="0.2"></path>
                     </svg>
-                    <a href="{{route('admin.login')}}">
+                    @php
+                        $user = Auth::guard('admin')->user()
+                    @endphp
+                    @if($user)
+
+                        <a href="{{ $user->role == 1 ? route('profile') : route('admin.dashboard')}}">
+                            <button
+                                class="text-md font-normal lg:text-20px text-gray-800 focus:outline-none ml-2 mr-2"
+                                aria-label="Authentication">{{$user->name}}
+                            </button>
+                        </a>
+                    @else
+                    <a href="{{route('login')}}">
                         <button
                             class="text-md font-normal lg:text-20px text-gray-800 focus:outline-none ml-2 mr-2"
                             aria-label="Authentication">Sign In
                         </button>
                     </a>
+                    @endif
                 </div>
-
 
 
 {{--                if user is logged in then show this--}}
                 <div class="items-center hidden lg:hidden shrink-0 xl:ml-3.5 mr-2.5 ml-2.5">
-                    <a href="{{route('admin.login')}}">
+                    <a href="{{route('login')}}">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                          class="text-gray-700 text-opacity-40">
                         <path
@@ -607,7 +625,7 @@
             </div>
         </button>
     </a>
-    <a href="{{route('profile')}}">
+    <a href="{{Auth::guard('admin')->user() ? Auth::guard('admin')->user()->role == 2 ? route('admin.dashboard') : route('profile') : route('login')}}">
         <button class="shrink-0 focus:outline-none" aria-label="Authentication">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                  class="text-gray-500">
