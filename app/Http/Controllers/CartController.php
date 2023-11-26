@@ -16,13 +16,22 @@ class CartController extends Controller
         return view('front.cart', compact('cartItems'));
     }
     public function store(CartRequest $request){
-        $cart = new Cart();
-        $cart->user_id = Auth::guard('admin')->user()->id;
-        $cart->product_id = $request->product_id;
-        $cart->product_variation_id = $request->variation_id;
-        $cart->quantity = $request->quantity;
-        $cart->save();
-        return redirect('/')->with('success','Cart Item add successfully');
+        $cart = Cart::where('product_id', $request->product_id)
+            ->where('product_variation_id', $request->variation_id)->first();
+        if($cart){
+            $cart->quantity += $request->quantity;
+            $cart->save();
+            return redirect('/')->with('success','Cart update successfully');
+        }else{
+            $cart = new Cart();
+            $cart->user_id = Auth::guard('admin')->user()->id;
+            $cart->product_id = $request->product_id;
+            $cart->product_variation_id = $request->variation_id;
+            $cart->quantity = $request->quantity;
+            $cart->save();
+            return redirect('/')->with('success','Cart Item add successfully');
+        }
+
     }
 
     public function delete(Cart $cart){

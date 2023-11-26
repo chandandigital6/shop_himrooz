@@ -12,4 +12,8 @@ class ProductVariation extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+    public function deal(){
+        return $this->hasOne(Deal::class, 'product_variation_id');
+    }
 }

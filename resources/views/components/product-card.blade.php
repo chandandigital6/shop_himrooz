@@ -13,11 +13,13 @@
                      src="{{asset('storage/'.$productImage)}}"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
             </div>
+            @if($deal)
             <div
-                class="w-max h-max absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
-                        <span
-                            class="text-[11px] md:text-xs font-bold text-gray-50 uppercase inline-block bg-[#02b290] rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">on sale</span>
+                class=" w-max h-max absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
+                <span
+                    class="text-[11px] md:text-xs font-bold text-gray-50 uppercase inline-block bg-[#02b290] rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">on sale</span>
             </div>
+            @endif
             <div
                 class="w-full h-full absolute top-0 flex flex-col right-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1"
                 style="justify-content: end">
@@ -110,7 +112,12 @@
                 {{$productName}}
             </h2>
 
-            <div class="mt-auto text-13px sm:text-sm text-gray-600">{{$productQuantity}} each</div>
+            @if($productQuantity > 0)
+            <div class="mt-auto text-13px sm:text-sm text-green-600">Available</div>
+            @else
+            <div class="mt-auto text-13px sm:text-sm text-red-600">Out of stock</div>
+            @endif
+
         </div>
     </article>
 </a>

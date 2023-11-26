@@ -25,4 +25,8 @@ class Product extends Model
     public function variations(){
         return $this->hasMany(ProductVariation::class, 'product_id');
     }
+
+    public function deal(){
+        return $this->hasOne(Deal::class);
+    }
 }

@@ -174,13 +174,29 @@
 
 
                 @foreach($product as $products)
+                    @php
+                        if($products->deal){
+                            if($products->deal->start_time <= now() && $products->deal->end_time >= now()){
+                            $discount = $products->deal->discount;
+                            $deal = 'yes';
+                            }else{
+                                $discount = $products->variations->first()->discountPercentage;
+                                $deal = '';
+                            }
+                        }else{
+                            $discount = $products->variations->first()->discountPercentage;
+                            $deal = '';
+                        }
+                    @endphp
+
                      <x-product-card
                          product-name="{{$products->title}}"
                          product-price="{{$products->variations->first()->price}}"
-                         product-discount-price="{{$products->variations->first()->price-(($products->variations->first()->price * $products->variations->first()->discountPercentage )/100) }}"
+                         product-discount-price="{{$products->variations->first()->price-(($products->variations->first()->price *  $discount)/100) }}"
                          product-quantity="{{$products->qty}}"
                          product-image="{{$products->image}}"
                          product-id="{{$products->id}}"
+                         deal="{{$deal}}"
                      ></x-product-card>
                 @endforeach
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\SubCategoryCOntroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DealController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +57,6 @@ Route::get('/signUp', function () {
 Route::get('/forgetPassword', function () {
     return view('front.forgetPassword');
 })->name('forgetPassword');
-Route::get('/profile', function () {
-    return view('front.profile');
-})->name('profile');
 Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
@@ -96,6 +94,12 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
 
 Route::prefix('order')->name('order.')->group(function (){
     Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
+});
+
+
+Route::prefix('user')->name('user.')->group(function(){
+    Route::get('order', [HomeController::class, 'profile'])->name('order');
+    Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
 });
 
 
@@ -163,6 +167,24 @@ Route::group(['prefix' => 'admin'],function (){
         Route::put('slider/update/{slider}',[HomeSliderController::class,'update'])->name('slider.update');
         Route::get('slider/delete/{slider}',[HomeSliderController::class,'delete'])->name('slider.delete');
         Route::get('slider/duplicate/{slider}',[HomeSliderController::class,'duplicate'])->name('slider.duplicate');
+
+        Route::prefix('deal')->name('deal.')->group(function(){
+            Route::get('/', [DealController::class, 'index'])->name('index');
+            Route::get('create/{product}', [DealController::class, 'create'])->name('create');
+            Route::post('store', [DealController::class, 'store'])->name('store');
+            route::get('edit/{deal}', [DealController::class, 'edit'])->name('edit');
+            route::post('update/{deal}', [DealController::class, 'update'])->name('update');
+            route::get('delete/{deal}', [DealController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('order')->name('order.')->group(function(){
+            Route::get('/', [OrderController::class, 'index'])->name('index');
+            Route::get('create/{product}', [OrderController::class, 'create'])->name('create');
+            Route::post('store', [OrderController::class, 'store'])->name('store');
+            route::get('edit/{order}', [OrderController::class, 'edit'])->name('edit');
+            route::post('update/{order}', [OrderController::class, 'update'])->name('update');
+            route::get('delete/{order}', [OrderController::class, 'delete'])->name('delete');
+        });
 
     });
 });

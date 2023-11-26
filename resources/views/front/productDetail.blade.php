@@ -93,7 +93,15 @@
                         <div>
                             @php
                                 $firstVariantPrice = $showProduct->variations->first()->price;
-                                $firstVariantDiscountPercentage = $showProduct->variations->first()->discountPercentage;
+                                if($showProduct->variations->first()->deal){
+                                    if($showProduct->variations->first()->deal->start_time <= now() && $showProduct->variations->first()->deal->end_time >= now()){
+                                        $firstVariantDiscountPercentage = $showProduct->variations->first()->deal->discount;
+                                    }else{
+                                        $firstVariantDiscountPercentage = $showProduct->variations->first()->discountPercentage;
+                                    }
+                                }else{
+                                    $firstVariantDiscountPercentage = $showProduct->variations->first()->discountPercentage;
+                                }
                             @endphp
                             <span class="text-brand-dark  font-bold text-base md:text-xl xl:text-[22px]" id="discountedPrice">₹{{  $firstVariantPrice- (($firstVariantPrice*$firstVariantDiscountPercentage)/100)}}</span>
                             <span class="text-gray-500 line-through font-semibold xl:text-[18px] md:text-md" id="originalPrice">₹{{$firstVariantPrice}}</span>
@@ -105,10 +113,21 @@
                         in:</h4>
                     <ul class="flex flex-wrap mr-2 ml-2">
                         @foreach($showProduct->variations as $variant)
+                            @php
+                                if($variant->deal){
+                                if($variant->deal->start_time <= now() && $variant->deal->end_time >= now()){
+                                $discount = $variant->deal->discount;
+                                $deal = 'yes';
+                                }else{
+                                    $discount = $variant->discountPercentage;
+                                    $deal = '';
+                                }
+                                }else{
+                                    $discount = $variant->discountPercentage;
+                                    $deal = '';
+                                }
+                            @endphp
                             @if($variant)
-
-
-
                                 <li class="variantName cursor-pointer {{$loop->iteration==1? 'bg-[#8ddccd]': ""}} rounded border h-9 md:h-10 p-1 mb-2 md:mb-3 mr-2 ml-2 flex justify-center items-center font-medium text-sm md:text-[15px] text-black transition duration-200 ease-in-out hover:text-gray-500 hover:border-brand px-3"
                                     onclick="
                                             var discountedPrice = document.getElementById('discountedPrice');
@@ -127,7 +146,8 @@
                                             // Set background color for the selected variant
                                             selectedVariant.style.backgroundColor = '#8ddccd';
 
-                                            discountedPrice.innerHTML = '₹{{$variant->price - (($variant->price * $variant->discountPercentage) / 100)}}';
+
+                                            discountedPrice.innerHTML = '₹{{$variant->price - (($variant->price * $discount) / 100)}}';
                                             originalPrice.innerHTML = '₹{{$variant->price}}';
 
                                             productBigImage.src = '{{asset('storage/'.$variant->image)}}';
@@ -135,7 +155,7 @@
                                             variation_id.value = '{{$variant->id}}';
                                           "
                                 >
-                                    {{$variant->name}}
+                                    {{$variant->name}} <span class="{{$deal ? 'bg-green-600 text-white' : 'hidden'}}">{{$deal ? 'On Sale' : ''}}</span>
                                 </li>
                             @endif
                         @endforeach
@@ -148,7 +168,7 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{$showProduct->id}}">
                         <input type="hidden" name="variation_id" value="{{$showProduct->variations->first()->id}}" id="variation_id">
-                        <input type="text" min="1" value="1" name="quantity" id="quantity">
+                        <input type="hidden" min="1" value="1" name="quantity" id="quantity">
                     <div
                         class="flex items-center lg:justify-center md:justify-center justify-between rounded overflow-hidden shrink-0 p-1 h-11 md:h-14 bg-[#f3f5f9]">
                         <button type="button" onclick="
@@ -803,17 +823,31 @@
             @php
                 $category = $showProduct->categories_id;
                  $products = \App\Models\Product::where('categories_id',$category)->get();
-
-
             @endphp
             @foreach($products as $product)
+
+                @php
+                    if($product->deal){
+                    if($product->deal->start_time <= now() && $product->deal->end_time >= now()){
+                    $discount = $product->deal->discount;
+                    $deal = 'yes';
+                    }else{
+                        $discount = $product->variations->first()->discountPercentage;
+                        $deal = '';
+                    }
+                    }else{
+                        $discount = $product->variations->first()->discountPercentage;
+                        $deal = '';
+                    }
+                @endphp
                 <x-product-card
                     product-name="{{$product->title}}"
                     product-price="{{$product->variations->first()->price}}"
-                    product-discount-price="{{$product->variations->first()->price-(($product->variations->first()->price * $product->variations->first()->discountPercentage )/100) }}"
+                    product-discount-price="{{$product->variations->first()->price-(($product->variations->first()->price * $discount )/100) }}"
                     product-quantity="{{$product->qty}}"
                     product-image="{{$product->image}}"
                     product-id="{{$product->id}}"
+                    deal="{{$deal}}"
                 ></x-product-card>
             @endforeach
         </div>

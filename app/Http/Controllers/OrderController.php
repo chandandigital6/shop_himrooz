@@ -11,6 +11,13 @@ use App\Models\Cart;
 
 class OrderController extends Controller
 {
+    public function index(){
+        $orders = Order::paginate(5);
+        return view('order.index', compact('orders'));
+    }
+
+
+
     public function placeOrder(OrderRequest $request){
         $order = new Order();
         $order->user_id = Auth::guard('admin')->user()->id;
@@ -42,4 +49,5 @@ class OrderController extends Controller
         }
         return redirect('/');
     }
+
 }

@@ -15,8 +15,9 @@ class productCard extends Component
     public $productQuantity;
     public $productImage;
     public $productId;
+    public $deal;
 
-    public function __construct($productName,$productPrice,$productDiscountPrice,$productQuantity,$productImage,$productId)
+    public function __construct($productName,$productPrice,$productDiscountPrice,$productQuantity,$productImage,$productId, $deal)
     {
         $this->productName = $productName;
         $this->productPrice = $productPrice;
@@ -24,6 +25,7 @@ class productCard extends Component
         $this->productQuantity = $productQuantity;
         $this->productImage = $productImage;
         $this->productId = $productId;
+        $this->deal = $deal;
     }
 
     /**

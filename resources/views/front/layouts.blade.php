@@ -121,7 +121,7 @@
                     @endphp
                     @if($user)
 
-                        <a href="{{ $user->role == 1 ? route('profile') : route('admin.dashboard')}}">
+                        <a href="{{ $user->role == 1 ? route('user.accountSetting') : route('admin.dashboard')}}">
                             <button
                                 class="text-md font-normal lg:text-20px text-gray-800 focus:outline-none ml-2 mr-2"
                                 aria-label="Authentication">{{$user->name}}
@@ -625,7 +625,7 @@
             </div>
         </button>
     </a>
-    <a href="{{Auth::guard('admin')->user() ? Auth::guard('admin')->user()->role == 2 ? route('admin.dashboard') : route('profile') : route('login')}}">
+    <a href="{{Auth::guard('admin')->user() ? Auth::guard('admin')->user()->role == 2 ? route('admin.dashboard') : route('user.accountSetting') : route('login')}}">
         <button class="shrink-0 focus:outline-none" aria-label="Authentication">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                  class="text-gray-500">
