@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CartRequest;
 use App\Http\Requests\OrderRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -62,11 +63,35 @@ class CartController extends Controller
         $discountedPrice =0;
         $totalCartAmount = 0;
         foreach ($cartItems as $item) {
-            $discountedPrice =$item->variation->price - (($item->variation->price* $item->variation->discountPercentage)/100);
+            if($item->variation->deal){
+                if($item->variation->deal->start_time <= now() && $item->variation->deal->end_time >= now()){
+                    $discount = $item->variation->deal->discount;
+                    $deal = 'yes';
+                }else{
+                    $discount = $item->variation->discountPercentage;
+                    $deal = '';
+                }
+            }else{
+                $discount = $item->variation->discountPercentage;
+                $deal = '';
+            }
+
+//            dd($discount);
+            $discountedPrice =$item->variation->price - (($item->variation->price* $discount)/100);
             $totalCartAmount += $totalCartAmount + ($discountedPrice * $item->quantity);
         }
 //        $totalCartAmount = $request->totalCartAmount;
         return view('front.checkOut', compact('totalCartAmount', 'cartItems'));
+    }
+
+    public function add(Product $product){
+        Cart::create([
+            'user_id' => Auth::guard('admin')->user()->id,
+            'product_id' => $product->id,
+            'product_variation_id' => $product->variations->first()->id,
+            'quantity' => 1,
+        ]);
+        return redirect()->back();
     }
 
 

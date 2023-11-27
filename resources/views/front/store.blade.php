@@ -179,7 +179,7 @@
                 <div class="flex justify-center items-center w-full">
                     <img class="h-full w-full " src="{{asset('assets/images/commingSoon.jpeg')}}" alt="">
                 </div>
-                @else
+            @else
                 @foreach($products as $product)
                     @php
                         if($product->deal){
@@ -205,10 +205,7 @@
                         deal="{{$deal}}"
                     ></x-product-card>
                 @endforeach
-                @endif
-
-
-
+            @endif
         </div>
     </div>
 

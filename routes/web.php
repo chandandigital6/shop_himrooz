@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,11 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
         Route::get('increment/{cart}', [CartController::class, 'increment'])->name('increment');
         Route::get('decrement/{cart}', [CartController::class, 'decrement'])->name('decrement');
         Route::get('clear', [CartController::class, 'clear'])->name('clear');
+        Route::get('add/{product}', [CartController::class, 'add'])->name('add');
+    });
+
+    Route::prefix('wishlist')->name('wishlist.')->group(function(){
+        Route::get('add/{product}', [WishlistController::class, 'add'])->name('add');
     });
 
 Route::prefix('order')->name('order.')->group(function (){

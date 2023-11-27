@@ -114,8 +114,22 @@
                                         </div>
                                     </div>
                                     @php
-                                        $discountedPrice =$item->variation->price - (($item->variation->price* $item->variation->discountPercentage)/100);
-                                        $totalCartAmount = $totalCartAmount + ($discountedPrice * $item->quantity);
+
+                                        if($item->variation->deal){
+                                        if($item->variation->deal->start_time <= now() && $item->variation->deal->end_time >= now()){
+                                        $discount = $item->variation->deal->discount;
+                                        $deal = 'yes';
+                                        }else{
+                                            $discount = $item->variation->discountPercentage;
+                                            $deal = '';
+                                        }
+                                        }else{
+                                            $discount = $item->variation->discountPercentage;
+                                            $deal = '';
+                                        }
+
+                                            $discountedPrice =$item->variation->price - (($item->variation->price* $discount)/100);
+                                            $totalCartAmount = $totalCartAmount + ($discountedPrice * $item->quantity);
 
                                     @endphp
                                     <div

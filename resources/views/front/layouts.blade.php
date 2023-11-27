@@ -8,10 +8,11 @@
             defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
           crossorigin="anonymous">
+    @vite('resources/css/app.css')
 </head>
 <body class="relative lg:pb-0 pb-14">
 
-
+<div id="app">
 
 {{--main header starts here--}}
 <header id="siteHeader" class=" w-full h-16 lg:h-20 z-50 sticky -top-0.5 ">
@@ -72,6 +73,36 @@
                 </div>
             </div>
             <div class="flex shrink-0 py-4">
+
+                {{--  this is wishlist icon code. Show only when user is logged in --}}
+                <a href="{{route('cart.index')}}" class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform flex xl:mx-3.5 mx-2.5"
+                   aria-label="cart-button"
+                >
+                    <div class="relative flex items-center ">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                             xmlns="http://www.w3.org/2000/svg" class="text-gray-700 text-opacity-40">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M19.7999 19.0172L18.5402 4.8319C18.5132 4.51697 18.2478 4.27853 17.9374 4.27853H15.3459C15.31 1.91207 13.3754 0 10.9999 0C8.62447 0 6.68991 1.91207 6.65392 4.27853H4.06251C3.74758 4.27853 3.48664 4.51697 3.45965 4.8319L2.19993 19.0172C2.19993 19.0352 2.19543 19.0532 2.19543 19.0712C2.19543 20.6863 3.6756 22 5.49768 22H16.5022C18.3243 22 19.8044 20.6863 19.8044 19.0712C19.8044 19.0532 19.8044 19.0352 19.7999 19.0172ZM10.9999 1.21472C12.705 1.21472 14.0952 2.58241 14.1312 4.27853H7.86864C7.90464 2.58241 9.29482 1.21472 10.9999 1.21472ZM16.5022 20.7853H5.49768C4.35494 20.7853 3.42815 20.0294 3.41016 19.0982L4.61588 5.49775H6.64942V7.34233C6.64942 7.67975 6.91936 7.94969 7.25678 7.94969C7.59421 7.94969 7.86415 7.67975 7.86415 7.34233V5.49775H14.1312V7.34233C14.1312 7.67975 14.4012 7.94969 14.7386 7.94969C15.076 7.94969 15.3459 7.67975 15.3459 7.34233V5.49775H17.3795L18.5897 19.0982C18.5717 20.0294 17.6404 20.7853 16.5022 20.7853Z"
+                                    fill="currentColor" stroke="currentColor" stroke-width="0.1"></path>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="22" height="22" fill="white"></rect>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        @php
+                            if(Auth::guard('admin')->user()){
+
+                            $wishlist = Auth::guard('admin')->user()->wishlists()->count();
+                            }
+                        @endphp
+                        <span
+                            class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $wishlist : 0}} </span>
+                    </div>
+                    <span class="text-md font-normal lg:text-15px text-brand-dark ml-2 mr-2">Wishlist</span>
+                </a>
 
 
 {{--  this is cart icon code. Show only when user is logged in --}}
@@ -620,7 +651,7 @@
                 </svg>
 
                 <span
-                    class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> 11 </span>
+                    class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $cart->count() : 0}} </span>
 
             </div>
         </button>
@@ -641,8 +672,8 @@
 
 </div>
 {{--bottom navbar ends here--}}
+</div>
 
-
-
+@vite('resources/js/app.js')
 </body>
 </html>
