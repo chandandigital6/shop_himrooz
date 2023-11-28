@@ -118,13 +118,17 @@
                                 if($variant->deal->start_time <= now() && $variant->deal->end_time >= now()){
                                 $discount = $variant->deal->discount;
                                 $deal = 'yes';
+                                $end_time = new \DateTime($variant->deal->end_time);
+                                $expire = $end_time->diff(now())->format('%a :  %h :  %i :  %s');
                                 }else{
                                     $discount = $variant->discountPercentage;
                                     $deal = '';
+                                    $expire = '';
                                 }
                                 }else{
                                     $discount = $variant->discountPercentage;
                                     $deal = '';
+                                    $expire = '';
                                 }
                             @endphp
                             @if($variant)
@@ -146,13 +150,13 @@
                                             // Set background color for the selected variant
                                             selectedVariant.style.backgroundColor = '#8ddccd';
 
-
                                             discountedPrice.innerHTML = '₹{{$variant->price - (($variant->price * $discount) / 100)}}';
                                             originalPrice.innerHTML = '₹{{$variant->price}}';
 
                                             productBigImage.src = '{{asset('storage/'.$variant->image)}}';
                                             var variation_id = document.getElementById('variation_id');
                                             variation_id.value = '{{$variant->id}}';
+
                                           "
                                 >
                                     {{$variant->name}} <span class="{{$deal ? 'bg-green-600 text-white' : 'hidden'}}">{{$deal ? 'On Sale' : ''}}</span>
@@ -235,7 +239,7 @@
                     </button>
                     </form>
                     <div class="grid grid-cols-2 gap-2.5">
-                        <button data-variant="border"
+                        <a data-variant="border" href="#"
                                 class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-brand-light text-brand-dark border border-border-four tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 group hover:text-[#1bba9b] false">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                                  class="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand"
@@ -244,7 +248,7 @@
                                     d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113zm41.6 229.2C351 343.5 286.1 397.3 256 420.8c-30.1-23.5-95-77.4-137.6-135.7C89.1 245.1 76 198 76 169c0-22.6 8.8-43.8 24.6-59.8 15.9-16 37-24.9 59.6-25.1H161.1c14.3 0 28.5 3.7 41.1 10.8 12.2 6.9 22.8 16.7 30.4 28.5 5.2 7.9 14 12.7 23.5 12.7s18.3-4.8 23.5-12.7c7.7-11.8 18.2-21.6 30.4-28.5 12.6-7.1 26.8-10.8 41.1-10.8h.9c22.5.2 43.7 9.1 59.6 25.1 15.9 16 24.6 37.3 24.6 59.8-.2 29-13.3 76.1-42.6 116.2z"></path>
                             </svg>
                             Wishlist
-                        </button>
+                        </a>
                         <div class="relative group">
                             <button data-variant="border"
                                     class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-brand-light text-brand-dark border border-border-four tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full hover:text-[#1bba9b] false">
@@ -831,13 +835,17 @@
                     if($product->deal->start_time <= now() && $product->deal->end_time >= now()){
                     $discount = $product->deal->discount;
                     $deal = 'yes';
+                    $end_time = new \DateTime($product->deal->end_time);
+                    $expire = $end_time->diff(now())->format('%a :  %h :  %i :  %s');
                     }else{
                         $discount = $product->variations->first()->discountPercentage;
                         $deal = '';
+                        $expire = '';
                     }
                     }else{
                         $discount = $product->variations->first()->discountPercentage;
                         $deal = '';
+                        $expire = '';
                     }
                 @endphp
                 <x-product-card
@@ -848,6 +856,7 @@
                     product-image="{{$product->image}}"
                     product-id="{{$product->id}}"
                     deal="{{$deal}}"
+                    expire="{{$expire}}"
                 ></x-product-card>
             @endforeach
         </div>

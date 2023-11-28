@@ -209,7 +209,13 @@
             </div>
         </div>
         {{--    right side--}}
-        <div
+        @foreach($product as $item)
+            @if($item->deal && $item->deal->start_time <= now() && $item->deal->end_time >= now())
+                @php
+                    $end_time = new \DateTime($item->deal->end_time);
+                                $expire = $end_time->diff(now());
+                    @endphp
+                <div
             class="h-full w-full xl:w-[350px] 2xl:w-96 shrink-0 md:pl-5 md:pr-5 lg:pl-6 lg:pr-6 xl:pl-7 xl:pr-7 space-y-6 lg:space-y-8 w-full md:w-[300px] lg:w-[350px] mt-10 md:mt-0 md:sticky md:top-20 lg:top-24">
             <div class="h-auto overflow-hidden border-2 border-yellow-300 rounded-md 3xl:h-full shadow-card">
                 <h2 class="bg-yellow-300 text-center font-bold text-brand-dark font-manrope p-2.5 text-15px lg:text-base">
@@ -222,7 +228,7 @@
                             <div class="relative flex justify-center mx-auto overflow-hidden">
                                 <img alt="Special Oil" loading="lazy" width="350" height="350"
                                      decoding="async" data-nimg="1" class="object-cover bg-fill-thumbnail"
-                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-38-m.png&w=384&q=100"
+                                     src="{{asset('storage/' .$item->image)}}"
                                      style="color: transparent; width: auto;">
                             </div>
                             <div class="w-full h-full absolute top-0 z-10 left-0">
@@ -233,31 +239,34 @@
                         </div>
                         <div class="flex flex-col pb-5 lg:pb-6 mb-0.5 lg:pt-3 h-full text-center">
                             <div class="-mx-1 mb-1 lg:mb-2.5">
-                                <span class="inline-block mx-1 text-xl font-semibold xl:text-2xl text-gray-900">₹6.20</span>
-                                <del class="mx-1 text-base text-opacity-50 xl:text-lg text-gray-900">₹6.98</del>
+                                <span class="inline-block mx-1 text-xl font-semibold xl:text-2xl text-gray-900">₹ {{$item->variations->first()->price - (($item->variations->first()->price * $item->deal->discount)/100)}}</span>
+                                <del class="mx-1 text-base text-opacity-50 xl:text-lg text-gray-900">₹ {{$item->variations->first()->price}}</del>
                             </div>
                             <h2 class="text-sm leading-5 text-brand-dark lg:text-15px xl:text-base sm:leading-6">
-                                Special Oil For Your Heart</h2></div>
+                                {{$item -> title}}</h2></div>
                     </div>
                     <span
                         class="flex items-center justify-center text-base xl:text-lg text-brand-dark text-opacity-50 font-semibold -mx-2.5">
                     <span
-                        class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">02</span>:<span
-                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">18</span>:<span
-                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">39</span>:<span
-                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">47</span></span>
+                        class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">{{$expire->format('%a')}}</span>:<span
+                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">{{$expire->format('%h')}}</span>:<span
+                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">{{$expire->format('%i')}}</span>:<span
+                            class="flex items-center justify-center min-w-[40px] md:min-w-[50px] min-h-[36px] md:min-h-[40px] bg-gray-100 text-brand-dark rounded p-1 mx-1 md:mx-1.5 lg:mx-2.5">{{$expire->format('%s')}}</span></span>
                     <div class="w-full pt-8 lg:pt-10">
                         <div class="relative w-full h-2.5 lg:h-3 bg-gray-100 rounded-full overflow-hidden">
                             <div class="absolute h-full bg-yellow-300 bg-opacity-90 rounded-full"
                                  style="width: 71%;"></div>
                         </div>
                         <div class="flex justify-between items-center mt-2.5 md:mt-3 xl:mt-2.5 2xl:mt-3.5">
+                            @php
+                                $soldItem = \App\Models\OrderItem::where('product_id', $item->id)->sum('quantity');
+                            @endphp
                             <div
                                 class="text-brand-dark text-opacity-60 text-13px sm:text-sm lg:text-15px leading-6 md:leading-7">
-                                Sold :&nbsp;<span class="text-brand-dark font-medium">50 items</span></div>
+                                Sold :&nbsp;<span class="text-brand-dark font-medium">{{$soldItem}} items</span></div>
                             <div
                                 class="text-brand-dark text-opacity-60 text-13px sm:text-sm lg:text-15px leading-6 md:leading-7">
-                                Available :&nbsp;<span class="text-brand-dark font-medium">20 items</span></div>
+                                Available :&nbsp;<span class="text-brand-dark font-medium">{{$item->qty}} items</span></div>
                         </div>
                     </div>
                 </article>
@@ -273,6 +282,8 @@
             {{--                    class="absolute top-0 block w-1/2 h-full transform -skew-x-12  z-5 bg-gradient-to-r from-transparent to-white opacity-30 group-hover:animate-shine"></div>--}}
             {{--            </a></div>--}}
         </div>
+            @endif
+        @endforeach
     </div>
     @else
         <div class="w-full h-96 flex justify-center text-center">

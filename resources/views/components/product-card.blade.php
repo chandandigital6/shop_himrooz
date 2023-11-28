@@ -27,28 +27,9 @@
                 style="justify-content: end">
                 <div class="relative w-full">
                     <div class="block product-count-button-position flex justify-end gap-3 ">
-                        <a href="{{route('product.show',['productId' =>$productId])}}"
-                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                            aria-label="Count Button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor" width="19" height="19" opacity="1">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                            </svg>
-                        </a>
-                        <a href="{{route('wishlist.add', ['product' => $productId])}}"
-                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                            aria-label="Count Button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="19" height="19" opacity="1">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 14.36 2 11.25 2 7.5 2 4.42 4.42 2 7.5 2c1.74 0 3.41.81 4.5 2.09C15.09 2.81 16.76 2 18.5 2 21.58 2 24 4.42 24 7.5c0 3.75-3.4 6.86-8.55 12.54L12 21.35z"></path>
-                            </svg>
-
-                        </a>
                         <a href="{{route('cart.add', ['product' => $productId])}}"
-                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                            onmouseover="
+                           class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
+                           onmouseover="
                                         const productId = document.getElementById('productId');
                                       //set width to full screen
                                         productId.classList.remove('hidden');
@@ -64,6 +45,27 @@
                                         d="M10.174 11.8439L3.15109 11.8438C2.69416 11.8439 2.32486 11.4746 2.32496 11.0177C2.32496 10.5608 2.69427 10.1915 3.15109 10.1915L10.1741 10.1915L10.174 3.16858C10.1741 2.71165 10.5433 2.34245 11.0002 2.34245C11.4571 2.34234 11.8264 2.71165 11.8263 3.16858L11.8264 10.1915L18.8493 10.1916C19.3062 10.1915 19.6755 10.5608 19.6754 11.0177C19.6755 11.2455 19.5831 11.4524 19.4335 11.602C19.284 11.7515 19.0772 11.8439 18.8493 11.8439L11.8264 11.8438L11.8264 18.8668C11.8264 19.0947 11.734 19.3015 11.5845 19.451C11.4349 19.6006 11.2281 19.6929 11.0002 19.6929C10.5433 19.693 10.174 19.3237 10.1741 18.8668L10.174 11.8439Z"
                                         fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>
                                 </g>
+                            </svg>
+                        </a>
+
+                        <a href="{{route('wishlist.add', ['product' => $productId])}}"
+                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
+                            aria-label="Count Button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="19" height="19" opacity="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 14.36 2 11.25 2 7.5 2 4.42 4.42 2 7.5 2c1.74 0 3.41.81 4.5 2.09C15.09 2.81 16.76 2 18.5 2 21.58 2 24 4.42 24 7.5c0 3.75-3.4 6.86-8.55 12.54L12 21.35z"></path>
+                            </svg>
+
+                        </a>
+
+                        <a href="{{route('product.show',['productId' =>$productId])}}"
+                           class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
+                           aria-label="Count Button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor" width="19" height="19" opacity="1">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                             </svg>
                         </a>
                     </div>

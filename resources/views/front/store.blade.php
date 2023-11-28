@@ -186,13 +186,16 @@
                             if($product->deal->start_time <= now() && $product->deal->end_time >= now()){
                             $discount = $product->deal->discount;
                             $deal = 'yes';
+                            $expire = $end_time->diff(now())->format('%a :  %h :  %i :  %s');
                             }else{
                                 $discount = $product->variations->first()->discountPercentage;
                                 $deal = '';
+                                $expire = '';
                             }
                         }else{
                             $discount = $product->variations->first()->discountPercentage;
                             $deal = '';
+                            $expire = '';
                         }
                     @endphp
                     <x-product-card
@@ -203,6 +206,7 @@
                         product-image="{{$product->image}}"
                         product-id="{{$product->id}}"
                         deal="{{$deal}}"
+                        expire="{{$expire}}"
                     ></x-product-card>
                 @endforeach
             @endif

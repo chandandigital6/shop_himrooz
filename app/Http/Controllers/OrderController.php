@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
@@ -38,12 +39,15 @@ class OrderController extends Controller
 //            dd($order->id);
             $cartItems = Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
             foreach($cartItems as $item){
-                $orderItem = new OrderItem();
-                $orderItem->order_id = $order->id;
-                $orderItem->product_id = $item->product_id;
-                $orderItem->product_variation_id = $item->product_variation_id;
-                $orderItem->quantity = $item->quantity;
-                $orderItem->save();
+                $product = Product::find($item->product_id);
+                if($product->qty >= $item->quantity){
+                    $orderItem = new OrderItem();
+                    $orderItem->order_id = $order->id;
+                    $orderItem->product_id = $item->product_id;
+                    $orderItem->product_variation_id = $item->product_variation_id;
+                    $orderItem->quantity = $item->quantity;
+                    $orderItem->save();
+                }
             }
             Cart::where('user_id', Auth::guard('admin')->user()->id)->delete();
         }
