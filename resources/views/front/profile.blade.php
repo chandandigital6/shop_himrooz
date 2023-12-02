@@ -49,14 +49,15 @@
                                             fill="#8C969F" stroke="#8C969F" stroke-width="0.1"></path></g><defs><clipPath
                                             id="clip0"><rect width="22" height="22"
                                                              fill="white"></rect></clipPath></defs></svg></span><span
-                                class="ltr:pl-1 lg:rtl:pr-1.5">Orders</span></a>
-{{--                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"--}}
-{{--                           href="/my-account/wishlist"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg--}}
-{{--                                    width="22" height="22" viewBox="0 0 22 22" fill="none"--}}
-{{--                                    xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><path--}}
-{{--                                        d="M11 19.8C10.7181 19.8 10.4463 19.698 10.2345 19.5126C9.43467 18.8138 8.6635 18.1572 7.98312 17.5779L7.97964 17.5749C5.98487 15.8765 4.26231 14.4098 3.06378 12.9649C1.72401 11.3497 1.09998 9.81825 1.09998 8.14521C1.09998 6.51972 1.65785 5.0201 2.67072 3.9224C3.69567 2.81172 5.10206 2.20001 6.63126 2.20001C7.7742 2.20001 8.82091 2.56103 9.74223 3.27296C10.2072 3.63232 10.6287 4.07212 11 4.58513C11.3714 4.07212 11.7927 3.63232 12.2579 3.27296C13.1792 2.56103 14.2259 2.20001 15.3688 2.20001C16.8979 2.20001 18.3044 2.81172 19.3294 3.9224C20.3423 5.0201 20.9 6.51972 20.9 8.14521C20.9 9.81825 20.2761 11.3497 18.9363 12.9648C17.7378 14.4098 16.0154 15.8763 14.0209 17.5746C13.3393 18.1547 12.5669 18.8125 11.7653 19.5129C11.5536 19.698 11.2817 19.8 11 19.8V19.8ZM6.63126 3.35884C5.42987 3.35884 4.32621 3.83788 3.52331 4.70783C2.70848 5.59091 2.25968 6.81161 2.25968 8.14521C2.25968 9.55231 2.78311 10.8107 3.95671 12.2255C5.09103 13.5931 6.77825 15.0296 8.73178 16.693L8.7354 16.696C9.41836 17.2776 10.1925 17.9368 10.9983 18.6407C11.8089 17.9354 12.5843 17.2751 13.2686 16.6927C15.222 15.0293 16.9091 13.5931 18.0434 12.2255C19.2168 10.8107 19.7403 9.55231 19.7403 8.14521C19.7403 6.81161 19.2915 5.59091 18.4766 4.70783C17.6739 3.83788 16.5701 3.35884 15.3688 3.35884C14.4888 3.35884 13.6807 3.63835 12.9673 4.18954C12.3314 4.68096 11.8885 5.30218 11.6288 5.73686C11.4953 5.96038 11.2603 6.0938 11 6.0938C10.7397 6.0938 10.5046 5.96038 10.3711 5.73686C10.1116 5.30218 9.66867 4.68096 9.03269 4.18954C8.31923 3.63835 7.5112 3.35884 6.63126 3.35884V3.35884Z"--}}
-{{--                                        fill="#8C969F" stroke="#8C969F" stroke-width="0.2"></path></svg></span><span--}}
-{{--                                class="ltr:pl-1 lg:rtl:pr-1.5">Wishlist</span></a>--}}
+                                class="ltr:pl-1 lg:rtl:pr-1.5">Orders</span>
+                        </a>
+                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"
+                           href="{{route('user.wishlist')}}"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg
+                                    width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><path
+                                        d="M11 19.8C10.7181 19.8 10.4463 19.698 10.2345 19.5126C9.43467 18.8138 8.6635 18.1572 7.98312 17.5779L7.97964 17.5749C5.98487 15.8765 4.26231 14.4098 3.06378 12.9649C1.72401 11.3497 1.09998 9.81825 1.09998 8.14521C1.09998 6.51972 1.65785 5.0201 2.67072 3.9224C3.69567 2.81172 5.10206 2.20001 6.63126 2.20001C7.7742 2.20001 8.82091 2.56103 9.74223 3.27296C10.2072 3.63232 10.6287 4.07212 11 4.58513C11.3714 4.07212 11.7927 3.63232 12.2579 3.27296C13.1792 2.56103 14.2259 2.20001 15.3688 2.20001C16.8979 2.20001 18.3044 2.81172 19.3294 3.9224C20.3423 5.0201 20.9 6.51972 20.9 8.14521C20.9 9.81825 20.2761 11.3497 18.9363 12.9648C17.7378 14.4098 16.0154 15.8763 14.0209 17.5746C13.3393 18.1547 12.5669 18.8125 11.7653 19.5129C11.5536 19.698 11.2817 19.8 11 19.8V19.8ZM6.63126 3.35884C5.42987 3.35884 4.32621 3.83788 3.52331 4.70783C2.70848 5.59091 2.25968 6.81161 2.25968 8.14521C2.25968 9.55231 2.78311 10.8107 3.95671 12.2255C5.09103 13.5931 6.77825 15.0296 8.73178 16.693L8.7354 16.696C9.41836 17.2776 10.1925 17.9368 10.9983 18.6407C11.8089 17.9354 12.5843 17.2751 13.2686 16.6927C15.222 15.0293 16.9091 13.5931 18.0434 12.2255C19.2168 10.8107 19.7403 9.55231 19.7403 8.14521C19.7403 6.81161 19.2915 5.59091 18.4766 4.70783C17.6739 3.83788 16.5701 3.35884 15.3688 3.35884C14.4888 3.35884 13.6807 3.63835 12.9673 4.18954C12.3314 4.68096 11.8885 5.30218 11.6288 5.73686C11.4953 5.96038 11.2603 6.0938 11 6.0938C10.7397 6.0938 10.5046 5.96038 10.3711 5.73686C10.1116 5.30218 9.66867 4.68096 9.03269 4.18954C8.31923 3.63835 7.5112 3.35884 6.63126 3.35884V3.35884Z"
+                                        fill="#8C969F" stroke="#8C969F" stroke-width="0.2"></path></svg></span><span
+                                class="ltr:pl-1 lg:rtl:pr-1.5">Wishlist</span></a>
 {{--                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"--}}
 {{--                           href="/my-account/address"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg--}}
 {{--                                    width="22" height="22" viewBox="0 0 22 22" fill="none"--}}
@@ -291,216 +292,50 @@
                 {{--                order history ends here--}}
 
                 {{--                wishlist here--}}
-                <div class="hidden w-full p-4 mt-4 border rounded-md lg:mt-0 border-border-base sm:p-5 lg:py-8 2xl:py-10 lg:px-7 2xl:px-12 overflow-x-auto">
+                <div class="{{request()->routeIs('user.wishlist') ? '' : 'hidden'}} w-full p-4 mt-4 border rounded-md lg:mt-0 border-border-base sm:p-5 lg:py-8 2xl:py-10 lg:px-7 2xl:px-12 overflow-x-auto">
                     <h2 class="text-base md:text-lg xl:text-[20px] font-semibold text-brand-dark  lg:pt-0">Favorite
                         List</h2>
                     <div class="flex flex-col pt-8 2xl:pt-12">
                         <div class="">
                             <div class="flex flex-col">
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
+                                @foreach($wishlists as $wishlist)
+                                    <div
+                                        class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
+                                        <div class="flex ">
+                                            <div class="relative mt-1 shrink-0">
+                                                <div
+                                                    class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
+                                                    <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
+                                                         height="80" decoding="async" data-nimg="1"
+                                                         class="object-cover bg-fill-thumbnail"
+                                                         src="{{asset('storage/' .$wishlist->product->image)}}"
+                                                         style="color: transparent; width: auto;"></div>
+                                            </div>
                                             <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
+                                                class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
+                                                <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
+                                                    {{$wishlist->product->title}}</h2>
+                                                <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">{{$wishlist->product->quantity}} each</div>
+                                                <div class="-mx-1">
                                                 <span
                                                     class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
-                                            <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
-                                            </div>
+                                        <div class="flex cursor-pointer  md:pt-7">
+                                            <svg stroke="currentColor" fill="#02b290" stroke-width="0"
+                                                 viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
+                                                 width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
+                                            </svg>
+                                            <span
+                                                class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
                                         </div>
                                     </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
-                                            <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
-                                            <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
-                                            <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                    <div class="flex ">
-                                        <div class="relative mt-1 shrink-0">
-                                            <div
-                                                class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                     height="80" decoding="async" data-nimg="1"
-                                                     class="object-cover bg-fill-thumbnail"
-                                                     src="https://borobazar.vercel.app/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fp-1.png&w=256&q=100"
-                                                     style="color: transparent; width: auto;"></div>
-                                        </div>
-                                        <div
-                                            class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                            <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                Ocean Mist Farms Green Leaf Lettuce</h2>
-                                            <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">1 each</div>
-                                            <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="flex cursor-pointer  md:pt-7">
-                                        <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                             viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                             width="1em" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                        </svg>
-                                        <span
-                                            class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                    </div>
-                                </div>
+                                @endforeach
+
+
 
                             </div>
                         </div>

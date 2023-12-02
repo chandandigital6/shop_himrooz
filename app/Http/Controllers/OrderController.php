@@ -45,6 +45,8 @@ class OrderController extends Controller
                     $orderItem->order_id = $order->id;
                     $orderItem->product_id = $item->product_id;
                     $orderItem->product_variation_id = $item->product_variation_id;
+                    $product->qty = $product->qty - $item->quantity;
+                    $product->save();
                     $orderItem->quantity = $item->quantity;
                     $orderItem->save();
                 }

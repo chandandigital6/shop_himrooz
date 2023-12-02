@@ -84,6 +84,7 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
 
 //Cart Routes
 
+//Route::middleware('auth')->group(function(){
     Route::prefix('cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('store', [CartController::class, 'store'])->name('store');
@@ -98,15 +99,19 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
         Route::get('add/{product}', [WishlistController::class, 'add'])->name('add');
     });
 
-Route::prefix('order')->name('order.')->group(function (){
-    Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
-});
+
+    Route::prefix('order')->name('order.')->group(function (){
+        Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
+    });
 
 
-Route::prefix('user')->name('user.')->group(function(){
-    Route::get('order', [HomeController::class, 'profile'])->name('order');
-    Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
-});
+    Route::prefix('user')->name('user.')->group(function(){
+        Route::get('order', [HomeController::class, 'profile'])->name('order');
+        Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
+        Route::get('wishlist', [HomeController::class, 'profile'])->name('wishlist');
+    });
+//});
+
 
 
 
