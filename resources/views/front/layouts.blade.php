@@ -379,7 +379,7 @@
                                                                           style="color: transparent; width: auto;"></a>
                     </li>
                     <li class="transition hover:opacity-80 last:mr-0 md:mr-5 md:mx-0 mr-4 ml-0 ml-4 md:ml-5">
-                        <a target="_blank" rel="noreferrer" href="/"><img alt="twitter"
+                        <a target="_blank" rel="noreferrer" href=""><img alt="twitter"
                                                                           loading="lazy"
                                                                           width="20"
                                                                           height="20"
@@ -390,7 +390,7 @@
                                                                           style="color: transparent; width: auto;"></a>
                     </li>
                     <li class="transition hover:opacity-80 last:mr-0 md:mr-5 md:mx-0 mr-4 ml-0 ml-4 md:ml-5">
-                        <a target="_blank" rel="noreferrer" href="/"><img
+                        <a target="_blank" rel="noreferrer" href="https://www.instagram.com/khettoplatehimrooz/"><img
                                 alt="instagram" loading="lazy" width="20" height="20" decoding="async" data-nimg="1"
                                 class="transform scale-85 md:scale-100"
                                 src="https://borobazar.vercel.app/assets/images/social/instagram.svg"
@@ -459,16 +459,20 @@
                     Subscribe Now</h3>
                 <p class="text-gray-400 text-sm leading-7 lg:leading-[27px] lg:text-[15px] lg:-mt-1 max-w-[400px]">
                     Subscribe your email for newsletter and featured news based on your interest</p>
+
+
+
                 <form novalidate="" class="relative mt-5 max-w-[400px]">
                     <span class="flex items-center absolute ltr:left-0 rtl:right-0 top-0 h-12 px-3.5 transform"><svg
                             width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="w-4 2xl:w-[18px] h-4 2xl:h-[18px]"><g clip-path="url(#clip0)"><path
                                     d="M16.3125 2.25H1.68751C0.75696 2.25 0 3.00696 0 3.93751V14.0625C0 14.9931 0.75696 15.75 1.68751 15.75H16.3125C17.243 15.75 18 14.9931 18 14.0625V3.93751C18 3.00696 17.243 2.25 16.3125 2.25ZM16.3125 3.375C16.3889 3.375 16.4616 3.39085 16.5281 3.41854L9 9.94319L1.47188 3.41854C1.53834 3.39089 1.61105 3.375 1.68747 3.375H16.3125ZM16.3125 14.625H1.68751C1.37715 14.625 1.125 14.3729 1.125 14.0625V4.60711L8.6314 11.1127C8.73743 11.2044 8.86872 11.25 9 11.25C9.13128 11.25 9.26256 11.2044 9.3686 11.1127L16.875 4.60711V14.0625C16.875 14.3729 16.6228 14.625 16.3125 14.625Z"
-                                    fill="#B3B3B3"></path></g></svg></span>
-                    <div class="w-full">
+                                    fill="#B3B3B3"></path></g></svg>
+                    </span>
+                    <div class="w-full ">
                         <input id="subscription-email" name="email" type="email"
                                placeholder="Write your email here"
-                               class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-gray-300 focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12 ltr:pl-10 rtl:pr-10 2xl:px-11 h-12 rounded-md"
+                               class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-gray-300 focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12 ltr:pl-10 rtl:pr-10 2xl:px-11 h-12 rounded-md"
                                autocomplete="off" spellcheck="false" aria-invalid="false"></div>
                     <button
                         class="absolute right-0 top-0 hover:opacity-80 focus:outline-none h-12 px-3 lg:px-3.5 transform scale-90 2xl:scale-100"
@@ -500,7 +504,7 @@
                         class="transition-colors duration-200 ease-in-out text-gray-800 hover:text-gray-400 font-bold"
                         href="/">HIMROOZ</a>&nbsp; All rights reserved | Designed By: <a
                         class="transition-colors duration-200 ease-in-out text-gray-800 hover:text-gray-400 font-bold"
-                        href="www.himsoftsolution.com">Him Soft Solution</a></p>
+                        href="https://himsoftsolution.com" target="_blank">Him Soft Solution</a></p>
                 <ul class="flex flex-wrap justify-center items-center -mb-1.5 md:mb-0 mx-auto md:mx-0 pt-3.5 md:pt-0">
                     <li class="inline-flex mb-2 transition md:mb-0 hover:opacity-80 mr-4 sm:mr-5 lg:mr-7 mr-0 ml-4 sm:ml-5 lg:ml-7 ml-0">
                         <a href="/" target="_blank" class="inline-flex" rel="noreferrer"><img alt="Master Card"
@@ -550,7 +554,6 @@
         </div>
     </div>
 </footer>
-
 
 
 {{--bottom navbar starts here--}}
@@ -637,9 +640,6 @@
 
 </div>
 {{--bottom navbar ends here--}}
-
-
-
 
 {{--cart here--}}
 <div class=" fixed top-0 right-0 flex justify-end w-0 overflow-hidden max-h-screen min-h-screen z-50 bg-black/25 "

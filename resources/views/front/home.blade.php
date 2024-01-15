@@ -90,7 +90,7 @@
                                         </li>
                                     @else
                                         <a href="{{route('store', ['id' => $category->id])}}">
-                                            <li class="flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70">
+                                            <li class="flex flex-col justify-between items-center transition text-sm md:text-15px hover:bg-fill-base border-t border-border-base  px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3 text-brand-dark text-opacity-70">
                                                 <button class="flex items-center w-full ltr:text-left:text-right outline-none focus:outline-none group focus:ring-0 focus:text-brand-dark">
                                                     <div class="inline-flex shrink-0 2xl:w-12 2xl:h-12 3xl:w-auto 3xl:h-auto">
                                                         <img alt="{{ $category->name }}" loading="lazy" width="40" height="40" decoding="async" src="{{ asset('storage/'. $category->image) }}" >

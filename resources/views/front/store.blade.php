@@ -30,7 +30,7 @@
                     </svg>
                 </li>
                 <li class="text-sm text-brand-muted px-2.5 transition duration-200 ease-in ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 hover:text-brand-dark">
-                    <a class="capitalize font-semibold text-heading" href="/store">Store</a></li>
+                    <a class="capitalize font-semibold text-heading" href="{{route('store', ['id'=> 0])}}">Store</a></li>
             </ol>
         </div>
     </div>

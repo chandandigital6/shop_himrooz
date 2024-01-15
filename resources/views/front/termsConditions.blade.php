@@ -11,7 +11,7 @@
         <div class="flex items-center borobazarBreadcrumb">
             <ol class="flex items-center w-full overflow-hidden">
                 <li class="text-sm text-brand-muted px-2.5 transition duration-200 ease-in ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 hover:text-brand-dark">
-                    <a class="inline-flex items-center" href="{{route('home')}}">
+                    <a class="inline-flex items-center" href="{{route('front.home')}}">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
                              class="mr-1.5 text-brand-dark text-15px" height="1em" width="1em"
                              xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
                     </svg>
                 </li>
                 <li class="text-sm text-brand-muted px-2.5 transition duration-200 ease-in ltr:first:pl-0 rtl:first:pr-0 ltr:last:pr-0 rtl:last:pl-0 hover:text-brand-dark">
-                    <a class="capitalize font-semibold text-heading" href="/terms">terms</a></li>
+                    <a class="capitalize font-semibold text-heading" href="{{route('termsConditions')}}">terms</a></li>
             </ol>
         </div>
     </div>

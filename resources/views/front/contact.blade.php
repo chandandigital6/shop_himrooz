@@ -1,4 +1,4 @@
-@extends('frontend.layouts')
+@extends('front.layouts')
 
 @section('content')
 {{--banner here--}}

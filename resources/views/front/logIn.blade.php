@@ -18,7 +18,7 @@
                     <div class="md:w-1/2 lg:w-[55%] xl:w-[60%] registration hidden md:block relative">
                         <img
                             alt="signin" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw"
-                            src="{{asset('assets/images/homeSlider/6.jpg')}}"
+                            src="{{asset('assets/images/homeSlider/2.png')}}"
                            class="object-cover"  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="w-full md:w-1/2 lg:w-[45%] xl:w-[40%] py-6 sm:py-10 px-4 sm:px-8 md:px-6 lg:px-8 xl:px-12 rounded-md flex flex-col justify-center">
@@ -63,14 +63,25 @@
                                                class="py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded-md placeholder-[#B3B3B3] transition duration-200 ease-in-out text-brand-dark border-border-two focus:border-2 focus:outline-none focus:ring-0 focus:border-brand h-11 md:h-12"
                                                autocomplete="off" spellcheck="false">
                                         <label for="password" class="absolute -mt-2 cursor-pointer right-4 top-5 text-brand-dark text-opacity-30">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                            </svg>
+                                            <div class="h-max w-max"  onclick="
+                                                  var   passwordField = document.getElementById('password');
+                                                    if (passwordField.type === 'password') {
+                                                        passwordField.type = 'text';
+                                                    } else {
+                                                        passwordField.type = 'password';
+                                                    }
+
+
+                                                 ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor" class="w-6 h-6">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                                </svg>
+                                            </div>
                                         </label>
                                     </div>
                                     @error('password')

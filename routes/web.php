@@ -62,9 +62,13 @@ Route::get('/profile', function () {
 Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
+
+
+
 Route::get('/termsConditions', function () {
     return view('front.termsConditions');
 })->name('termsConditions');
+
 Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('product/show/{productId}',[FrontController::class,'productShow'])->name('product.show');
 Route::get('store/{id}',[StoreController::class,'GetProduct'])->name('store');
