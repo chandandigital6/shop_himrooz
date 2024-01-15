@@ -8,10 +8,11 @@
             defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
           crossorigin="anonymous">
+    @vite('resources/css/app.css')
 </head>
 <body class="relative lg:pb-0 pb-14">
 
-
+<div id="app">
 
 {{--main header starts here--}}
 <header id="siteHeader" class=" w-full h-16 lg:h-20 z-50 sticky -top-0.5 ">
@@ -73,17 +74,12 @@
             </div>
             <div class="flex shrink-0 py-4">
 
+                {{--  this is wishlist icon code. Show only when user is logged in --}}
+
 
 {{--  this is cart icon code. Show only when user is logged in --}}
-                <button class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform flex xl:mx-3.5 mx-2.5"
+                <a href="{{route('cart.index')}}" class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform flex xl:mx-3.5 mx-2.5"
                     aria-label="cart-button"
-                    onclick="
-                                const cart = document.getElementById('cart');
-                                //set width to full screen
-                                cart.style.width = '100%';
-                                cart.style.transition = 'width 0.3s ease-in';
-
-                                "
                 >
                     <div class="relative flex items-center ">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -99,11 +95,17 @@
                                 </clipPath>
                             </defs>
                         </svg>
+                        @php
+                            if(Auth::guard('admin')->user()){
+
+                            $cart = App\Models\Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
+                            }
+                            @endphp
                         <span
-                            class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> 11 </span>
+                            class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $cart->count() : 0}} </span>
                     </div>
                     <span class="text-md font-normal lg:text-15px text-brand-dark ml-2 mr-2">Cart</span>
-                </button>
+                </a>
 
 
 {{-- if user is not logged in then show this--}}
@@ -117,19 +119,31 @@
                             d="M11 11.5801C12.9191 11.5801 14.4805 10.0187 14.4805 8.09961V6.93945C14.4805 5.02036 12.9191 3.45898 11 3.45898C9.08091 3.45898 7.51953 5.02036 7.51953 6.93945V8.09961C7.51953 10.0187 9.08091 11.5801 11 11.5801ZM8.67969 6.93945C8.67969 5.65996 9.7205 4.61914 11 4.61914C12.2795 4.61914 13.3203 5.65996 13.3203 6.93945V8.09961C13.3203 9.3791 12.2795 10.4199 11 10.4199C9.7205 10.4199 8.67969 9.3791 8.67969 8.09961V6.93945Z"
                             fill="currentColor" stroke="currentColor" stroke-width="0.2"></path>
                     </svg>
-                    <a href="{{route('admin.login')}}">
+                    @php
+                        $user = Auth::guard('admin')->user()
+                    @endphp
+                    @if($user)
+
+                        <a href="{{ $user->role == 1 ? route('user.accountSetting') : route('admin.dashboard')}}">
+                            <button
+                                class="text-md font-normal lg:text-20px text-gray-800 focus:outline-none ml-2 mr-2"
+                                aria-label="Authentication">{{$user->name}}
+                            </button>
+                        </a>
+                    @else
+                    <a href="{{route('login')}}">
                         <button
                             class="text-md font-normal lg:text-20px text-gray-800 focus:outline-none ml-2 mr-2"
                             aria-label="Authentication">Sign In
                         </button>
                     </a>
+                    @endif
                 </div>
-
 
 
 {{--                if user is logged in then show this--}}
                 <div class="items-center hidden lg:hidden shrink-0 xl:ml-3.5 mr-2.5 ml-2.5">
-                    <a href="{{route('admin.login')}}">
+                    <a href="{{route('login')}}">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                          class="text-gray-700 text-opacity-40">
                         <path
@@ -150,9 +164,6 @@
     </div>
 </header>
 {{--main header ends here--}}
-
-
-
 
 {{--sidebar starts here--}}
 <div class=" fixed top-0 left-0 w-0 overflow-hidden max-h-screen min-h-screen z-50 bg-black/25 " id="sideBar">
@@ -596,35 +607,31 @@
                 stroke-width="0.4"></path>
         </svg>
     </a>
-    <button class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform"
-            aria-label="cart-button" onclick="
-                                const cart = document.getElementById('cart');
-                                //set width to full screen
-                                cart.style.width = '100%';
-                                cart.style.transition = 'width 0.3s ease-in';
+    <a href="{{route('cart.index')}}">
+        <button class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform"
+            aria-label="cart-button" >
+            <div class="relative flex items-center">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
+                     class=" text-gray-500">
+                    <g clip-path="url(#clip0)">
+                        <path
+                            d="M19.7999 19.0172L18.5402 4.8319C18.5132 4.51697 18.2478 4.27853 17.9374 4.27853H15.3459C15.31 1.91207 13.3754 0 10.9999 0C8.62447 0 6.68991 1.91207 6.65392 4.27853H4.06251C3.74758 4.27853 3.48664 4.51697 3.45965 4.8319L2.19993 19.0172C2.19993 19.0352 2.19543 19.0532 2.19543 19.0712C2.19543 20.6863 3.6756 22 5.49768 22H16.5022C18.3243 22 19.8044 20.6863 19.8044 19.0712C19.8044 19.0532 19.8044 19.0352 19.7999 19.0172ZM10.9999 1.21472C12.705 1.21472 14.0952 2.58241 14.1312 4.27853H7.86864C7.90464 2.58241 9.29482 1.21472 10.9999 1.21472ZM16.5022 20.7853H5.49768C4.35494 20.7853 3.42815 20.0294 3.41016 19.0982L4.61588 5.49775H6.64942V7.34233C6.64942 7.67975 6.91936 7.94969 7.25678 7.94969C7.59421 7.94969 7.86415 7.67975 7.86415 7.34233V5.49775H14.1312V7.34233C14.1312 7.67975 14.4012 7.94969 14.7386 7.94969C15.076 7.94969 15.3459 7.67975 15.3459 7.34233V5.49775H17.3795L18.5897 19.0982C18.5717 20.0294 17.6404 20.7853 16.5022 20.7853Z"
+                            fill="currentColor" stroke="currentColor" stroke-width="0.1"></path>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0">
+                            <rect width="22" height="22" fill="white"></rect>
+                        </clipPath>
+                    </defs>
+                </svg>
 
-                                ">
-        <div class="relative flex items-center">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 class=" text-gray-500">
-                <g clip-path="url(#clip0)">
-                    <path
-                        d="M19.7999 19.0172L18.5402 4.8319C18.5132 4.51697 18.2478 4.27853 17.9374 4.27853H15.3459C15.31 1.91207 13.3754 0 10.9999 0C8.62447 0 6.68991 1.91207 6.65392 4.27853H4.06251C3.74758 4.27853 3.48664 4.51697 3.45965 4.8319L2.19993 19.0172C2.19993 19.0352 2.19543 19.0532 2.19543 19.0712C2.19543 20.6863 3.6756 22 5.49768 22H16.5022C18.3243 22 19.8044 20.6863 19.8044 19.0712C19.8044 19.0532 19.8044 19.0352 19.7999 19.0172ZM10.9999 1.21472C12.705 1.21472 14.0952 2.58241 14.1312 4.27853H7.86864C7.90464 2.58241 9.29482 1.21472 10.9999 1.21472ZM16.5022 20.7853H5.49768C4.35494 20.7853 3.42815 20.0294 3.41016 19.0982L4.61588 5.49775H6.64942V7.34233C6.64942 7.67975 6.91936 7.94969 7.25678 7.94969C7.59421 7.94969 7.86415 7.67975 7.86415 7.34233V5.49775H14.1312V7.34233C14.1312 7.67975 14.4012 7.94969 14.7386 7.94969C15.076 7.94969 15.3459 7.67975 15.3459 7.34233V5.49775H17.3795L18.5897 19.0982C18.5717 20.0294 17.6404 20.7853 16.5022 20.7853Z"
-                        fill="currentColor" stroke="currentColor" stroke-width="0.1"></path>
-                </g>
-                <defs>
-                    <clipPath id="clip0">
-                        <rect width="22" height="22" fill="white"></rect>
-                    </clipPath>
-                </defs>
-            </svg>
+                <span
+                    class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $cart->count() : 0}} </span>
 
-            <span
-                class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> 11 </span>
-
-        </div>
-    </button>
-    <a href="{{route('profile')}}">
+            </div>
+        </button>
+    </a>
+    <a href="{{Auth::guard('admin')->user() ? Auth::guard('admin')->user()->role == 2 ? route('admin.dashboard') : route('user.accountSetting') : route('login')}}">
         <button class="shrink-0 focus:outline-none" aria-label="Authentication">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
                  class="text-gray-500">
@@ -640,6 +647,7 @@
 
 </div>
 {{--bottom navbar ends here--}}
+<<<<<<< HEAD
 
 {{--cart here--}}
 <div class=" fixed top-0 right-0 flex justify-end w-0 overflow-hidden max-h-screen min-h-screen z-50 bg-black/25 "
@@ -1187,8 +1195,10 @@
             {{--            cart footer ends here--}}
         </div>
     </div>
+=======
+>>>>>>> 1ae0510ed3a4037b0eea892a775f34f97dc8db63
 </div>
-{{--cart ends here--}}
 
+@vite('resources/js/app.js')
 </body>
 </html>

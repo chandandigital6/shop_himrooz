@@ -69,28 +69,53 @@
 
                                 </div>
                             </div>
+                            {{--                        product variation starts here--}}
                             <div class="card mb-3">
-                                <div class="card-body">
-                                    <h2 class="h4 mb-3">Pricing</h2>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="price">Price</label>
-                                                <input type="text" value="{{$product->price}}" name="price" id="price" class="form-control" placeholder="Price">
+                                <div class="card-header">
+                                    <h2 class="h4 mb-3">Products Variation</h2>
+                                    <button class="btn btn-primary" type="button" onclick="addVariation()">Add Variation</button>
+                                </div>
+                                @foreach($product->variations as $variation)
+                                    <div class="card-body" id="variationContainer">
+                                    <div class="items" data-group="productVariation">
+                                        <div class="row mb-4">
+                                            <hr>
+                                            <div class="col-md-3">
+                                                <input type="hidden" name="id[]" value="{{$variation->id}}">
+                                                <label class="form-label" for="product-variation-name">Name</label>
+                                                <input type="text" class="form-control" id="product-variation-name"
+                                                       name="variation_name[]" value="{{$variation->name }}"
+                                                       required placeholder="Product Price">
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="compare_price">discount at Price</label>
-                                                <input type="text" value="{{$product->discount_price}}" name="discount_price" id="compare_price" class="form-control" placeholder="Compare Price">
-                                                <p class="text-muted mt-3">
-                                                    To show a reduced price, move the product’s original price into Compare at price. Enter a lower value into Price.
-                                                </p>
+                                            <div class="col-md-2">
+                                                <label class="form-label" for="price">Price in INR (₹)</label>
+                                                <input type="number" class="form-control" id="price"
+                                                       name="variation_price[]" value="{{$variation->price }}"
+                                                       required placeholder="Product Price">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label" for="discount">Discount(%)</label>
+                                                <input type="number" class="form-control" id="discount"
+                                                       name="variation_discount[]" value="{{$variation->discountPercentage }}" required
+                                                       placeholder="Product Discount(In Percentage)">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label" for="images">Images (Images Should be squarish in size. e.g. (500 x 500 px))</label>
+                                                <input type="file" class="form-control" id="images"
+                                                       name="variation_image[]"
+                                                       placeholder="Product Discount(In Percentage)" multiple>
+                                            </div>
+                                            <div class="col-md-1 repeater-remove-btn mt-4">
+                                                <a href="{{route('product.variationDelete', ['variation' => $variation->id])}}" class="btn btn-danger remove-btn">
+                                                    Remove
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
+
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h2 class="h4 mb-3">Inventory</h2>
@@ -213,6 +238,53 @@
 
 @section('customJs')
 
+
+    <script>
+        function addVariation() {
+            let variation = document.getElementById('variationContainer').innerHTML +=`
+                <div class="items" >
+                                    <div class="row mb-4">
+                                        <hr>
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="product-variation-name">Name</label>
+                                            <input type="text" class="form-control" id="product-variation-name"
+                                                   name="variation_name[]"
+                                                   required placeholder="Product Price">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label" for="price">Price in INR (₹)</label>
+                                            <input type="number" class="form-control" id="price"
+                                                   name="variation_price[]"
+                                                   required placeholder="Product Price">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label" for="discount">Discount(%)</label>
+                                            <input type="number" class="form-control" id="discount"
+                                                   name="variation_discount[]" required
+                                                   placeholder="Product Discount(In Percentage)">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label" for="images">Images (Images Should be squarish in size. e.g. (500 x 500 px))</label>
+                                            <input type="file" class="form-control" id="images"
+                                                   name="variation_image[]" required
+                                                   placeholder="Product Discount(In Percentage)" multiple>
+                                        </div>
+                                        <div class="col-md-1 repeater-remove-btn mt-4">
+                                            <button class="btn btn-danger remove-btn" onclick="removeVariation()">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                `;
+
+        }
+
+        function removeVariation() {
+            // remove the parent element of the clicked button
+            event.target.parentNode.parentNode.remove();
+        }
+    </script>
 
     <script>
         Dropzone.autoDiscover = false;

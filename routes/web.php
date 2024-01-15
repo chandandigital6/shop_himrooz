@@ -13,6 +13,10 @@ use App\Http\Controllers\admin\ProductSubcategoryController;
 use App\Http\Controllers\admin\StoreCOntroller;
 use App\Http\Controllers\admin\SubCategoryCOntroller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DealController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +42,7 @@ Route::get('/about', function () {
 Route::get('/productDetail', function () {
     return view('front.productDetail');
 })->name('productDetail');
-Route::get('/checkOut', function () {
-    return view('front.checkOut');
-})->name('checkOut');
+Route::get('checkOut', [CartController::class, 'checkout'])->name('checkOut');
 Route::get('/orderComplete', function () {
     return view('front.orderComplete');
 })->name('orderComplete');
@@ -56,9 +58,6 @@ Route::get('/signUp', function () {
 Route::get('/forgetPassword', function () {
     return view('front.forgetPassword');
 })->name('forgetPassword');
-Route::get('/profile', function () {
-    return view('front.profile');
-})->name('profile');
 Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
@@ -69,6 +68,14 @@ Route::get('/termsConditions', function () {
     return view('front.termsConditions');
 })->name('termsConditions');
 
+Route::get('login',[AdminController::class,'index'])->name('login');
+Route::get('signup',[AdminController::class,'signup'])->name('signup');
+Route::post('authenticate',[AdminController::class,'authenticate'])->name('authenticate');
+Route::get('logout',[HomeController::class,'logout'])->name('logout');
+
+
+
+
 Route::get('/',[FrontController::class,'index'])->name('front.home');
 Route::get('product/show/{productId}',[FrontController::class,'productShow'])->name('product.show');
 Route::get('store/{id}',[StoreController::class,'GetProduct'])->name('store');
@@ -78,13 +85,44 @@ Route::get('register',[AuthController::class,'register'])->name('register');
 Route::post('register/store',[AuthController::class,'store'])->name('register.store');
 
 
-Route::get('admin/login',[AdminController::class,'index'])->name('admin.login');
+//Cart Routes
+
+//Route::middleware('auth')->group(function(){
+    Route::prefix('cart')->name('cart.')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::post('store', [CartController::class, 'store'])->name('store');
+        Route::get('delete/{cart}', [CartController::class, 'delete'])->name('delete');
+        Route::get('increment/{cart}', [CartController::class, 'increment'])->name('increment');
+        Route::get('decrement/{cart}', [CartController::class, 'decrement'])->name('decrement');
+        Route::get('clear', [CartController::class, 'clear'])->name('clear');
+        Route::get('add/{product}', [CartController::class, 'add'])->name('add');
+    });
+
+    Route::prefix('wishlist')->name('wishlist.')->group(function(){
+        Route::get('add/{product}', [WishlistController::class, 'add'])->name('add');
+    });
+
+
+    Route::prefix('order')->name('order.')->group(function (){
+        Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
+    });
+
+
+    Route::prefix('user')->name('user.')->group(function(){
+        Route::get('order', [HomeController::class, 'profile'])->name('order');
+        Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
+        Route::get('wishlist', [HomeController::class, 'profile'])->name('wishlist');
+    });
+//});
+
+
+
+
+
 
 Route::group(['prefix' => 'admin'],function (){
     Route::group(['middleware' => 'admin.guest'],function (){
-        Route::get('login',[AdminController::class,'index'])->name('admin.login');
-        Route::get('signup',[AdminController::class,'signup'])->name('admin.signup');
-        Route::post('authenticate',[AdminController::class,'authenticate'])->name('admin.authenticate');
+
     });
     Route::group(['middleware' => 'admin.auth'],function (){
         Route::get('dashboard',[HomeController::class,'index'])->name('admin.dashboard');
@@ -130,6 +168,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::get('product/edit/{product}',[ProductController::class,'edit'])->name('product.edit');
         Route::put('product/update/{product}',[ProductController::class,'update'])->name('product.update');
         Route::get('product/duplicate/{product}',[ProductController::class,'duplicate'])->name('product.duplicate');
+        Route::get('product/variationDelete/{variation}', [ProductController::class, 'variationDelete'])->name('product.variationDelete');
 
         Route::get('product/subcategories/{category}',[ProductSubcategoryController::class,'getProductSubcategories'])->name('product.subcategories');
 
@@ -142,6 +181,24 @@ Route::group(['prefix' => 'admin'],function (){
         Route::put('slider/update/{slider}',[HomeSliderController::class,'update'])->name('slider.update');
         Route::get('slider/delete/{slider}',[HomeSliderController::class,'delete'])->name('slider.delete');
         Route::get('slider/duplicate/{slider}',[HomeSliderController::class,'duplicate'])->name('slider.duplicate');
+
+        Route::prefix('deal')->name('deal.')->group(function(){
+            Route::get('/', [DealController::class, 'index'])->name('index');
+            Route::get('create/{product}', [DealController::class, 'create'])->name('create');
+            Route::post('store', [DealController::class, 'store'])->name('store');
+            route::get('edit/{deal}', [DealController::class, 'edit'])->name('edit');
+            route::post('update/{deal}', [DealController::class, 'update'])->name('update');
+            route::get('delete/{deal}', [DealController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('order')->name('order.')->group(function(){
+            Route::get('/', [OrderController::class, 'index'])->name('index');
+            Route::get('create/{product}', [OrderController::class, 'create'])->name('create');
+            Route::post('store', [OrderController::class, 'store'])->name('store');
+            route::get('edit/{order}', [OrderController::class, 'edit'])->name('edit');
+            route::post('update/{order}', [OrderController::class, 'update'])->name('update');
+            route::get('delete/{order}', [OrderController::class, 'delete'])->name('delete');
+        });
 
     });
 });

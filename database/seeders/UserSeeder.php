@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
          User::create([
              'name'=>fake()->name(),
              'email'=>fake()->unique()->email(),
-             'role'=>fake()->boolean->role(),
+             'role'=>1,
              'password'=>fake()->password(),
 
          ]);

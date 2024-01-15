@@ -179,21 +179,37 @@
                 <div class="flex justify-center items-center w-full">
                     <img class="h-full w-full " src="{{asset('assets/images/commingSoon.jpeg')}}" alt="">
                 </div>
-                @else
+            @else
                 @foreach($products as $product)
+                    @php
+                        if($product->deal){
+                            if($product->deal->start_time <= now() && $product->deal->end_time >= now()){
+                            $discount = $product->deal->discount;
+                            $deal = 'yes';
+                            $expire = $end_time->diff(now())->format('%a :  %h :  %i :  %s');
+                            }else{
+                                $discount = $product->variations->first()->discountPercentage;
+                                $deal = '';
+                                $expire = '';
+                            }
+                        }else{
+                            $discount = $product->variations->first()->discountPercentage;
+                            $deal = '';
+                            $expire = '';
+                        }
+                    @endphp
                     <x-product-card
                         product-name="{{$product->title}}"
                         product-price="{{$product->variations->first()->price}}"
-                        product-discount-price="{{$product->variations->first()->price-(($product->variations->first()->price * $product->variations->first()->discountPercentage )/100) }}"
+                        product-discount-price="{{$product->variations->first()->price-(($product->variations->first()->price * $discount )/100) }}"
                         product-quantity="{{$product->qty}}"
                         product-image="{{$product->image}}"
                         product-id="{{$product->id}}"
+                        deal="{{$deal}}"
+                        expire="{{$expire}}"
                     ></x-product-card>
                 @endforeach
-                @endif
-
-
-
+            @endif
         </div>
     </div>
 
