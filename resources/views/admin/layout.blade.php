@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('adminAsset/plugins/fontawesome-free/css/all.min.css')}}">
+    <script src="https://kit.fontawesome.com/4e2c7ef5ef.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="{{asset('adminAsset/plugins/summernote/summernote.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('adminAsset/css/adminlte.min.css')}}">
@@ -71,7 +73,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
 
-        <strong>Copyright &copy; 2014-2023 himrooz All rights reserved.
+        <strong>Copyright &copy; 2014-2023 himrooz All rights reserved.</strong>
     </footer>
 
 </div>
@@ -87,6 +89,42 @@
 <script src="{{asset('adminAsset/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('adminAsset/js/demo.js')}}"></script>
+
+
+
+<script>
+    document.getElementById('productTag').addEventListener('keydown', function (event) {
+        // Check if the pressed key is a space bar
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevents the space from being entered into the input field
+
+            // Get the value from productTag
+            var tagValue = document.getElementById('productTag').value.trim();
+
+            // Check if the value is not empty
+            if (tagValue !== '') {
+                // Create the HTML code to append
+                var htmlCode = `
+                    <div class="mb-3" style="width: max-content;">
+                        <label for="barcode" style="background-color: #dadada; border-radius: 5px; padding: 5px 10px">${tagValue}</label>
+                        <input type="text" name="all_product_tags[]" value="${tagValue}" id="barcode" class="form-control" placeholder="" hidden>
+                        <i class="fa-solid fa-xmark" onclick="removeTag(this)"></i>
+                    </div>
+                `;
+
+                // Append the HTML code to the displayProductTag container
+                document.getElementById('displayProductTag').insertAdjacentHTML('beforeend', htmlCode);
+
+                // Clear the productTag input field
+                document.getElementById('productTag').value = '';
+            }
+        }
+    });
+    function removeTag(xMarkIcon) {
+        var parentDiv = xMarkIcon.parentElement;
+        parentDiv.remove();
+    }
+</script>
 
 
 @yield('customJs')

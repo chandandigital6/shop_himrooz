@@ -156,18 +156,29 @@
                                                         <input type="text" name="qty" id="barcode" class="form-control" placeholder="Qty">
                                                     </div>
                                                 </div>
-            {{--                                    <div class="col-md-12">--}}
-            {{--                                        <div class="mb-3">--}}
-            {{--                                            <div class="custom-control custom-checkbox">--}}
-            {{--                                                <input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="Qty">--}}
-            {{--                                                --}}
-            {{--                                            </div>--}}
-            {{--                                        --}}
-            {{--                                        </div>--}}
-            {{--                                        <div class="mb-3">--}}
-            {{--                                       --}}
-            {{--                                        </div>--}}
-            {{--                                    </div>--}}
+
+
+
+
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="barcode">Tags</label>
+                                                        <input type="text" id="productTag" class="form-control" placeholder="e.g. Oil, Food, Vegetable ">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" >
+
+                                                    <div class="mb-3" style="width: max-content">
+                                                        <label for="barcode">Saved Tag</label>
+                                                    </div>
+
+                                                    <div style="display: flex; flex-wrap: wrap; gap: 20px" id="displayProductTag">
+
+                                                    </div>
+                                                </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -235,8 +246,8 @@
                                             <h2 class="h4 mb-3">Featured product</h2>
                                             <div class="mb-3">
                                                 <select name="is_featured" id="status" class="form-control">
-                                                    <option value="yes">No</option>
-                                                    <option value="no">Yes</option>
+                                                    <option value="no">No</option>
+                                                    <option value="yes">Yes</option>
                                                 </select>
                                             </div>
                                         </div>

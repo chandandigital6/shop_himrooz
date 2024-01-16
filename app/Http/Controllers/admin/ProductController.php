@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Auth;
 use App\Http\Requests\ProductRequest;
 use App\Models\Brand;
 use App\Models\Categorie;
 use App\Models\Product;
+use App\Models\ProductTag;
 use App\Models\ProductVariation;
+use App\Models\Review;
 use App\Models\SubCategory;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -33,12 +37,22 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request){
-//        dd($request->file('variation_image')[0]);
+
         $product=Product::create($request->all());
         $image = $request->file('image')->store('public');
 
         $product->image = str_replace('public/', '', $image);
         $product->save();
+
+        $product_tags = $request->all_product_tags;
+
+        foreach ($product_tags as $key => $value) {
+            $product_tag = new ProductTag();
+            $product_tag->product_id = $product->id;
+            $product_tag->name = $value;
+            $product_tag->save();
+        }
+
 
         $variation_name = $request->variation_name;
         $variation_price = $request->variation_price ?? '';
@@ -74,7 +88,17 @@ class ProductController extends Controller
         $variation_name = $request->variation_name;
         $variation_price = $request->variation_price ?? '';
         $variation_discount = $request->variation_discount;
+
         $variation_image = $request->variation_image;
+        $product_tags = $request->all_product_tags;
+        $product->productTags()->delete();
+        foreach ($product_tags as $key => $value) {
+            $product_tag = new ProductTag();
+            $product_tag->product_id = $product->id;
+            $product_tag->name = $value;
+            $product_tag->save();
+        }
+
         foreach ($variation_name as $key => $value) {
             $productVariation = ProductVariation::find($variation_id[$key]);
             $productVariation->name = $variation_name[$key];
@@ -110,10 +134,19 @@ class ProductController extends Controller
                 unlink('storage/' .$variation->image);
             }
         }
+
+        $product->productTags()->delete();
+
+
         $product->variations()->delete();
         $product->delete();
         return redirect()->route('product.index')->with('error','Successfully stored product items deleted');
 
+    }
+
+    public function tagDelete(ProductTag $tag){
+        $tag->delete();
+        return redirect()->back()->with('success', 'Tag Deleted successfully');
     }
 
     public function variationDelete(ProductVariation $variation){
@@ -125,4 +158,58 @@ class ProductController extends Controller
             return redirect()->back()->with('danger', 'Minimum 1 variation required');
         }
     }
+
+    Public function search(Request $request){
+        $keyword = $request->input('searchBox');
+        $productTag = ProductTag::where('name', 'like', "%$keyword%")->pluck('product_id');
+
+        // check if no match found
+        if($productTag->count() == 0){
+            $products = Product::where('title', 'like', "%$keyword%")->orWhere('description', 'like', "%$keyword%")->pluck('id');
+            if($products->count() == 0){
+                session()->flash('error', 'No match found');
+                return redirect()->back();
+            }
+            else{
+                $products = Product::whereIn('id', $products)->get();
+                session()->flash('success', 'Search results');
+                return view('front.store',compact('products'));
+            }
+        }
+        else{
+            $products = Product::whereIn('id', $productTag)->get();
+            session()->flash('success', 'Search results');
+            return view('front.store',compact('products'));
+        }
+    }
+
+
+
+    public function review(Request $request, Product $product){
+
+        $request->validate([
+            'title' => 'required',
+            'message' => 'required',
+            'rating' => 'required',
+        ]);
+
+        // check if user is logged in
+        if(!auth()->guard('admin')->user()){
+            return redirect('login')->with('error', 'Please login to add review');
+        }
+        else{
+
+        Review::create([
+            'title' => $request->title,
+            'message' => $request->message,
+            'rating' => $request->rating,
+            'user_id' => auth()->guard('admin')->user()->id,
+            'product_id' => $product->id,
+        ]);
+        return redirect()->back()->with('success', 'Review added successfully');
+
+        }
+
+    }
+
 }

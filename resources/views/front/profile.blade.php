@@ -291,6 +291,9 @@
                 </div>
                 {{--                order history ends here--}}
 
+
+
+
                 {{--                wishlist here--}}
                 <div class="{{request()->routeIs('user.wishlist') ? '' : 'hidden'}} w-full p-4 mt-4 border rounded-md lg:mt-0 border-border-base sm:p-5 lg:py-8 2xl:py-10 lg:px-7 2xl:px-12 overflow-x-auto">
                     <h2 class="text-base md:text-lg xl:text-[20px] font-semibold text-brand-dark  lg:pt-0">Favorite
@@ -299,40 +302,56 @@
                         <div class="">
                             <div class="flex flex-col">
                                 @foreach($wishlists as $wishlist)
+
                                     <div
-                                        class="flex flex-row justify-between py-6  border-b md:flex-row  border-border-base 2xl:py-5 wishlist-card last:pb-4 first:-mt-8 lg:first:-mt-4 2xl:first:-mt-7">
-                                        <div class="flex ">
-                                            <div class="relative mt-1 shrink-0">
+                                        class="group w-full h-auto flex justify-start items-center text-brand-light py-4 md:py-7 border-b border-border-one border-opacity-70 relative border-b-0"
+                                        title="Coconut Oil">
+                                        <div
+                                            class="relative flex rounded overflow-hidden shrink-0 cursor-pointer w-[90px] md:w-[100px] h-[90px] md:h-[100px]">
+                                            <img alt="Fresh Green Leaf Lettuce" loading="eager" width="100" height="100"
+                                                 decoding="async" data-nimg="1" class="object-cover bg-fill-thumbnail"
+                                                 src="{{asset('storage/' .$wishlist->product->image)}}"
+                                                 style="color: transparent; width: auto;">
+                                            <div
+                                                class="absolute top-0 flex items-center justify-center w-full h-full transition duration-200 ease-in-out bg-black left-0 right-0 bg-opacity-30 md:bg-opacity-0 md:group-hover:bg-opacity-30"
+                                                role="button">
+                                                <a href="{{route('wishlist.delete', ['wishlist' => $wishlist->id])}}">
+                                                    <svg stroke="currentColor" fill="currentColor" stroke-width="0"
+                                                         viewBox="0 0 512 512"
+                                                         class="relative text-2xl text-white transition duration-300 ease-in-out transform md:scale-0 md:opacity-0 md:group-hover:scale-100 md:group-hover:opacity-100"
+                                                         height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M256 48C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48zm52.7 283.3L256 278.6l-52.7 52.7c-6.2 6.2-16.4 6.2-22.6 0-3.1-3.1-4.7-7.2-4.7-11.3 0-4.1 1.6-8.2 4.7-11.3l52.7-52.7-52.7-52.7c-3.1-3.1-4.7-7.2-4.7-11.3 0-4.1 1.6-8.2 4.7-11.3 6.2-6.2 16.4-6.2 22.6 0l52.7 52.7 52.7-52.7c6.2-6.2 16.4-6.2 22.6 0 6.2 6.2 6.2 16.4 0 22.6L278.6 256l52.7 52.7c6.2 6.2 6.2 16.4 0 22.6-6.2 6.3-16.4 6.3-22.6 0z"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start justify-between w-full overflow-hidden">
+                                            <div class="pl-3 pr-3 md:pl-4 md:pr-4"><a
+                                                    class="block font-semibold leading-5 transition-all text-gray-900 text-[13px] sm:text-sm lg:text-[15px] hover:text-gray-400"
+                                                    href="{{route('product.show',['productId' =>$wishlist->product->id])}}"> {{ucfirst($wishlist->product->title)}}</a>
                                                 <div
-                                                    class="flex overflow-hidden max-w-[80px]  transition duration-200 ease-in-out transform group-hover:scale-105">
-                                                    <img alt="Ocean Mist Farms Green Leaf Lettuce" loading="lazy" width="80"
-                                                         height="80" decoding="async" data-nimg="1"
-                                                         class="object-cover bg-fill-thumbnail"
-                                                         src="{{asset('storage/' .$wishlist->product->image)}}"
-                                                         style="color: transparent; width: auto;"></div>
+                                                    class="flex items-center justify-between rounded overflow-hidden shrink-0 p-1 inline-flex">
+                                                            <span>{{$wishlist->product->price}}</span>
+                                                </div>
                                             </div>
                                             <div
-                                                class="flex flex-col ltr:ml-2 rtl:mr-2 2xl:ltr:ml-3.5 2xl:rtl:mr-3.5 h-full">
-                                                <h2 class="text-gray-900 text-[13px] sm:text-sm lg:text-[15px] leading-5 sm:leading-6 mb-1.5">
-                                                    {{$wishlist->product->title}}</h2>
-                                                <div class="mb-1 text-13px sm:text-sm lg:mb-2 text-gray-500">{{$wishlist->product->quantity}} each</div>
-                                                <div class="-mx-1">
-                                                <span
-                                                    class="inline-block mx-1 text-sm font-semibold sm:text-[15px] lg:text-base text-gray-900">₹ 1.74</span>
+                                                class="flex font-semibold text-sm md:text-base text-brand-dark leading-5 shrink-0 min-w-[65px] md:min-w-[80px] justify-end">
+                                                <div class="flex cursor-pointer  md:pt-7">
+                                                    <svg stroke="currentColor" fill="#02b290" stroke-width="0"
+                                                         viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
+                                                         width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
+                                                    </svg>
+                                                    <span
+                                                        class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex cursor-pointer  md:pt-7">
-                                            <svg stroke="currentColor" fill="#02b290" stroke-width="0"
-                                                 viewBox="0 0 512 512" class="text-brand w-5 h-5 mt-0.5" height="1em"
-                                                 width="1em" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M352 56h-1c-39.7 0-74.8 21-95 52-20.2-31-55.3-52-95-52h-1c-61.9.6-112 50.9-112 113 0 37 16.2 89.5 47.8 132.7C156 384 256 456 256 456s100-72 160.2-154.3C447.8 258.5 464 206 464 169c0-62.1-50.1-112.4-112-113z"></path>
-                                            </svg>
-                                            <span
-                                                class="text-[#02b290] ml-1 font-semibold text-[15px] -mt-0.5 md:mt-0">Favorited</span>
-                                        </div>
                                     </div>
+
+
                                 @endforeach
 
 

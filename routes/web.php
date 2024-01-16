@@ -62,11 +62,12 @@ Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
 
-
-
 Route::get('/termsConditions', function () {
     return view('front.termsConditions');
 })->name('termsConditions');
+
+
+Route::post('searchProduct',[ProductController::class,'search'])->name('searchProduct');
 
 Route::get('login',[AdminController::class,'index'])->name('login');
 Route::get('signup',[AdminController::class,'signup'])->name('signup');
@@ -84,10 +85,11 @@ Route::get('store/{id}',[StoreController::class,'GetProduct'])->name('store');
 Route::get('register',[AuthController::class,'register'])->name('register');
 Route::post('register/store',[AuthController::class,'store'])->name('register.store');
 
-
 //Cart Routes
 
 //Route::middleware('auth')->group(function(){
+
+//if (Auth::guard('admin')->user()){
     Route::prefix('cart')->name('cart.')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::post('store', [CartController::class, 'store'])->name('store');
@@ -100,6 +102,7 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
 
     Route::prefix('wishlist')->name('wishlist.')->group(function(){
         Route::get('add/{product}', [WishlistController::class, 'add'])->name('add');
+        Route::get('delete/{wishlist}', [WishlistController::class, 'delete'])->name('delete');
     });
 
 
@@ -107,23 +110,22 @@ Route::post('register/store',[AuthController::class,'store'])->name('register.st
         Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
     });
 
+     Route::post('product/review/{product}',[ProductController::class,'review'])->name('product.review');
 
-    Route::prefix('user')->name('user.')->group(function(){
+
+Route::prefix('user')->name('user.')->group(function(){
         Route::get('order', [HomeController::class, 'profile'])->name('order');
         Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
         Route::get('wishlist', [HomeController::class, 'profile'])->name('wishlist');
     });
 //});
-
+//}
 
 
 
 
 
 Route::group(['prefix' => 'admin'],function (){
-    Route::group(['middleware' => 'admin.guest'],function (){
-
-    });
     Route::group(['middleware' => 'admin.auth'],function (){
         Route::get('dashboard',[HomeController::class,'index'])->name('admin.dashboard');
         Route::get('logout',[HomeController::class,'logout'])->name('admin.logout');
@@ -164,12 +166,14 @@ Route::group(['prefix' => 'admin'],function (){
         Route::get('product/create',[ProductController::class,'create'])->name('product.create');
         Route::post('product/store',[ProductController::class,'store'])->name('product.store');
         Route::post('product/upload-media', [ProductImageController::class, 'uploadMedia'])->name('product.uploadMedia');
+
         Route::get('product/delete/{product}',[ProductController::class,'delete'])->name('product.delete');
+        Route::get('product/tagDelete/{tag}',[ProductController::class,'tagDelete'])->name('tag.delete');
+
         Route::get('product/edit/{product}',[ProductController::class,'edit'])->name('product.edit');
         Route::put('product/update/{product}',[ProductController::class,'update'])->name('product.update');
         Route::get('product/duplicate/{product}',[ProductController::class,'duplicate'])->name('product.duplicate');
         Route::get('product/variationDelete/{variation}', [ProductController::class, 'variationDelete'])->name('product.variationDelete');
-
         Route::get('product/subcategories/{category}',[ProductSubcategoryController::class,'getProductSubcategories'])->name('product.subcategories');
 
 

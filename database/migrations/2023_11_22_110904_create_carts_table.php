@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('product_variation_id')->constrained('product_variations');
             $table->unsignedBigInteger('quantity');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
             $table->timestamps();
         });
     }

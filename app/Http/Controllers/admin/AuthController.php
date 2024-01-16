@@ -24,7 +24,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        return redirect()->route('admin.login')->with('success' ,'user successful created');
+        return redirect()->route('login')->with('success' ,'user successful created');
     }
 
 

@@ -4,12 +4,11 @@
         title="{{$productName}}">
 
         {{--                card top section--}}
-        <div class="relative shrink-0">
+        <div class="relative shrink-0 p-4">
 
-            <div
-                class="overflow-hidden mx-auto w-full sm:w-[180px] h-[180px] md:w-[200px] md:h-[200px] transition duration-200 ease-in-out transform group-hover:scale-105 relative">
+            <div class="overflow-hidden mx-auto w-full h-[180px] md:w-full md:h-[200px] transition duration-200 ease-in-out transform group-hover:scale-105 relative">
                 <img alt="Organic Spring Mix" fetchpriority="high" decoding="async" data-nimg="fill"
-                     class="object-cover bg-fill-thumbnail"
+                     class="object-cover bg-fill-thumbnail rounded-md"
                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                      src="{{asset('storage/'.$productImage)}}"
                      style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
@@ -27,7 +26,7 @@
                 style="justify-content: end">
                 <div class="relative w-full">
                     <div class="block product-count-button-position flex justify-end gap-3 ">
-                        <a href="{{route('cart.add', ['product' => $productId])}}"
+                        <a href="{{Auth::guard('admin')->user()? route('cart.add', ['product' => $productId]) : route('login')}}"
                            class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
                            onmouseover="
                                         const productId = document.getElementById('productId');
@@ -48,7 +47,7 @@
                             </svg>
                         </a>
 
-                        <a href="{{route('wishlist.add', ['product' => $productId])}}"
+                        <a href="{{Auth::guard('admin')->user()?route('wishlist.add', ['product' => $productId]) : route('login')}}"
                             class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
                             aria-label="Count Button">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="19" height="19" opacity="1">

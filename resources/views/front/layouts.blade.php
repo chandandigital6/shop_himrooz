@@ -8,6 +8,10 @@
             defer></script>
     <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet"
           crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <script src="https://kit.fontawesome.com/4e2c7ef5ef.js" crossorigin="anonymous"></script>
+
     @vite('resources/css/app.css')
 </head>
 <body class="relative lg:pb-0 pb-14">
@@ -15,9 +19,8 @@
 <div id="app">
 
 {{--main header starts here--}}
-<header id="siteHeader" class=" w-full h-16 lg:h-20 z-50 sticky -top-0.5 ">
-    <div
-        class="z-20 w-full h-max transition duration-200 ease-in-out border-b bg-white innerSticky body-font text-brand-muted border-border-base">
+<header id="siteHeader" class=" w-full h-16 lg:h-20 z-50 sticky -top-0.5  ">
+    <div class="z-20 w-full h-max transition duration-200 ease-in-out border-b bg-white innerSticky body-font text-brand-muted border-border-base relative">
         <div class=" flex items-center justify-between w-full h-max mx-auto max-w-[1920px] px-4 md:px-6 lg:px-8 2xl:px-10 ">
             <div class="flex gap-2">
                 <button aria-label="Menu" id="menuButton"
@@ -55,20 +58,26 @@
                     class="overlay cursor-pointer invisible w-full h-full opacity-0 flex top-0 left-0:right-0 transition-all duration-300 fixed"></div>
                 <div class="relative z-30 flex flex-col justify-center w-full shrink-0">
                     <div class="flex flex-col w-full mx-auto">
-                        <form class="relative flex w-full rounded-md" novalidate="" role="search">
+                        <form action="{{route('searchProduct')}}" method="POST" class="relative flex w-full rounded-md" novalidate="" role="search">
+                            @csrf
                             <label for="top-bar-search" class="flex flex-1 items-center py-0.5">
                                 <input id="top-bar-search"
                                        class="text-heading outline-none w-full h-[52px] pl-2 pr-5 md:pl-6 md:pr-6 pr-14 pl-14 md:pr-16 md:pl-16 bg-gray-100 text-brand-dark text-sm lg:text-15px rounded-md transition-all duration-200 focus:border-brand focus:ring-0 placeholder:text-brand-dark/50 bg-fill-one"
                                        placeholder="What are you looking..."
                                        aria-label="top-bar-search"
                                        autocomplete="off"
-                                       name="search"
-                                       value=""></label><span
-                                class="absolute top-0 flex items-center justify-center h-full w-14 md:w-16 right-0 shrink-0 focus:outline-none"><svg
+                                       name="searchBox"
+                                       value=""></label>
+                            <button
+                                class="absolute top-0 flex items-center justify-center h-full w-14 md:w-16 right-0 shrink-0 focus:outline-none" type="submit">
+                                <svg
                                     width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     class="w-5 h-5 text-brand-dark text-opacity-40"><path
                                         d="M19.0144 17.9256L13.759 12.6703C14.777 11.4129 15.3899 9.81507 15.3899 8.07486C15.3899 4.04156 12.1081 0.759766 8.07483 0.759766C4.04152 0.759766 0.759766 4.04152 0.759766 8.07483C0.759766 12.1081 4.04156 15.3899 8.07486 15.3899C9.81507 15.3899 11.4129 14.777 12.6703 13.759L17.9256 19.0144C18.0757 19.1645 18.2728 19.24 18.47 19.24C18.6671 19.24 18.8642 19.1645 19.0144 19.0144C19.3155 18.7133 19.3155 18.2266 19.0144 17.9256ZM8.07486 13.8499C4.89009 13.8499 2.2998 11.2596 2.2998 8.07483C2.2998 4.89006 4.89009 2.29976 8.07486 2.29976C11.2596 2.29976 13.8499 4.89006 13.8499 8.07483C13.8499 11.2596 11.2596 13.8499 8.07486 13.8499Z"
-                                        fill="currentColor"></path></svg></span></form>
+                                        fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -78,7 +87,8 @@
 
 
 {{--  this is cart icon code. Show only when user is logged in --}}
-                <a href="{{route('cart.index')}}" class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform flex xl:mx-3.5 mx-2.5"
+
+                <a href="{{Auth::guard('admin')->user()?route('cart.index'): route('login') }}" class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform flex xl:mx-3.5 mx-2.5"
                     aria-label="cart-button"
                 >
                     <div class="relative flex items-center ">
@@ -98,14 +108,17 @@
                         @php
                             if(Auth::guard('admin')->user()){
 
-                            $cart = App\Models\Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
+                                   $cart = App\Models\Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
                             }
                             @endphp
                         <span
                             class="h-[20px] w-[20px]  rounded-full bg-[#02b290] flex items-center justify-center bg-brand text-gray-50 absolute -top-2 left-2  text-[12px] font-normal"> {{Auth::guard('admin')->user() ? $cart->count() : 0}} </span>
                     </div>
                     <span class="text-md font-normal lg:text-15px text-brand-dark ml-2 mr-2">Cart</span>
+
                 </a>
+
+
 
 
 {{-- if user is not logged in then show this--}}
@@ -161,6 +174,42 @@
 
             </div>
         </div>
+
+
+
+        @if(session()->has('success'))
+            <div id="alert-border-3" class="absolute  top-100 right-0 flex items-center p-4 mb-4 text-green-800 border-t-4 border-green-300 bg-green-50" role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <div class="ms-3 text-sm font-medium">
+                    Success! {{session('success')}}
+                </div>
+                <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
+            </div>
+        @endif
+        @if(session()->has('error'))
+            <div id="alert-border-3" class="absolute  top-100 right-0 flex items-center p-4 mb-4 text-red-800 border-t-4 border-red-300 bg-red-50" role="alert">
+                <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <div class="ms-3 text-sm font-medium">
+                    Error! {{session('error')}}
+                </div>
+                <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
+            </div>
+        @endif
+
     </div>
 </header>
 {{--main header ends here--}}
@@ -607,7 +656,7 @@
                 stroke-width="0.4"></path>
         </svg>
     </a>
-    <a href="{{route('cart.index')}}">
+    <a href="{{Auth::guard('admin')->user()?route('cart.index'): route('login') }}">
         <button class="flex items-center justify-center shrink-0 h-auto focus:outline-none transform"
             aria-label="cart-button" >
             <div class="relative flex items-center">
@@ -647,7 +696,6 @@
 
 </div>
 {{--bottom navbar ends here--}}
-<<<<<<< HEAD
 
 {{--cart here--}}
 <div class=" fixed top-0 right-0 flex justify-end w-0 overflow-hidden max-h-screen min-h-screen z-50 bg-black/25 "
@@ -727,7 +775,7 @@
                         <div class="flex items-start justify-between w-full overflow-hidden">
                             <div class="pl-3 pr-3 md:pl-4 md:pr-4"><a
                                     class="block font-semibold leading-5 transition-all text-gray-900 text-[13px] sm:text-sm lg:text-[15px] hover:text-gray-400"
-                                    href="/products/fresh-green-leaf-lettuce">Fresh Green Leaf Lettuce</a>
+                                    href="/products/fresh-red-leaf-lettuce">Fresh Green Leaf Lettuce</a>
                                 <div class="text-[13px] sm:text-sm text-gray-400 mt-1.5 block mb-2">1 each X 3
                                 </div>
                                 <div
@@ -1195,10 +1243,9 @@
             {{--            cart footer ends here--}}
         </div>
     </div>
-=======
->>>>>>> 1ae0510ed3a4037b0eea892a775f34f97dc8db63
 </div>
 
 @vite('resources/js/app.js')
+
 </body>
 </html>

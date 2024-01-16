@@ -42,7 +42,7 @@
     {{--    middle side--}}
     <div class="w-full mt-8 xl:-ml-3 xl:mr-3 3xl:-ml-1 3xl:mr-1 3xl:pr-2 3xl:pl-2">
 
-        <aside id="categorySideBar" class="flex justify-end bg-black/50 shrink-0   absolute top-0 -right-20 w-0 z-40 h-full overflow-hidden">
+        <aside id="categorySideBar" class="flex justify-end bg-black/50 shrink-0  absolute top-0 -right-20 w-0 z-40 h-max overflow-hidden">
             <div class="bg-white  lg:w-[500px] md:w-[500px] w-full h-max overflow-hidden border rounded border-border-base">
                 <div class="bg-white  border-b border-border-base flex justify-end items-center relative pr-2 shrink-0 py-0.5">
                     <button class="flex items-center justify-center px-4 py-2 text-2xl transition-opacity md:px-5  focus:outline-none hover:opacity-60"

@@ -34,4 +34,10 @@ class DealController extends Controller
         $deal->update($request->all());
         return redirect('admin/deal/');
     }
+
+
+    public function delete(Deal $deal){
+        $deal->delete();
+        return redirect('admin/deal/');
+    }
 }

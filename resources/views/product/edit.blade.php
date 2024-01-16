@@ -138,18 +138,35 @@
                                                 <input type="text" value="{{$product->qty}}" name="qty" id="barcode" class="form-control" placeholder="Qty">
                                             </div>
                                         </div>
-                                        {{--                                    <div class="col-md-12">--}}
-                                        {{--                                        <div class="mb-3">--}}
-                                        {{--                                            <div class="custom-control custom-checkbox">--}}
-                                        {{--                                                <input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="Qty">--}}
-                                        {{--                                                --}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        --}}
-                                        {{--                                        </div>--}}
-                                        {{--                                        <div class="mb-3">--}}
-                                        {{--                                       --}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    </div>--}}
+
+
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="barcode">Tags</label>
+                                                <input type="text" id="productTag" class="form-control" placeholder="e.g. Oil, Food, Vegetable ">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" >
+
+                                            <div class="mb-3" style="width: max-content">
+                                                <label for="barcode">Saved Tag</label>
+                                            </div>
+
+                                            <div style="display: flex; flex-wrap: wrap; gap: 20px" id="displayProductTag">
+                                                @foreach($product->productTags as $tag)
+                                                    <div class="mb-3" style="width: max-content;">
+                                                        <label for="barcode" style="background-color: #dadada; border-radius: 5px; padding: 5px 10px">{{$tag->name}}</label>
+                                                        <input type="text" name="all_product_tags[]" value="{{$tag->name}}" id="barcode" class="form-control" placeholder="" hidden>
+                                                        <a href="{{route('tag.delete',['tag'=> $tag->id])}}"><i class="fa-solid fa-xmark"></i></a>
+                                                    </div>
+
+                                                @endforeach
+
+
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

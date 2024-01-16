@@ -29,6 +29,12 @@ class Product extends Model
     public function deal(){
         return $this->hasOne(Deal::class);
     }
+    public function productTags(){
+        return $this->hasMany(ProductTag::class, 'product_id');
+    }
+    public function reviews(){
+        return $this->hasMany(Review::class, 'product_id');
+    }
 
 
 }

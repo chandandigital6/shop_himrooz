@@ -15,6 +15,14 @@ class WishlistController extends Controller
             'product_id' => $product->id,
             'product_variation_id' => $product->variations->first()->id,
         ]);
+        session()->flash('success', 'Product added to wishlist successfully!');
+        return redirect()->back();
+    }
+
+
+    public function delete(Wishlist $wishlist){
+        $wishlist->delete();
+        session()->flash('success', 'Product successfully removed from wishlist!');
         return redirect()->back();
     }
 }

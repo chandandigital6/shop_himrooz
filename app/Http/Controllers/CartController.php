@@ -16,13 +16,33 @@ class CartController extends Controller
         $cartItems =  Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
         return view('front.cart', compact('cartItems'));
     }
+
+    public function add(Product $product){
+
+        $cart = Cart::where('product_id', $product->id)
+            ->where('product_variation_id', $product->variations->first()->id)->first();
+
+        if($cart){
+            $cart->quantity += 1;
+            $cart->save();
+        }else {
+            Cart::create([
+                'user_id' => Auth::guard('admin')->user()->id,
+                'product_id' => $product->id,
+                'product_variation_id' => $product->variations->first()->id,
+                'quantity' => 1,
+            ]);
+        }
+        session()->flash('success', 'Product added to cart successfully!');
+        return redirect()->back();
+    }
+
     public function store(CartRequest $request){
         $cart = Cart::where('product_id', $request->product_id)
             ->where('product_variation_id', $request->variation_id)->first();
         if($cart){
             $cart->quantity += $request->quantity;
             $cart->save();
-            return redirect('/')->with('success','Cart update successfully');
         }else{
             $cart = new Cart();
             $cart->user_id = Auth::guard('admin')->user()->id;
@@ -30,8 +50,10 @@ class CartController extends Controller
             $cart->product_variation_id = $request->variation_id;
             $cart->quantity = $request->quantity;
             $cart->save();
-            return redirect('/')->with('success','Cart Item add successfully');
         }
+
+        session()->flash('success', 'Product added to cart successfully!');
+        return redirect()->back();
 
     }
 
@@ -43,13 +65,15 @@ class CartController extends Controller
     public function increment(Cart $cart){
         $cart->quantity = $cart->quantity + 1;
         $cart->save();
-        return redirect()->back()->with('success', 'Cart updated successfully');
+        session()->flash('success', 'Product added to cart successfully!');
+        return redirect()->back();
     }
 
     public function decrement(Cart $cart){
         $cart->quantity = $cart->quantity - 1;
         $cart->save();
-        return redirect()->back()->with('success', 'Cart updated successfully');
+        session()->flash('success', 'Product added to cart successfully!');
+        return redirect()->back();
     }
 
     public function clear(){
@@ -84,15 +108,7 @@ class CartController extends Controller
         return view('front.checkOut', compact('totalCartAmount', 'cartItems'));
     }
 
-    public function add(Product $product){
-        Cart::create([
-            'user_id' => Auth::guard('admin')->user()->id,
-            'product_id' => $product->id,
-            'product_variation_id' => $product->variations->first()->id,
-            'quantity' => 1,
-        ]);
-        return redirect()->back();
-    }
+
 
 
 }
