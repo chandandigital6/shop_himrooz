@@ -18,7 +18,7 @@
                     <div class="md:w-1/2 lg:w-[55%] xl:w-[60%] registration hidden md:block relative">
                         <img
                             alt="signin" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw"
-                            src="{{asset('assets/images/homeSlider/2.png')}}"
+                            src="{{asset('assets/images/login.jpg')}}"
                            class="object-cover"  style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="w-full md:w-1/2 lg:w-[45%] xl:w-[40%] py-6 sm:py-10 px-4 sm:px-8 md:px-6 lg:px-8 xl:px-12 rounded-md flex flex-col justify-center">

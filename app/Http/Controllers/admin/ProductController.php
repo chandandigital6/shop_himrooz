@@ -168,7 +168,7 @@ class ProductController extends Controller
             $products = Product::where('title', 'like', "%$keyword%")->orWhere('description', 'like', "%$keyword%")->pluck('id');
             if($products->count() == 0){
                 session()->flash('error', 'No match found');
-                return redirect()->back();
+                return redirect('/');
             }
             else{
                 $products = Product::whereIn('id', $products)->get();

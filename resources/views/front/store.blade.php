@@ -171,15 +171,14 @@
             </div>
         </div>
         {{--        product card--}}
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 md:gap-4 2xl:gap-5">
 
+        @if($products->count() == 0)
+            <div class="flex justify-center items-center w-full lg:h-[500px]">
+                <img class="h-full w-full object-cover rounded-md" src="{{asset('assets/images/commingSoon.jpeg')}}" alt="">
+            </div>
 
-
-            @if($products->count() == 0)
-                <div class="flex justify-center items-center w-full">
-                    <img class="h-full w-full " src="{{asset('assets/images/commingSoon.jpeg')}}" alt="">
-                </div>
             @else
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 md:gap-4 2xl:gap-5">
                 @foreach($products as $product)
                     @php
                         if($product->deal){
@@ -209,8 +208,13 @@
                         expire="{{$expire}}"
                     ></x-product-card>
                 @endforeach
-            @endif
-        </div>
+            </div>
+        @endif
+
+
+
+
+
     </div>
 
 </div>
