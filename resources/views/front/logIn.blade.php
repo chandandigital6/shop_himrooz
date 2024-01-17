@@ -38,7 +38,6 @@
                                 </a>
                             </div>
                         </div>
-                        @include('admin.massage')
                         <form class="flex flex-col justify-center" action="{{route('authenticate')}}" method="post">
                            @csrf
                             <div class="flex flex-col space-y-3.5">
@@ -54,6 +53,12 @@
                                 @error('email')
                                 <span>{{$message}}</span>
                                 @enderror
+                                @if(session()->has('error'))
+                                    <span class="text-red-500 text-left">{{session('error')}}</span>
+                                @endif
+                                @if(session()->has('success'))
+                                    <span class="text-green-500 text-left">{{session('success')}}</span>
+                                @endif
                                 <div class="block text-left">
                                     <label for="password" class="block mb-3 text-sm font-normal leading-none cursor-pointer text-gray-900 opacity-70">
                                         Password
@@ -90,7 +95,7 @@
                                 </div>
                                 <div class="flex items-center justify-end">
                                     <div class="flex ltr:ml-auto rtl:mr-auto mt-[3px]">
-                                        <a href="">
+                                        <a href="{{route('forgetPasswordPage')}}">
                                             <button type="button"
                                                     class="text-sm text-right text-heading ltr:pl-3 lg:rtl:pr-3 hover:no-underline hover:text-[#02b290] focus:outline-none focus:text-brand-dark">
                                                 Forgot password?

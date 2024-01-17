@@ -40,16 +40,6 @@
                                 </a>
                             </div>
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form class="flex flex-col justify-center" action="{{route('register.store')}}" method="post">
                             @csrf
                             <div class="flex flex-col space-y-3.5">
@@ -71,6 +61,10 @@
                                            autocomplete="off" spellcheck="false"
                                            aria-invalid="false">
                                 </div>
+
+                                @if(session()->has('error'))
+                                    <span class="text-red-500 text-left">{{session('error')}}</span>
+                                @endif
                                 <div class="block text-left">
                                     <label for="password" class="block mb-3 text-sm font-normal leading-none cursor-pointer text-gray-900 opacity-70">
                                         Password

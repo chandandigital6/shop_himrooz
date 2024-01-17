@@ -55,9 +55,7 @@ Route::get('/logIn', function () {
 Route::get('/signUp', function () {
     return view('front.signUp');
 })->name('signUp');
-Route::get('/forgetPassword', function () {
-    return view('front.forgetPassword');
-})->name('forgetPassword');
+
 Route::get('/contact', function () {
     return view('front.contact');
 })->name('contact');
@@ -84,6 +82,14 @@ Route::get('store/{id}',[StoreController::class,'GetProduct'])->name('store');
 
 Route::get('register',[AuthController::class,'register'])->name('register');
 Route::post('register/store',[AuthController::class,'store'])->name('register.store');
+
+
+
+Route::get('forgetPassword',[AuthController::class,'forgetPasswordPage'])->name('forgetPasswordPage');
+
+Route::post('sendVerificationCode',[AuthController::class,'sendVerificationCode'])->name('sendVerificationCode');
+Route::post('verifyCode',[AuthController::class,'verifyCode'])->name('verifyCode');
+Route::post('changePassword',[AuthController::class,'changePassword'])->name('changePassword');
 
 //Cart Routes
 
