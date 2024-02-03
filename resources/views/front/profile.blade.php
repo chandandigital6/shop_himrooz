@@ -31,7 +31,9 @@
                 </div>
                 <div class=" hidden lg:block shrink-0 w-full lg:w-56 xl:w-72 2xl:w-[385px]">
                     <nav class="flex flex-col pb-2 md:pb-6 border border-border-base rounded-md overflow-hidden">
-                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 bg-gray-100 font-medium"
+
+
+                        <a class=" {{Route::currentRouteName()=='user.accountSetting'? 'bg-gray-100 font-medium': 'bg-white font-normal' }}  hover:bg-gray-100 transition ease-in duration-2000   flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1  "
                            href="{{route('user.accountSetting')}}"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg
                                     width="22" height="22" viewBox="0 0 22 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><path
@@ -40,7 +42,7 @@
                                         d="M11 11.5801C12.9191 11.5801 14.4805 10.0187 14.4805 8.09961V6.93945C14.4805 5.02036 12.9191 3.45898 11 3.45898C9.08091 3.45898 7.51953 5.02036 7.51953 6.93945V8.09961C7.51953 10.0187 9.08091 11.5801 11 11.5801ZM8.67969 6.93945C8.67969 5.65996 9.7205 4.61914 11 4.61914C12.2795 4.61914 13.3203 5.65996 13.3203 6.93945V8.09961C13.3203 9.3791 12.2795 10.4199 11 10.4199C9.7205 10.4199 8.67969 9.3791 8.67969 8.09961V6.93945Z"
                                         fill="#8C969F" stroke="#8C969F" stroke-width="0.2"></path></svg></span><span
                                 class="ltr:pl-1 lg:rtl:pr-1.5">Account Settings</span></a>
-                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"
+                        <a class=" {{Route::currentRouteName()=='user.order'? 'bg-gray-100 font-medium': 'bg-white font-normal' }}  hover:bg-gray-100 transition ease-in duration-2000 flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1"
                            href="{{route('user.order')}}"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg
                                     width="22" height="22" viewBox="0 0 22 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><g
@@ -51,22 +53,13 @@
                                                              fill="white"></rect></clipPath></defs></svg></span><span
                                 class="ltr:pl-1 lg:rtl:pr-1.5">Orders</span>
                         </a>
-                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"
+                        <a class=" {{Route::currentRouteName()=='user.wishlist'? 'bg-gray-100 font-medium': 'bg-white font-normal' }}  hover:bg-gray-100 transition ease-in duration-2000 flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1"
                            href="{{route('user.wishlist')}}"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg
                                     width="22" height="22" viewBox="0 0 22 22" fill="none"
                                     xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><path
                                         d="M11 19.8C10.7181 19.8 10.4463 19.698 10.2345 19.5126C9.43467 18.8138 8.6635 18.1572 7.98312 17.5779L7.97964 17.5749C5.98487 15.8765 4.26231 14.4098 3.06378 12.9649C1.72401 11.3497 1.09998 9.81825 1.09998 8.14521C1.09998 6.51972 1.65785 5.0201 2.67072 3.9224C3.69567 2.81172 5.10206 2.20001 6.63126 2.20001C7.7742 2.20001 8.82091 2.56103 9.74223 3.27296C10.2072 3.63232 10.6287 4.07212 11 4.58513C11.3714 4.07212 11.7927 3.63232 12.2579 3.27296C13.1792 2.56103 14.2259 2.20001 15.3688 2.20001C16.8979 2.20001 18.3044 2.81172 19.3294 3.9224C20.3423 5.0201 20.9 6.51972 20.9 8.14521C20.9 9.81825 20.2761 11.3497 18.9363 12.9648C17.7378 14.4098 16.0154 15.8763 14.0209 17.5746C13.3393 18.1547 12.5669 18.8125 11.7653 19.5129C11.5536 19.698 11.2817 19.8 11 19.8V19.8ZM6.63126 3.35884C5.42987 3.35884 4.32621 3.83788 3.52331 4.70783C2.70848 5.59091 2.25968 6.81161 2.25968 8.14521C2.25968 9.55231 2.78311 10.8107 3.95671 12.2255C5.09103 13.5931 6.77825 15.0296 8.73178 16.693L8.7354 16.696C9.41836 17.2776 10.1925 17.9368 10.9983 18.6407C11.8089 17.9354 12.5843 17.2751 13.2686 16.6927C15.222 15.0293 16.9091 13.5931 18.0434 12.2255C19.2168 10.8107 19.7403 9.55231 19.7403 8.14521C19.7403 6.81161 19.2915 5.59091 18.4766 4.70783C17.6739 3.83788 16.5701 3.35884 15.3688 3.35884C14.4888 3.35884 13.6807 3.63835 12.9673 4.18954C12.3314 4.68096 11.8885 5.30218 11.6288 5.73686C11.4953 5.96038 11.2603 6.0938 11 6.0938C10.7397 6.0938 10.5046 5.96038 10.3711 5.73686C10.1116 5.30218 9.66867 4.68096 9.03269 4.18954C8.31923 3.63835 7.5112 3.35884 6.63126 3.35884V3.35884Z"
                                         fill="#8C969F" stroke="#8C969F" stroke-width="0.2"></path></svg></span><span
                                 class="ltr:pl-1 lg:rtl:pr-1.5">Wishlist</span></a>
-{{--                        <a class="flex items-center cursor-pointer text-sm lg:text-[15px] text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 font-normal"--}}
-{{--                           href="/my-account/address"><span class="w-9 xl:w-10 shrink-0 flex justify-center"><svg--}}
-{{--                                    width="22" height="22" viewBox="0 0 22 22" fill="none"--}}
-{{--                                    xmlns="http://www.w3.org/2000/svg" class="w-5 md:w-[22px] h-5 md:h-[22px]"><path--}}
-{{--                                        d="M10.9998 0C6.60645 0 3.03223 3.57423 3.03223 7.96752C3.03223 13.4197 10.1624 21.4239 10.466 21.762C10.7511 22.0796 11.249 22.079 11.5336 21.762C11.8372 21.4239 18.9674 13.4197 18.9674 7.96752C18.9673 3.57423 15.3931 0 10.9998 0ZM10.9998 20.1837C8.60012 17.3332 4.46704 11.7095 4.46704 7.96761C4.46704 4.36537 7.39759 1.43481 10.9998 1.43481C14.602 1.43481 17.5325 4.36537 17.5325 7.96757C17.5325 11.7096 13.4001 17.3323 10.9998 20.1837Z"--}}
-{{--                                        fill="#8C969F"></path><path--}}
-{{--                                        d="M11.0001 3.95898C8.78969 3.95898 6.99146 5.75727 6.99146 7.96767C6.99146 10.1781 8.78974 11.9764 11.0001 11.9764C13.2104 11.9764 15.0087 10.1781 15.0087 7.96767C15.0087 5.75727 13.2104 3.95898 11.0001 3.95898ZM11.0001 10.5415C9.58083 10.5415 8.42627 9.38693 8.42627 7.96767C8.42627 6.54841 9.58088 5.3938 11.0001 5.3938C12.4193 5.3938 13.5739 6.54841 13.5739 7.96767C13.5739 9.38693 12.4193 10.5415 11.0001 10.5415Z"--}}
-{{--                                        fill="#8C969F"></path></svg></span><span--}}
-{{--                                class="ltr:pl-1 lg:rtl:pr-1.5">Address</span></a>--}}
                         <a href="{{route('logout')}}">
                             <button
                                 class="flex items-center text-sm lg:text-15px text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 cursor-pointer focus:outline-none">
@@ -93,55 +86,35 @@
 
 
                 {{--                      account setting here--}}
-                <div class=" {{request()->routeIs('user.accountSetting') ? '' : 'hidden'}} w-full p-4 mt-4 border rounded-md lg:mt-0 border-border-base sm:p-5 lg:py-8 2xl:py-10 lg:px-7 2xl:px-12 overflow-x-auto">
+                <div class=" {{request()->routeIs('user.accountSetting') ? '' : 'hidden'}} hover:bg-gray-100 transition ease-in duration-2000 w-full p-4 mt-4 border rounded-md lg:mt-0 border-border-base sm:p-5 lg:py-8 2xl:py-10 lg:px-7 2xl:px-12 overflow-x-auto">
                     <div class="flex flex-col w-full">
                         <h2 class="text-brand-dark text-base lg:text-lg xl:text-[20px] font-semibold xl:leading-8 mb-5 md:mb-6 lg:mb-7 lg:-mt-1">
                             Personal Information
                         </h2>
 
-                        <form class="flex flex-col justify-center w-full mx-auto" novalidate="">
+                        <form action="{{route('user.updateAccountSetting')}}" method="POST" class="flex flex-col justify-center w-full mx-auto">
+                           @csrf
                             <div class="border-b border-border-base pb-7 md:pb-8 lg:pb-10">
                                 <div class="flex flex-col space-y-4 sm:space-y-5">
                                     <div class="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
                                         <div class="w-full sm:w-1/2 px-1.5 md:px-2.5">
-                                            <label for="firstName"
-                                                   class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">
-                                                First Name *</label>
-                                            <input id="firstName" name="firstName" type="text"
-                                                   placeholder="First Name"
-                                                   class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-[#02b290] h-11 md:h-12"
-                                                   autocomplete="off" spellcheck="false"
-                                                   aria-invalid="false">
-                                        </div>
-                                        <div class="w-full sm:w-1/2 px-1.5 md:px-2.5">
-                                            <label for="lastName"
-                                                   class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">
-                                                Last Name *</label>
-                                            <input id="lastName" name="lastName" type="text"
-                                                   placeholder="Last Name"
-                                                   class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-[#02b290] h-11 md:h-12"
-                                                   autocomplete="off" spellcheck="false"
-                                                   aria-invalid="false">
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
-                                        <div class="w-full sm:w-1/2 px-1.5 md:px-2.5">
-                                            <label for="phoneNumber"
+                                            <label for="name"
                                                    class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">
                                                 Phone/Mobile
                                                 *</label>
-                                            <input id="phoneNumber" name="phoneNumber" type="tel"
-                                                   placeholder="Mobile Number"
+                                            <input id="name" name="name" type="tel"
+                                                   placeholder="Your Name"
                                                    class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-[#02b290] h-11 md:h-12"
                                                    autocomplete="off" spellcheck="false"
-                                                   aria-invalid="false"></div>
+                                                   aria-invalid="false"
+                                                   value="{{Auth::guard('admin')->user()->name}}"
+                                            ></div>
                                     </div>
                                 </div>
                             </div>
-
-
                             <h2 class="text-brand-dark text-base lg:text-lg xl:text-[20px] font-semibold xl:leading-8 pt-6 mb-5 xl:mb-8 md:pt-7 lg:pt-8">
                                 Account Information</h2>
+
                             <div class="border-b border-border-base pb-7 md:pb-9 lg:pb-10">
                                 <div class="flex flex-col space-y-4 sm:space-y-5">
                                     <div class="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
@@ -149,10 +122,13 @@
                                             <label for="email"
                                                    class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">
                                                 Email *</label>
-                                            <input id="email" name="email" type="email" placeholder="Your Email Address"
+                                            <input disabled id="email" name="email" type="email" placeholder="{{Auth::guard('admin')->user()->email}}"
                                                    class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-[#02b290] h-11 md:h-12"
                                                    autocomplete="off" spellcheck="false"
-                                                   aria-invalid="false"></div>
+                                                   aria-invalid="false"
+
+                                            >
+                                        </div>
                                     </div>
                                     <div class="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
                                         <div class="w-full sm:w-1/2 px-1.5 md:px-2.5">
@@ -182,14 +158,14 @@
                                                     </svg>
                                                 </label></div>
                                         </div>
-                                        <div class="w-full sm:w-1/2 px-1.5 md:px-2.5"><label for="confirmPassword"
+                                        <div class="w-full sm:w-1/2 px-1.5 md:px-2.5"><label for="confirm_password"
                                                                                              class="block mb-3 text-sm font-normal leading-none cursor-pointer text-brand-dark opacity-70">Confirm
                                                 Password</label>
-                                            <div class="relative"><input id="confirmPassword" name="confirmPassword"
+                                            <div class="relative"><input id="confirm_password" name="confirm_password"
                                                                          type="password"
                                                                          class="py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded-md placeholder-[#B3B3B3] transition duration-200 ease-in-out text-brand-dark border-border-two focus:border-2 focus:outline-none focus:ring-0 focus:border-[#02b290] h-11 md:h-12"
                                                                          autocomplete="off" spellcheck="false"><label
-                                                    for="confirmPassword"
+                                                    for="confirm_password"
                                                     class="absolute -mt-2 cursor-pointer right-4  top-5 text-gray-500 text-opacity-30">
                                                     <svg onclick="
                                                         var password = document.getElementById('confirmPassword');

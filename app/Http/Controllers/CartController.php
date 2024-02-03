@@ -13,28 +13,44 @@ class CartController extends Controller
 {
 
     public function index(){
-        $cartItems =  Cart::where('user_id',Auth::guard('admin')->user()->id)->get();
-        return view('front.cart', compact('cartItems'));
+        if(!Auth::guard('admin')->check()){
+            return redirect()->route('login');
+        }else {
+            $cartItems = Cart::where('user_id', Auth::guard('admin')->user()->id)->get();
+            return view('front.cart', compact('cartItems'));
+        }
     }
 
     public function add(Product $product){
 
-        $cart = Cart::where('product_id', $product->id)
-            ->where('product_variation_id', $product->variations->first()->id)->first();
 
-        if($cart){
-            $cart->quantity += 1;
-            $cart->save();
+        // first check if user is logged in or not
+        if(!Auth::guard('admin')->check()){
+            return redirect()->route('login');
         }else {
-            Cart::create([
-                'user_id' => Auth::guard('admin')->user()->id,
-                'product_id' => $product->id,
-                'product_variation_id' => $product->variations->first()->id,
-                'quantity' => 1,
-            ]);
+            // check is product already exists in cart
+            $cart = Cart::where('product_id', $product->id)
+                ->where('product_variation_id', $product->variations->first()->id)
+                ->where('user_id', Auth::guard('admin')->user()->id)
+                ->first();
+            if ($cart) {
+                $cart->quantity += 1;
+                $cart->save();
+                session()->flash('success', 'Product added to cart successfully!');
+                return redirect()->back();
+            } else {
+                Cart::create([
+                    'user_id' => Auth::guard('admin')->user()->id,
+                    'product_id' => $product->id,
+                    'product_variation_id' => $product->variations->first()->id,
+                    'quantity' => 1,
+                ]);
+                session()->flash('success', 'Product added to cart successfully!');
+                return redirect()->back();
+            }
         }
-        session()->flash('success', 'Product added to cart successfully!');
-        return redirect()->back();
+
+
     }
 
     public function store(CartRequest $request){

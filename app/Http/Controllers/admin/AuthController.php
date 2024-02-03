@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Testing\Fluent\Concerns\Has;
@@ -92,5 +93,29 @@ class AuthController extends Controller
         session()->flash('success','Password changed successfully');
         return redirect()->route('login');
     }
+
+      public function updateAccountSetting(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+        $user = Auth::guard('admin')->user();
+        $user->name = $request->name;
+        if($request->password != null){
+            // first check if password and confirm password matched
+            if($request->password != $request->confirm_password){
+                session()->flash('error','Password and Confirm Password not matched');
+                return redirect()->back();
+            }
+            else{
+                $user->password = Hash::make($request->password);
+            }
+        }
+          $user->save();
+          session()->flash('success','Account Settings changed successfully');
+        return redirect()->back();
+
+
+
+      }
 
 }

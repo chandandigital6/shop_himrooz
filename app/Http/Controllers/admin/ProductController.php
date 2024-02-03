@@ -164,7 +164,7 @@ class ProductController extends Controller
             'searchBox' => 'required',
         ];
         $message = [
-          'searchBox.required' =>   'Search Box Is Blank.',
+          'searchBox.required' =>   'What are you looking for? .🤔',
         ];
         $request->validate($rules, $message);
         $keyword = $request->input('searchBox');

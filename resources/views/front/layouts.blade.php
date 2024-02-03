@@ -58,6 +58,8 @@
                     class="overlay cursor-pointer invisible w-full h-full opacity-0 flex top-0 left-0:right-0 transition-all duration-300 fixed"></div>
                 <div class="relative z-30 flex flex-col justify-center w-full shrink-0">
                     <div class="flex flex-col w-full mx-auto">
+
+
                         <form action="{{route('searchProduct')}}" method="POST" class="relative flex flex-col w-full rounded-md" novalidate="" role="search">
                             @csrf
                             <label for="top-bar-search" class="flex flex-1 items-center py-0.5">
@@ -78,10 +80,11 @@
                                 </svg>
                             </button>
                             @error('searchBox')
-                            <span class="text-xs text-red-600">{{'* '.$message}}</span>
-
+                               <span class="text-xs text-red-600">{{'* '.$message}}</span>
                             @enderror
                         </form>
+
+
                     </div>
                 </div>
             </div>
@@ -536,7 +539,7 @@
                     <div class="w-full ">
                         <input id="subscription-email" name="email" type="email"
                                placeholder="Write your email here"
-                               class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-gray-300 focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12 ltr:pl-10 rtl:pr-10 2xl:px-11 h-12 rounded-md"
+                               class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-gray-500 text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out  focus:ring-0  border-border-two focus:border-1 focus:outline-none focus:border-[#02b290] h-11 md:h-12 ltr:pl-10 rtl:pr-10 2xl:px-11 h-12 rounded-md"
                                autocomplete="off" spellcheck="false" aria-invalid="false"></div>
                     <button
                         class="absolute right-0 top-0 hover:opacity-80 focus:outline-none h-12 px-3 lg:px-3.5 transform scale-90 2xl:scale-100"

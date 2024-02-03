@@ -18,20 +18,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\WishlistController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-//Route::get('/', function () {
-//    return view('admin.login');
-//});
 
 Route::get('/about', function () {
     return view('front.about');
@@ -124,8 +110,11 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::get('order', [HomeController::class, 'profile'])->name('order');
         Route::get('accountSetting', [HomeController::class, 'profile'])->name('accountSetting');
         Route::get('wishlist', [HomeController::class, 'profile'])->name('wishlist');
+
+
+        Route::post('updateAccountSetting', [AuthController::class, 'updateAccountSetting'])->name('updateAccountSetting');
     });
-//});
+//};
 //}
 
 

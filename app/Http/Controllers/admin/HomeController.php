@@ -26,4 +26,7 @@ class HomeController extends Controller
         $wishlists = Wishlist::where('user_id', Auth::guard('admin')->user()->id)->get();
         return view('front.profile',compact('orders', 'wishlists'));
     }
+
+
+
 }

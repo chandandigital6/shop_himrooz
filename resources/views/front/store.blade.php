@@ -154,9 +154,11 @@
         </aside>
 
         <div class=" flex items-center justify-between pb-0.5 mb-4 lg:mb-5 xl:mb-6">
-            <div class="-mt-1.5 mb-0"><h2
-                    class="text-brand-dark text-lg lg:text-xl xl:text-[22px] xl:leading-8 font-bold font-manrope">All
-                    Products</h2></div>
+            <div class="-mt-1.5 mb-0">
+            <p class="text-brand-dark font-medium text-base lg:text-lg leading-7 2xl:text-[20px] lg:leading-loose lg:mt-4 mb-3.5">
+                Showing Results For :-: &nbsp;<span class="text-[#02b290]">{{$categoryName}} .</span></p>
+            </div>
+
             <div
                 class="transition-all text-[#02b290] -mt-1.5 font-semibold text-sm md:text-[15px] hover:text-gray-900 cursor-pointer"
                 role="button" onclick="
