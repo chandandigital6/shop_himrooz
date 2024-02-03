@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('description')->nullable();
-            $table->double('price',10,2);
+            $table->double('price',10,2)->nullable();
             $table->double('discount_price', 10,2)->nullable();
             $table->foreignId('categories_id')->constrained();
             $table->foreignId('sub_categories_id')->nullable()->constrained();

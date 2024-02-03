@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->string('name');
-            $table->float('price');
+            $table->double('price', 10, 2);
             $table->string('image')->nullable();
             $table->float('discountPercentage')->nullable();
             $table->timestamps();

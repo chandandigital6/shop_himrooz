@@ -58,7 +58,7 @@
                     class="overlay cursor-pointer invisible w-full h-full opacity-0 flex top-0 left-0:right-0 transition-all duration-300 fixed"></div>
                 <div class="relative z-30 flex flex-col justify-center w-full shrink-0">
                     <div class="flex flex-col w-full mx-auto">
-                        <form action="{{route('searchProduct')}}" method="POST" class="relative flex w-full rounded-md" novalidate="" role="search">
+                        <form action="{{route('searchProduct')}}" method="POST" class="relative flex flex-col w-full rounded-md" novalidate="" role="search">
                             @csrf
                             <label for="top-bar-search" class="flex flex-1 items-center py-0.5">
                                 <input id="top-bar-search"
@@ -77,6 +77,10 @@
                                         fill="currentColor"></path>
                                 </svg>
                             </button>
+                            @error('searchBox')
+                            <span class="text-xs text-red-600">{{'* '.$message}}</span>
+
+                            @enderror
                         </form>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ class ProductController extends Controller
         $product->image = str_replace('public/', '', $image);
         $product->save();
 
-        $product_tags = $request->all_product_tags;
+        $product_tags = $request->product_tags;
 
         foreach ($product_tags as $key => $value) {
             $product_tag = new ProductTag();
@@ -160,6 +160,13 @@ class ProductController extends Controller
     }
 
     Public function search(Request $request){
+        $rules = [
+            'searchBox' => 'required',
+        ];
+        $message = [
+          'searchBox.required' =>   'Search Box Is Blank.',
+        ];
+        $request->validate($rules, $message);
         $keyword = $request->input('searchBox');
         $productTag = ProductTag::where('name', 'like', "%$keyword%")->pluck('product_id');
 

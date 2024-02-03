@@ -163,7 +163,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="barcode">Tags</label>
-                                                        <input type="text" id="productTag" class="form-control" placeholder="e.g. Oil, Food, Vegetable ">
+                                                        <input type="text" id="productTag" name="product_tags[]" class="form-control" placeholder="e.g. Oil, Food, Vegetable ">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12" >

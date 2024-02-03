@@ -56,4 +56,12 @@ class OrderController extends Controller
         return redirect('/');
     }
 
+    public function orderCancelOrReturn(Order $order, $type){
+        $order->update([
+            'status' => $type == 'cancel' ? 'canceled' : 'returned',
+        ]);
+        return redirect()->back();
+    }
+
+
 }

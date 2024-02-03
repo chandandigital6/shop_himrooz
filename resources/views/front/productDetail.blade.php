@@ -250,7 +250,7 @@
                             Wishlist
                         </a>
                         <div class="relative group">
-                            <button data-variant="border"
+                            <a href="whatsapp://send?text={{ route('product.show', $showProduct->id) }}" data-variant="border"
                                     class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 md:h-14 bg-brand-light text-brand-dark border border-border-four tracking-widest px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 w-full hover:text-[#1bba9b] false">
                                 <svg stroke="currentColor" fill="currentColor" stroke-width="0"
                                      viewBox="0 0 512 512"
@@ -260,7 +260,7 @@
                                           d="M448 256L272 88v96C103.57 184 64 304.77 64 424c48.61-62.24 91.6-96 208-96v96z"></path>
                                 </svg>
                                 Share
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

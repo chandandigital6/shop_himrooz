@@ -164,7 +164,14 @@
                                                        autocomplete="off" spellcheck="false">
                                                 <label for="password"
                                                        class="absolute -mt-2 cursor-pointer right-4 top-5 text-gray-500 text-opacity-30">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    <svg onclick="
+                                                    var password = document.getElementById('password');
+                                                    if (password.type === 'password') {
+                                                        password.type = 'text';
+                                                    } else {
+                                                        password.type = 'password';
+                                                    }
+                                                    " xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
@@ -184,7 +191,14 @@
                                                                          autocomplete="off" spellcheck="false"><label
                                                     for="confirmPassword"
                                                     class="absolute -mt-2 cursor-pointer right-4  top-5 text-gray-500 text-opacity-30">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    <svg onclick="
+                                                        var password = document.getElementById('confirmPassword');
+                                                        if (password.type === 'password') {
+                                                            password.type = 'text';
+                                                        } else {
+                                                            password.type = 'password';
+                                                        }
+                                                    " xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                               stroke-width="2"
@@ -245,11 +259,11 @@
                                 </th>
                                 <th class="rc-table-cell py-4 px-1 text-black font-semibold" scope="col">Order Date</th>
                                 <th class="rc-table-cell py-4 px-1 text-black font-semibold" scope="col">Status</th>
-                                <th class="rc-table-cell py-4 px-1 text-black font-semibold" scope="col">Delivery Time
+                                <th class="rc-table-cell py-4 px-1 text-black font-semibold" scope="col">Delivery Date
                                 </th>
                                 <th class="rc-table-cell py-4 px-1 text-black font-semibold" scope="col">Total Price
                                 </th>
-                                <td class="rc-table-cell py-4 px-1 text-black font-semibold operations-cell"></td>
+                                <td class="rc-table-cell py-4 px-1 text-black font-semibold operations-cell"> Action</td>
                             </tr>
                             </thead>
                             <tbody class="rc-table-tbody">
@@ -257,28 +271,29 @@
                                 <tr data-row-key="1" class="rc-table-row rc-table-row-level-0">
                                     <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200 id-cell">{{$loop->iteration}}</td>
                                     <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200"><span
-                                            class="whitespace-nowrap">{{$order->created_at->format('d-m-Y')}}</span>
+                                            class="whitespace-nowrap">{{$order->created_at->format('d-M-Y')}}</span>
                                     </td>
                                     <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200">
-                                        <span class="delivered"><button class="h-3 w-3 rounded-full bg-green-600"></button> Delivered</span>
+                                        <span class="delivered"><button class="h-3 w-3 rounded-full bg-green-600"></button> {{$order->status}}</span>
                                     </td>
-                                    <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200">25 May, 2021</td>
+                                    <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200 text-center"><span class="text-xs">Expected before</span>
+                                        <br> {{$order->created_at->addDays(10)->format('d-M-Y') }}</td>
                                     <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200"><span
                                             class="total_price">₹ {{$order->amount}}</span></td>
                                     <td class="rc-table-cell py-4 px-1 border-b-[2px] border-gray-200 operations-cell">
                                         <div class="relative actions_button_group" data-headlessui-state="">
-                                            <button
-                                                class="text-opacity-90 text-white group  px-3 py-2 rounded-md inline-flex items-center text-base font-medium hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-                                                type="button" aria-expanded="false" data-headlessui-state=""
-                                                id="headlessui-popover-button-:r33:">
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                     viewBox="0 0 16 16" height="20" width="20"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     style="color: rgb(140, 150, 159);">
-                                                    <path
-                                                        d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path>
-                                                </svg>
-                                            </button>
+                                            @if($order->status == 'delivered')
+
+                                                <form action="{{route('order.cancelOrReturn', ['order' => $order, 'type' => 'return'])}}" method="post">
+                                                    @csrf
+                                                    <input type="submit" value="Return" class="bg-red-600 text-white text-sm border-white group  px-3 py-2 rounded-md inline-flex items-center text-base font-medium hover:text-red-600 hover:bg-white hover:border-1">
+                                                </form>
+                                            @else
+                                                <form action="{{route('order.cancelOrReturn', ['order' => $order, 'type' => 'cancel'])}}" method="post">
+                                                    @csrf
+                                                    <input type="submit" value="{{$order->status == 'returned' ? 'Returning' : ($order->status == 'canceled' ? 'canceled' : 'Cancel')}}" {{$order->status == 'returned' ? 'disabled' : ($order->status == 'canceled' ? 'disabled' : '')}} class=" bg-red-600 text-white text-sm border-white group  px-3 py-2 rounded-md inline-flex items-center text-base font-medium hover:text-red-600 hover:bg-white hover:border-1">
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

@@ -114,6 +114,7 @@ Route::post('changePassword',[AuthController::class,'changePassword'])->name('ch
 
     Route::prefix('order')->name('order.')->group(function (){
         Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
+        Route::post('cancel/{order}/{type}', [OrderController::class, 'orderCancelOrReturn'])->name('cancelOrReturn');
     });
 
      Route::post('product/review/{product}',[ProductController::class,'review'])->name('product.review');

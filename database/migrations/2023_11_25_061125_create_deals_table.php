@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('deals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('product');
-            $table->foreignId('product_variation_id')->constrained('product_variation');
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
+            $table->foreignId('product_variation_id')->constrained('product_variations')->cascadeOndelete();
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->string('discount');

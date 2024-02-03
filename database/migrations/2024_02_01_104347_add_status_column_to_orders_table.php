@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_tags', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->enum('status', ['pending', 'confirmed', 'shipped', 'out for delivery', 'delivered', 'canceled', 'returned'])->after('amount');
         });
     }
 
@@ -24,7 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_tags');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
-
 };

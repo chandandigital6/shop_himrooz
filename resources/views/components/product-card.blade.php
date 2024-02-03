@@ -27,16 +27,7 @@
                 <div class="relative w-full">
                     <div class="block product-count-button-position flex justify-end gap-3 ">
                         <a href="{{Auth::guard('admin')->user()? route('cart.add', ['product' => $productId]) : route('login')}}"
-                           class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none"
-                           onmouseover="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.remove('hidden');
-                                    " onmouseleave="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.add('hidden');
-                                    " aria-label="Count Button">
+                           class="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-[#02b290] lg:w-10 lg:h-10 text-gray-50 focus:outline-none focus-visible:outline-none">
                             <svg width="19" height="19" viewBox="0 0 22 22" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <g opacity="1">
@@ -67,48 +58,6 @@
                                       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                             </svg>
                         </a>
-                    </div>
-                    <div id="productId"
-                         class="hidden product-count-button-position absolute -right-1 bottom-0 w-full"
-                         onmouseover="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.remove('hidden');
-                                    " onmouseleave="
-                                        const productId = document.getElementById('productId');
-                                      //set width to full screen
-                                        productId.classList.add('hidden');
-                                    ">
-{{--                        <div--}}
-{{--                            class="flex items-center justify-between rounded overflow-hidden shrink-0 p-1 h-9 md:h-10 bg-white shadow-lg shadow-gray-200 rounded-3xl w-full h-10">--}}
-{{--                            <button--}}
-{{--                                class="flex items-center justify-center shrink-0 h-full transition-all ease-in-out duration-300 focus:outline-none focus:ring-0 focus-visible:outline-none w-10 h-8 rounded-2xl text-heading hover:bg-gray-300">--}}
-{{--                                <span class="sr-only">button-minus</span>--}}
-{{--                                <svg class="transition-all" width="14" height="14" viewBox="0 0 22 22"--}}
-{{--                                     fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <g opacity="1">--}}
-{{--                                        <path--}}
-{{--                                            d="M3.15109 11.8438L10.174 11.8439L11.8264 11.8438L18.8493 11.8439C19.0772 11.8439 19.284 11.7515 19.4335 11.602C19.5831 11.4524 19.6755 11.2455 19.6754 11.0177C19.6755 10.5608 19.3062 10.1915 18.8493 10.1916L11.8264 10.1915L10.1741 10.1915L3.15109 10.1915C2.69427 10.1915 2.32496 10.5608 2.32496 11.0177C2.32486 11.4746 2.69416 11.8439 3.15109 11.8438Z"--}}
-{{--                                            fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>--}}
-{{--                                    </g>--}}
-{{--                                </svg>--}}
-{{--                            </button>--}}
-{{--                            <span--}}
-{{--                                class="font-semibold text-brand-dark flex items-center justify-center h-full transition-colors duration-250 ease-in-out cursor-default shrink-0 text-sm md:text-base w-6">1</span>--}}
-{{--                            <button--}}
-{{--                                class="group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus:ring-0 focus-visible:outline-none pr-2 w-10 h-8 rounded-2xl text-heading hover:bg-gray-300 !pr-0"--}}
-{{--                                title=""><span class="sr-only">button-plus</span>--}}
-{{--                                <svg width="14" height="14" viewBox="0 0 22 22" fill="none"--}}
-{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
-{{--                                    <g opacity="1">--}}
-{{--                                        <path--}}
-{{--                                            d="M10.174 11.8439L3.15109 11.8438C2.69416 11.8439 2.32486 11.4746 2.32496 11.0177C2.32496 10.5608 2.69427 10.1915 3.15109 10.1915L10.1741 10.1915L10.174 3.16858C10.1741 2.71165 10.5433 2.34245 11.0002 2.34245C11.4571 2.34234 11.8264 2.71165 11.8263 3.16858L11.8264 10.1915L18.8493 10.1916C19.3062 10.1915 19.6755 10.5608 19.6754 11.0177C19.6755 11.2455 19.5831 11.4524 19.4335 11.602C19.284 11.7515 19.0772 11.8439 18.8493 11.8439L11.8264 11.8438L11.8264 18.8668C11.8264 19.0947 11.734 19.3015 11.5845 19.451C11.4349 19.6006 11.2281 19.6929 11.0002 19.6929C10.5433 19.693 10.174 19.3237 10.1741 18.8668L10.174 11.8439Z"--}}
-{{--                                            fill="currentColor" stroke="currentColor" stroke-width="0.5"></path>--}}
-{{--                                    </g>--}}
-{{--                                </svg>--}}
-{{--                            </button>--}}
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>
