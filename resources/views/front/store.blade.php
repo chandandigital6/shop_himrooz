@@ -156,7 +156,7 @@
         <div class=" flex items-center justify-between pb-0.5 mb-4 lg:mb-5 xl:mb-6">
             <div class="-mt-1.5 mb-0">
             <p class="text-brand-dark font-medium text-base lg:text-lg leading-7 2xl:text-[20px] lg:leading-loose lg:mt-4 mb-3.5">
-                Showing Results For :-: &nbsp;<span class="text-[#02b290]">{{$categoryName}} .</span></p>
+                Showing Results For : &nbsp;<span class="text-[#02b290]">{{$categoryName?? ''}} .</span></p>
             </div>
 
             <div

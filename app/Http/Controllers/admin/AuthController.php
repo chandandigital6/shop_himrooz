@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use App\Models\UserQuery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -113,9 +114,39 @@ class AuthController extends Controller
           $user->save();
           session()->flash('success','Account Settings changed successfully');
         return redirect()->back();
-
-
-
       }
+
+
+      public function userQuery(Request $request)
+      {
+          // validate the form
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email',
+                'phone' => 'nullable|numeric|digits:10',
+                'message' => 'required'
+            ]);
+
+            // check if email already exists or not, if exists , then check if the query is resolved or not
+            $user = UserQuery::where('email',$request->email)->where('status','pending')->first();
+            if($user){
+                session()->flash('error','You already have a pending query with this email. Please wait for the response.');
+                return redirect()->back();
+            }
+            else{
+                UserQuery::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'phone' => $request->phone,
+                    'message' => $request->message
+                ]);
+            }
+
+
+
+            session()->flash('success','Your query submitted successfully');
+            return redirect()->back();
+      }
+
 
 }

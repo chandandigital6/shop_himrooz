@@ -34,36 +34,52 @@
                 </div>
             </div>
             <div class="w-full md:w-[47%] xl:w-[40%] pb-0.5 lg:pl-12 lg:pr-12 pt-1.5">
-                <form novalidate="" class="space-y-5">
+                <form action="{{route('user.userQuery')}}" method="POST" class="space-y-5">
+                    @csrf
                     <div class="block">
                         <label for="name"
                                class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">
                             Full Name (required)</label><input id="name" name="name" type="text"
                                                                placeholder="Enter Your Full Name"
-                                                               class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12"
+                                                               class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-gray-500 text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out  focus:ring-0  border-border-two focus:border-1 focus:outline-none focus:border-[#02b290] h-11 md:h-12  h-12 rounded-md"
                                                                autocomplete="off" spellcheck="false"
                                                                aria-invalid="false">
+                        @if($errors->has('name'))
+                            <span class="text-red-500 text-xs">{{$errors->first('name')}}</span>
+                        @endif
                     </div>
                     <div class="block">
                         <label for="email"
                                class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">Email
                             Address (required)</label><input id="email" name="email" type="email"
                                                              placeholder="Enter Your Email"
-                                                             class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12"
+                                                             class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-gray-500 text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out  focus:ring-0  border-border-two focus:border-1 focus:outline-none focus:border-[#02b290] h-11 md:h-12  h-12 rounded-md"
                                                              autocomplete="off" spellcheck="false" aria-invalid="false">
+                        @if($errors->has('email'))
+                            <span class="text-red-500 text-xs">{{$errors->first('email')}}</span>
+                        @endif
                     </div>
                     <div class="block">
                         <label for="phone"
                                class="block font-normal text-sm leading-none mb-3 cursor-pointer text-brand-dark text-opacity-70">Phone
-                            (Optional)</label><input id="phone" name="phone" type="text" placeholder="Enter Your Phone"
-                                                     class="py-2 px-4 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out text-brand-dark focus:ring-0 text-brand-dark border-border-two focus:border-2 focus:outline-none focus:border-brand h-11 md:h-12"
-                                                     autocomplete="off" spellcheck="false" aria-invalid="false"></div>
+                            (Optional)</label><input id="phone" name="phone" type="number" placeholder="Enter Your Phone"
+                                                     class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-gray-500 text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] min-h-12 transition duration-200 ease-in-out  focus:ring-0  border-border-two focus:border-1 focus:outline-none focus:border-[#02b290] h-11 md:h-12  h-12 rounded-md"
+                                                     autocomplete="off" spellcheck="false" aria-invalid="false">
+                        @if($errors->has('phone'))
+                            <span class="text-red-500 text-xs">{{$errors->first('phone')}}</span>
+                        @endif
+                    </div>
                     <div>
                         <label for="message"
-                               class="block text-brand-dark opacity-70 font-normal text-13px lg:text-sm leading-none mb-3 cursor-pointer">Message</label><textarea
+                               class="block text-brand-dark opacity-70 font-normal text-13px lg:text-sm leading-none mb-3 cursor-pointer">Message</label>
+                        <textarea
                             id="message" name="message"
-                            class="px-4 py-3 flex items-center w-full rounded appearance-none transition duration-300 ease-in-out text-brand-dark text-13px lg:text-sm focus:outline-none focus:ring-0 placeholder-[#B3B3B3] border border-border-two focus:bg-white focus:border-2 focus:border-brand"
-                            autocomplete="off" spellcheck="false" rows="4" placeholder="Briefly describe.."></textarea>
+                            class="py-1 px-4 w-full appearance-none transition duration-150 ease-in-out border text-gray-500 text-13px lg:text-sm font-body rounded placeholder-[#B3B3B3] transition duration-200 ease-in-out  focus:ring-0  border-border-two focus:border-1 focus:outline-none focus:border-[#02b290] py-4 rounded-md"
+                            autocomplete="off" spellcheck="false" rows="5" placeholder="Briefly describe.."></textarea>
+
+                        @if($errors->has('message'))
+                            <span class="text-red-500 text-xs">{{$errors->first('message')}}</span>
+                        @endif
                     </div>
                     <button data-variant="formButton"
                             class="group text-[13px] md:text-sm lg:text-15px leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center tracking-[0.2px] rounded placeholder-white focus-visible:outline-none focus:outline-none h-11 md:h-[50px] bg-[#02b290] text-gray-50 font-manrope px-5 lg:px-6 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90 focus:bg-opacity-70 w-full"
